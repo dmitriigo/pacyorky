@@ -87,4 +87,17 @@ public class PacyorkyEvent {
     public void setPacyorkyEventOwner(PacyorkyEventOwner pacyorkyEventOwner) {
         this.pacyorkyEventOwner = pacyorkyEventOwner;
     }
+
+    @Override
+    public String toString() {
+        return "PacyorkyEvent{" +
+                "id='" + id + '\'' +
+                ", place='" + place + '\'' +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", pacyorkyEventOwner=" + pacyorkyEventOwner +
+                '}';
+    }
 }

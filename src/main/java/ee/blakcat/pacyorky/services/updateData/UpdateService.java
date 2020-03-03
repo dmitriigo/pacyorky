@@ -1,7 +1,7 @@
 package ee.blakcat.pacyorky.services.updateData;
 
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
-import ee.blakcat.pacyorky.repositories.database.RepositoryJPA;
+import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
 import ee.blakcat.pacyorky.repositories.facebook.FaceBookConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,12 +10,12 @@ import java.util.Set;
 
 @Service
 public class UpdateService {
-    private RepositoryJPA repositoryJPA;
+    private EventRepositoryJPA eventRepositoryJPA;
     private FaceBookConnector faceBookConnector;
 
     @Autowired
-    public UpdateService(RepositoryJPA repositoryJPA, FaceBookConnector faceBookConnector) {
-        this.repositoryJPA = repositoryJPA;
+    public UpdateService(EventRepositoryJPA eventRepositoryJPA, FaceBookConnector faceBookConnector) {
+        this.eventRepositoryJPA = eventRepositoryJPA;
         this.faceBookConnector = faceBookConnector;
     }
 
@@ -25,6 +25,6 @@ public class UpdateService {
 
     private void updateEvents () {
         Set<PacyorkyEvent> pacyorkyEvents = faceBookConnector.getPacyorkyEvents();
-        repositoryJPA.saveAll(pacyorkyEvents);
+        eventRepositoryJPA.saveAll(pacyorkyEvents);
     }
 }
