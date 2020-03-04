@@ -27,8 +27,8 @@ public class FaceBookConnector {
     }
 
 
-    public Set<PacyorkyEvent> getPacyorkyEvents () {
-       Set<PacyorkyEvent> pacyorkyEvents = new HashSet<>();
+    public List<PacyorkyEvent> getPacyorkyEvents () {
+       List<PacyorkyEvent> pacyorkyEvents = new ArrayList<>();
         Map<Account, List<Event>> events = getAllUserEvents();
        events.forEach((account, eventsList) -> {
            eventsList.forEach(event -> pacyorkyEvents.add(getPacyorkyEvent(event, account)));

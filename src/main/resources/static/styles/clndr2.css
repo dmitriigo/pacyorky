@@ -156,6 +156,7 @@ strong {
   margin-top: 3em;
 }
 #full-clndr {
+  height: 500px;
   width: 100%;
   background-color: #ebebeb;
   font-weight: 700;
@@ -215,7 +216,6 @@ strong {
   color: #4f4f4f;
   background-color: #ebebeb;
   border-bottom: 2px solid white;
-  background-image: url('./triangle.svg');
   background-size: cover;
   background-position: center;
 }
@@ -243,8 +243,15 @@ strong {
   border-right: 2px solid white;
 }
 #full-clndr .event-listing {
+  height: 450px;
+  overflow: scroll;
   float: left;
   width: 35%;
+  -webkit-transition: left 0.5s;
+  -moz-transition: left 0.5s;
+  -ms-transition: left 0.5s;
+  -o-transition: left 0.5s;
+  transition: left 0.5s;
 }
 #full-clndr .event-listing .event-listing-title {
   padding: 14px;
@@ -263,12 +270,12 @@ strong {
 #full-clndr .event-listing .close {
   display: none;
 }
-#full-clndr.show-events {
+#full-clndr .event-listing.show-events {
   display: block;
   float: left;
   width: 35%;
 }
-#full-clndr.show-events .close {
+#full-clndr .event-listing.show-events .close {
   display: block;
 }
 @media all and (max-width: 768px) {

@@ -5,8 +5,7 @@ import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class EventService {
@@ -22,9 +21,10 @@ public class EventService {
         return eventRepositoryJPA.findById(id).get();
     }
 
-    public Set<PacyorkyEvent> findAll () {
-        Set<PacyorkyEvent> pacyorkyEvents = new HashSet<>();
+    public List<PacyorkyEvent> findAll () {
+        List<PacyorkyEvent> pacyorkyEvents = new ArrayList<>();
       eventRepositoryJPA.findAll().forEach(pacyorkyEvents::add);
+      pacyorkyEvents.sort(Comparator.comparing(PacyorkyEvent::getStartTime));
         return pacyorkyEvents;
     }
 

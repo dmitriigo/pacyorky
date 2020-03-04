@@ -3,7 +3,6 @@ package ee.blakcat.pacyorky.models;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.UUID;
 
 @Entity
 public class PacyorkyEvent {

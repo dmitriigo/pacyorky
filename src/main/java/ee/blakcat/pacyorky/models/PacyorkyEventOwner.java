@@ -12,7 +12,7 @@ public class PacyorkyEventOwner {
     @Id
     private String id;
     private String name;
-    @OneToMany (cascade = CascadeType.ALL, targetEntity = PacyorkyEvent.class, mappedBy = "pacyorkyEventOwner")
+    @OneToMany (cascade = CascadeType.ALL, targetEntity = PacyorkyEvent.class)
     private List <PacyorkyEvent> pacyorkyEvents;
 
     public PacyorkyEventOwner(String name, String facebookId) {

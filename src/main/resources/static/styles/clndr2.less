@@ -3,7 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Inconsolata:400,700);
 
 
-
+@time: 0.5s;
 
 
 
@@ -220,6 +220,7 @@ strong
 
 #full-clndr
 {
+    height: 500px;
   width: 100%;
   background-color: @light-gray;
   font-weight: 700;
@@ -293,8 +294,6 @@ strong
         color: #4f4f4f;
         background-color: @light-gray;
         border-bottom: 2px solid white;
-
-        background-image: url('./triangle.svg');
         background-size: cover;
         background-position: center;
          
@@ -337,9 +336,11 @@ strong
 
   .event-listing
   {
+      height: 450px;
+      overflow: scroll;
     float: left;
     width: 35%;
-
+.transition(left @time);
     .event-listing-title
     {
       padding: 14px;
@@ -360,14 +361,16 @@ strong
       .close {
           display: none;
       }
-  }
-    &.show-events {
+      
+        &.show-events {
         display: block;
         float: left;
         width: 35%;
         .close {
             display: block;
         }
+  }
+  
     }
 }
 

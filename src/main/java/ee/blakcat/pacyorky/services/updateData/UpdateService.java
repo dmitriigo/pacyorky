@@ -6,7 +6,7 @@ import ee.blakcat.pacyorky.repositories.facebook.FaceBookConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class UpdateService {
@@ -24,7 +24,7 @@ public class UpdateService {
     }
 
     private void updateEvents () {
-        Set<PacyorkyEvent> pacyorkyEvents = faceBookConnector.getPacyorkyEvents();
+        List<PacyorkyEvent> pacyorkyEvents = faceBookConnector.getPacyorkyEvents();
         eventRepositoryJPA.saveAll(pacyorkyEvents);
     }
 }

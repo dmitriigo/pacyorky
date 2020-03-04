@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${PGUSER}
+    password: ${PGPASS}
+    url: jdbc:postgresql://localhost:5432/pacyorky
+  jpa:
+    generate-dll: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  thymeleaf:
+    cache: false
+appId: ${APPID}
+appSecret: ${APPSECRET}
