@@ -3,7 +3,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: ${PGUSER}
     password: ${PGPASS}
-    url: jdbc:postgresql://localhost:5432/pacyorky
+    url: jdbc:postgresql://localhost:5432/pacyorky ${DATABASE_URL}
   jpa:
     generate-dll: true
     hibernate:
