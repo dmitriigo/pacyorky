@@ -6,8 +6,8 @@ The Pacyorky app is a single application for monitoring of various events posted
 1. java 8.
 2. Spring web, jpa, thymeleaf.
 3. PostgreSQL.
-4. restFB.
-5. clndr.js
+4. [restFB.](https://restfb.com/)
+5. [clndr.js](https://kylestetz.github.io/CLNDR/)
 
 **Usage:**
 
@@ -24,3 +24,5 @@ PGPASS = 'password for postgre'
 After, setup db name = 'pacyorky'
 
 Run application! Data will be updated every 30 minutes automatically.
+
+Working app at [heroku](https://immense-gorge-34685.herokuapp.com/) (maybe unavailable)
