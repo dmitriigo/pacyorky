@@ -17,3 +17,5 @@ spring:
     cache: false
 appId: ${APPID}
 appSecret: ${APPSECRET}
+server:
+  port: ${PORT:8080}
