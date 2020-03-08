@@ -16,65 +16,64 @@ import java.util.*;
 @Repository
 public class FaceBookConnector {
 
-   private DefaultFacebookClient facebookClient;
-   @Value("${appId}")
-   private String appId;
-   @Value("${appSecret}")
-   private String appSecret;
+    private DefaultFacebookClient facebookClient;
+    @Value("${appId}")
+    private String appId;
+    @Value("${appSecret}")
+    private String appSecret;
 
     public FaceBookConnector() {
-       facebookClient = new DefaultFacebookClient(Version.LATEST);
+        facebookClient = new DefaultFacebookClient(Version.LATEST);
     }
 
 
-    public List<PacyorkyEvent> getPacyorkyEvents () {
-       List<PacyorkyEvent> pacyorkyEvents = new ArrayList<>();
+    public List<PacyorkyEvent> getPacyorkyEvents() {
+        List<PacyorkyEvent> pacyorkyEvents = new ArrayList<>();
         Map<Account, List<Event>> events = getAllUserEvents();
-       events.forEach((account, eventsList) -> {
-           eventsList.forEach(event -> pacyorkyEvents.add(getPacyorkyEvent(event, account)));
-       });
+        events.forEach((account, eventsList) -> {
+            eventsList.forEach(event -> pacyorkyEvents.add(getPacyorkyEvent(event, account)));
+        });
 
-       return pacyorkyEvents;
+        return pacyorkyEvents;
 
     }
 
-    public PacyorkyEvent getPacyorkyEvent (Event event, Account account) {
+    public PacyorkyEvent getPacyorkyEvent(Event event, Account account) {
         return AdapterToEvent.convertFaceBookEventToPacyorkyEvent(event, account);
     }
 
-    private FacebookClient getAppClient () {
+    private FacebookClient getAppClient() {
         return facebookClient.createClientWithAccessToken(
-                facebookClient.obtainAppAccessToken(appId,appSecret)
+                facebookClient.obtainAppAccessToken(appId, appSecret)
                         .getAccessToken());
     }
 
-    private FacebookClient getUserClient (Account account) {
+    private FacebookClient getUserClient(Account account) {
         return facebookClient.createClientWithAccessToken(account.getAccessToken());
     }
 
-    private Set<Account> getFacebookAppAccounts () {
+    private Set<Account> getFacebookAppAccounts() {
         FacebookClient appClient = getAppClient();
         return new HashSet<>(appClient.fetchConnection("3559197890788331/accounts", Account.class).getData());
     }
 
-    private Set<User> getFaceBookAppUsers () {
+    private Set<User> getFaceBookAppUsers() {
         FacebookClient appClient = getAppClient();
         Set<User> usersToReturn = new HashSet<>();
-       List <User> users = appClient.fetchConnection("3559197890788331/accounts", User.class).getData();
+        List<User> users = appClient.fetchConnection("3559197890788331/accounts", User.class).getData();
         for (User user : users) {
             usersToReturn.add(appClient.fetchObject(user.getId(), User.class));
         }
         return usersToReturn;
     }
 
-    private Map<Account, List<Event>> getAllUserEvents () {
-Set<User> users = getFaceBookAppUsers();
-        Map <Account, List<Event>> accountListMap = new HashMap<>();
+    private Map<Account, List<Event>> getAllUserEvents() {
+        Set<User> users = getFaceBookAppUsers();
+        Map<Account, List<Event>> accountListMap = new HashMap<>();
         Set<Account> accounts = getFacebookAppAccounts();
         for (Account account : accounts) {
             FacebookClient client = getUserClient(account);
-            List<Event> events = new ArrayList<>();
-            events.addAll(client.fetchConnection("me/events", Event.class).getData());
+            List<Event> events = new ArrayList<>(client.fetchConnection("me/events", Event.class).getData());
             for (User user : users) {
                 if (user.getId().equals(account.getId())) account.setName(user.getName());
             }

@@ -1,7 +1,6 @@
 package ee.blakcat.pacyorky.models;
 
 
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +11,13 @@ public class PacyorkyEventOwner {
     @Id
     private String id;
     private String name;
-    @OneToMany (cascade = CascadeType.ALL, targetEntity = PacyorkyEvent.class)
-    private List <PacyorkyEvent> pacyorkyEvents;
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = PacyorkyEvent.class)
+    private List<PacyorkyEvent> pacyorkyEvents;
 
     public PacyorkyEventOwner(String name, String facebookId) {
-        this.id= facebookId;
+        this.id = facebookId;
         this.name = name;
-        pacyorkyEvents=new ArrayList<>();
+        pacyorkyEvents = new ArrayList<>();
     }
 
     public PacyorkyEventOwner() {
@@ -42,11 +41,11 @@ public class PacyorkyEventOwner {
         return pacyorkyEvents;
     }
 
-    public void addEvent (PacyorkyEvent pacyorkyEvent) {
+    public void addEvent(PacyorkyEvent pacyorkyEvent) {
         pacyorkyEvents.add(pacyorkyEvent);
     }
 
-    public void deleteEvent (PacyorkyEvent pacyorkyEvent) {
+    public void deleteEvent(PacyorkyEvent pacyorkyEvent) {
         pacyorkyEvents.remove(pacyorkyEvent);
     }
 

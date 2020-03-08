@@ -10,13 +10,12 @@ import ee.blakcat.pacyorky.models.PacyorkyEventOwner;
 public class AdapterToEvent {
 
 
-
     public static PacyorkyEvent convertFaceBookEventToPacyorkyEvent(Event event, Account account) {
-if (event.getPlace()==null) {
-    Place place= new Place();
-    place.setName("");
-    event.setPlace(place);
-}
+        if (event.getPlace() == null) {
+            Place place = new Place();
+            place.setName("");
+            event.setPlace(place);
+        }
         return new PacyorkyEvent(
                 event.getPlace().getName(),
                 event.getDescription(),
@@ -27,11 +26,12 @@ if (event.getPlace()==null) {
                 convertFaceBookAccountToPacyorkyOwner(account)
         );
     }
-    public static PacyorkyEventOwner convertFaceBookOwnerToPacyorkyOwner (Event.Owner owner) {
-        return new PacyorkyEventOwner(owner.getName(),owner.getId());
+
+    public static PacyorkyEventOwner convertFaceBookOwnerToPacyorkyOwner(Event.Owner owner) {
+        return new PacyorkyEventOwner(owner.getName(), owner.getId());
     }
 
-    public static PacyorkyEventOwner convertFaceBookAccountToPacyorkyOwner (Account account) {
-        return new PacyorkyEventOwner(account.getName(),account.getId());
+    public static PacyorkyEventOwner convertFaceBookAccountToPacyorkyOwner(Account account) {
+        return new PacyorkyEventOwner(account.getName(), account.getId());
     }
 }

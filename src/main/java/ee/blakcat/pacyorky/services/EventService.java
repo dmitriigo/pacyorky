@@ -17,14 +17,13 @@ public class EventService {
     }
 
 
-    public PacyorkyEvent findById (String id) {
-        return eventRepositoryJPA.findById(id).get();
+    public PacyorkyEvent findById(String id) {
+        return eventRepositoryJPA.getOne(id);
     }
 
-    public List<PacyorkyEvent> findAll () {
-        List<PacyorkyEvent> pacyorkyEvents = new ArrayList<>();
-      eventRepositoryJPA.findAll().forEach(pacyorkyEvents::add);
-      pacyorkyEvents.sort(Comparator.comparing(PacyorkyEvent::getStartTime));
+    public List<PacyorkyEvent> findAll() {
+        List<PacyorkyEvent> pacyorkyEvents = new ArrayList<>(eventRepositoryJPA.findAll());
+        pacyorkyEvents.sort(Comparator.comparing(PacyorkyEvent::getStartTime));
         return pacyorkyEvents;
     }
 

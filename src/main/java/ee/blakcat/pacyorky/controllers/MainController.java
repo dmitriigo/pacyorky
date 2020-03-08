@@ -6,7 +6,6 @@ import ee.blakcat.pacyorky.services.EventService;
 import ee.blakcat.pacyorky.services.updateData.UpdateService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
@@ -28,18 +27,18 @@ public class MainController {
     public MainController(UpdateService updateService, EventService eventService, ObjectMapper objectMapper) {
 
         this.updateService = updateService;
-        this.eventService=eventService;
+        this.eventService = eventService;
         this.objectMapper = objectMapper;
     }
 
-    @GetMapping ("/")
-    public String index (Model model) {
+    @GetMapping("/")
+    public String index(Model model) {
         List<PacyorkyEvent> events = eventService.findAll();
 
         try {
             String o = objectMapper.writeValueAsString(events.stream().map(this::convertEventToDto).collect(Collectors.toList()));
             model.addAttribute("eventsis", o);
-        } catch (Throwable hz){
+        } catch (Throwable hz) {
             hz.printStackTrace();
         }
 
@@ -54,8 +53,8 @@ public class MainController {
 //    }
 
     //auto update
-    @Scheduled (fixedRate = 1800000)
-    public void autoUpdate () {
+    @Scheduled(fixedRate = 1800000)
+    public void autoUpdate() {
         updateService.updateAll();
     }
 
@@ -64,10 +63,10 @@ public class MainController {
         EventDto eventDto = new EventDto();
         eventDto.setDate(formatter.format(sourceEvent.getStartTime()));
         eventDto.setDescription(sourceEvent.getDescription());
-        eventDto.setEndTime(Objects.isNull(sourceEvent.getEndTime())?"":formatter.format(sourceEvent.getEndTime()));
+        eventDto.setEndTime(Objects.isNull(sourceEvent.getEndTime()) ? "" : formatter.format(sourceEvent.getEndTime()));
         eventDto.setLocation(sourceEvent.getPlace());
         eventDto.setTitle(sourceEvent.getName());
-        eventDto.setLink("https://www.facebook.com/events/"+sourceEvent.getId());
+        eventDto.setLink("https://www.facebook.com/events/" + sourceEvent.getId());
         eventDto.setPacyorkyEventOwnerName(sourceEvent.getPacyorkyEventOwner().getName());
         return eventDto;
     }

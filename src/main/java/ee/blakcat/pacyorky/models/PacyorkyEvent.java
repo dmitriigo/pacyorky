@@ -10,21 +10,21 @@ public class PacyorkyEvent {
     private String id;
     private String place, description, name;
     private Date startTime, endTime;
-    @ManyToOne (targetEntity = PacyorkyEventOwner.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = PacyorkyEventOwner.class, cascade = CascadeType.ALL)
     private PacyorkyEventOwner pacyorkyEventOwner;
 
     public PacyorkyEvent(String place, String description, String name, String facebookId, Date startTime, Date endTime, PacyorkyEventOwner pacyorkyEventOwner) {
-       this.id=facebookId;
+        this.id = facebookId;
         this.place = place;
         this.description = description;
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.pacyorkyEventOwner=pacyorkyEventOwner;
+        this.pacyorkyEventOwner = pacyorkyEventOwner;
     }
 
     public PacyorkyEvent(String name, Date startTime, String facebookId) {
-        this.id= facebookId;
+        this.id = facebookId;
         this.name = name;
         this.startTime = startTime;
 
@@ -60,7 +60,6 @@ public class PacyorkyEvent {
     public String getId() {
         return id;
     }
-
 
 
     public Date getStartTime() {

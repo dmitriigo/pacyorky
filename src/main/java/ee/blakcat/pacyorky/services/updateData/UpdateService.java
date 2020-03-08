@@ -19,11 +19,11 @@ public class UpdateService {
         this.faceBookConnector = faceBookConnector;
     }
 
-    public void updateAll () {
+    public void updateAll() {
         updateEvents();
     }
 
-    private void updateEvents () {
+    private void updateEvents() {
         List<PacyorkyEvent> pacyorkyEvents = faceBookConnector.getPacyorkyEvents();
         eventRepositoryJPA.saveAll(pacyorkyEvents);
     }
