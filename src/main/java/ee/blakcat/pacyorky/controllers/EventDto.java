@@ -1,11 +1,28 @@
 package ee.blakcat.pacyorky.controllers;
 
 public class EventDto {
+    private String id;
     private String location, description, title;
     private String date, endTime;
-    private String pacyorkyEventOwnerName;
+    private String eventOwner;
     private String link;
+    private String district;
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
 
     public String getLink() {
         return link;
@@ -56,11 +73,11 @@ public class EventDto {
         this.endTime = endTime;
     }
 
-    public String getPacyorkyEventOwnerName() {
-        return pacyorkyEventOwnerName;
+    public String getEventOwner() {
+        return eventOwner;
     }
 
-    public void setPacyorkyEventOwnerName(String pacyorkyEventOwnerName) {
-        this.pacyorkyEventOwnerName = pacyorkyEventOwnerName;
+    public void setEventOwner(String eventOwner) {
+        this.eventOwner = eventOwner;
     }
 }
