@@ -39,7 +39,7 @@ public class MainController {
     public String oneEvent (@PathVariable String id) {
        String eventDto = null;
         try {
-            eventDto=objectMapper.writeValueAsString(convertEventToDto(eventService.findById(id)));
+            eventDto=objectMapper.writeValueAsString(new EventDto(eventService.findById(id)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class MainController {
         List<PacyorkyEvent> events = eventService.findAll();
         String eventsDTO= null;
         try {
-            eventsDTO = objectMapper.writeValueAsString(events.stream().map(this::convertEventToDto).collect(Collectors.toList()));
+            eventsDTO = objectMapper.writeValueAsString(events.stream().map(EventDto::new).collect(Collectors.toList()));
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -72,18 +72,5 @@ public class MainController {
         updateService.updateAll();
     }
 
-    private EventDto convertEventToDto(PacyorkyEvent sourceEvent) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        EventDto eventDto = new EventDto();
-        eventDto.setId(sourceEvent.getId());
-        eventDto.setDistrict(sourceEvent.getDistrict().name);
-        eventDto.setDate(formatter.format(sourceEvent.getStartTime()));
-        eventDto.setDescription(sourceEvent.getDescription());
-        eventDto.setEndTime(Objects.isNull(sourceEvent.getEndTime()) ? "" : formatter.format(sourceEvent.getEndTime()));
-        eventDto.setLocation(sourceEvent.getPlace());
-        eventDto.setTitle(sourceEvent.getName());
-        eventDto.setLink("https://www.facebook.com/events/" + sourceEvent.getId());
-        eventDto.setEventOwner(sourceEvent.getPacyorkyEventOwner().getName());
-        return eventDto;
-    }
+
 }

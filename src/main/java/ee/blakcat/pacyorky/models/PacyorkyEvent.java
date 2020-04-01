@@ -13,6 +13,7 @@ public class PacyorkyEvent {
     @ManyToOne(targetEntity = PacyorkyEventOwner.class, cascade = CascadeType.ALL)
     private PacyorkyEventOwner pacyorkyEventOwner;
     private District district;
+    private double lat, lng;
 
     public PacyorkyEvent(String place, String description, String name, String facebookId, Date startTime, Date endTime, PacyorkyEventOwner pacyorkyEventOwner) {
         this.id = facebookId;
@@ -41,6 +42,22 @@ public class PacyorkyEvent {
 
     public void setDistrict(District district) {
         this.district = district;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
     public String getPlace() {

@@ -39,24 +39,13 @@
                 <h3>Owner: {{modalEvent.eventOwner}}</h3>
                 <h4>{{modalEvent.description}}</h4>
                 <div class="buttons">
-                <b-button>See more info</b-button>
+                <b-button :href=modalEvent.link target="_blank">See more info</b-button>
                 <b-button @click="closeModal">Close</b-button>
                 </div>
 
             </div>
         </b-modal>
     </div>
-
-  <!--  <div class="overflow-auto">
-        <ul>
-        <CalendarEvent
-                v-for="(event, i) of events"
-        v-bind:event="event"
-                v-bind:key="event.id"
-                v-bind:index="i"
-        />
-        </ul>
-    </div>-->
 
 
 </template>

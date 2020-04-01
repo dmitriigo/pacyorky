@@ -64,11 +64,22 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.byteowls/jopencage -->
+        <dependency>
+            <groupId>com.byteowls</groupId>
+            <artifactId>jopencage</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/fr.dudie/nominatim-api -->
+        <dependency>
+            <groupId>fr.dudie</groupId>
+            <artifactId>nominatim-api</artifactId>
+            <version>3.4</version>
+        </dependency>
 
 
     </dependencies>
-
-
 
     <parent>
         <groupId>org.springframework.boot</groupId>

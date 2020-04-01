@@ -1,5 +1,10 @@
 package ee.blakcat.pacyorky.controllers;
 
+import ee.blakcat.pacyorky.models.PacyorkyEvent;
+
+import java.text.SimpleDateFormat;
+import java.util.Objects;
+
 public class EventDto {
     private String id;
     private String location, description, title;
@@ -7,6 +12,30 @@ public class EventDto {
     private String eventOwner;
     private String link;
     private String district;
+    private double[] locationPoint;
+
+    public EventDto(PacyorkyEvent pacyorkyEvent) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        this.setId(pacyorkyEvent.getId());
+        this.setDistrict(pacyorkyEvent.getDistrict().name);
+        this.setDate(formatter.format(pacyorkyEvent.getStartTime()));
+        this.setDescription(pacyorkyEvent.getDescription());
+        this.setEndTime(Objects.isNull(pacyorkyEvent.getEndTime()) ? "" : formatter.format(pacyorkyEvent.getEndTime()));
+        this.setLocation(pacyorkyEvent.getPlace());
+        this.setTitle(pacyorkyEvent.getName());
+        this.setLink("https://www.facebook.com/events/" + pacyorkyEvent.getId());
+        this.setEventOwner(pacyorkyEvent.getPacyorkyEventOwner().getName());
+        this.locationPoint=new LocationDTO (pacyorkyEvent).getLocationPoint();
+    }
+
+
+    public double[] getLocationPoint() {
+        return locationPoint;
+    }
+
+    public void setLocationPoint(double[] locationPoint) {
+        this.locationPoint = locationPoint;
+    }
 
     public String getId() {
         return id;
