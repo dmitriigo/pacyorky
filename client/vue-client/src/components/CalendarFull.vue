@@ -1,37 +1,35 @@
 <template>
-    <FullCalendar
-            defaultView="dayGridMonth"
-            :plugins="calendarPlugins"
-            :events="events"
-    :weekends="true"
-    />
+    <b-calendar :date-info-fn="light" @context="trimToDate"></b-calendar>
 </template>
 
-
 <script>
-
-    import FullCalendar from '@fullcalendar/vue'
-    import dayGridPlugin from '@fullcalendar/daygrid'
-
     export default {
         props: {
-          events: {}
+            events: {}
         },
-        components: {
-            FullCalendar // make the <FullCalendar> tag available
-        },
+        name: "CalendarEvent",
         data() {
             return {
-                calendarPlugins: [dayGridPlugin]
+                selectedDate: null
+            }
+        }
+        ,
+        methods: {
+            light (ymd) {
+                let table = false;
+                this.events.forEach(event => {
+                    if (event.date===ymd) table=true;
+                });
+                return table ? 'table-info' : ''
+            },
+            trimToDate (context) {
+                this.selectedDate = context.selectedYMD;
+                this.$emit("trimToDate", this.selectedDate);
             }
         }
     }
-
 </script>
 
-<style lang='scss'>
-
-    @import '~@fullcalendar/core/main.css';
-    @import '~@fullcalendar/daygrid/main.css';
+<style scoped>
 
 </style>
