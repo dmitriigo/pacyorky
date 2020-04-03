@@ -62,8 +62,9 @@ public class UpdateService {
                 pacyorkyEvent.setLat(tempaddress.getLatitude());
                 pacyorkyEvent.setLng(tempaddress.getLongitude());
             } catch (Exception e) {
-                e.printStackTrace();
-                try {
+                pacyorkyEvent.setLng(0);
+                pacyorkyEvent.setLat(0);
+                /*try {
                     JOpenCageForwardRequest request = new JOpenCageForwardRequest(pacyorkyEvent.getPlace());
                     JOpenCageResponse response = jOpenCageGeocoder.forward(request);
                     pacyorkyEvent.setLat(response.getFirstPosition().getLat());
@@ -71,7 +72,7 @@ public class UpdateService {
                 } catch (Exception n) {
                     pacyorkyEvent.setLng(0);
                     pacyorkyEvent.setLat(0);
-                }
+                }*/
             }
     }
 }

@@ -8,7 +8,7 @@
             <b-row>
                 <EventsTable v-bind:events="eventsForList"/>
             </b-row>
-            <EventsMap/>
+            <EventsMap v-bind:events="eventsForMap"/>
         </div>
         <div class="lds-dual-ring" v-else></div>
         <div class="error" v-if="apiError"><h1>ERRROOOROORORRRRRR!!!</h1></div>
@@ -28,6 +28,7 @@
         name: 'App',
         data() {
             return {
+                eventsForMap: [],
                 loading: true,
                 events: [],
                 apiError: false,
@@ -46,8 +47,14 @@
         },
         methods: {
             trimToDate(date) {
-                if (date === "") this.eventsForList = this.events;
-                else this.eventsForList = this.events.filter(event => event.date === date)
+                if (date === "") {
+                    this.eventsForList = this.events;
+                    this.eventsForMap = this.events;
+                } else {
+                    this.eventsForList = this.events.filter(event => event.date === date);
+                    this.eventsForMap = this.events.filter(event => event.date === date);
+
+                }
             },
             getEvents() {
                 axios.get('/api/events')
@@ -56,7 +63,11 @@
                         this.loading = false;
                         this.eventsForList = this.events;
                         this.eventsForCalendar = this.events;
-                    }).catch(error => (this.apiError = true));
+                        this.eventsForMap = this.events;
+                    }).catch(error => {
+                        console.log(error);
+                        this.apiError = true
+                });
 
             }
         }

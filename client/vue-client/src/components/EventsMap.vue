@@ -1,24 +1,18 @@
 <template>
     <div>
+        {{cords}}
         <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
                 data-projection="EPSG:4326" style="height: 400px">
             <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
-
-            <vl-geoloc @update:position="geolocPosition = $event">
-                <template slot-scope="geoloc">
-                    <vl-feature v-if="geoloc.position" id="position-feature">
-                        <vl-geom-point :coordinates="geoloc.position"></vl-geom-point>
-                        <vl-style-box>
-                            <vl-style-circle :radius="20">
-                                <vl-style-fill color="white"></vl-style-fill>
-                                <vl-style-stroke color="red"></vl-style-stroke>
+                    <vl-feature id="position-feature">
+                        <vl-geom-multi-point :coordinates="cords"></vl-geom-multi-point>
+                         <vl-style-box>
+                            <vl-style-circle :radius="12">
+                                <vl-style-fill color="#36D9C3"></vl-style-fill>
+                                <vl-style-stroke color="black"></vl-style-stroke>
                             </vl-style-circle>
-                            <vl-style-text text="Tartu" font="14px monospace"></vl-style-text>
                         </vl-style-box>
                     </vl-feature>
-                </template>
-            </vl-geoloc>
-
             <vl-layer-tile id="osm">
                 <vl-source-osm></vl-source-osm>
             </vl-layer-tile>
@@ -36,6 +30,9 @@
 
 <script>
     export default {
+        props: {
+          events: {}
+        },
         name: "Map.vue",
         data() {
             return {
@@ -45,6 +42,12 @@
                 geolocPosition: undefined,
             }
         },
+        computed: {
+            cords() {
+                return this.events.map(event => event.locationPoint)
+            }
+
+        }
     }
 </script>
 

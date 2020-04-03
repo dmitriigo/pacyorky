@@ -92,8 +92,7 @@
         },
         methods: {
             showDetails (id) {
-                axios.get('/api/events/'+id)
-                    .then(response => {this.modalEvent = response.data; this.loading=false}).catch(error => (this.apiError = true));
+               this.modalEvent=this.events.filter(event => event.id === id)[0];
                 this.showModale=true;
             },
             closeModal () {

@@ -8,8 +8,8 @@ public class LocationDTO {
 
     public LocationDTO(PacyorkyEvent pacyorkyEvent) {
         locationPoint= new double[2];
-        locationPoint[0]=pacyorkyEvent.getLat();
-        locationPoint[1]=pacyorkyEvent.getLng();
+        locationPoint[1]=pacyorkyEvent.getLat();
+        locationPoint[0]=pacyorkyEvent.getLng();
     }
 
     public double[] getLocationPoint() {
