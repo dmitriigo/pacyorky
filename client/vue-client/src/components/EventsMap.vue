@@ -6,8 +6,6 @@
                     {{district}}
                 </b-dropdown-item>
             </b-dropdown>
-            <div><h1>{{districtNow}}</h1></div>
-
         </b-row>
 
 
@@ -44,7 +42,6 @@
         props: {
           events: {},
             districts: {},
-            oneDistrict: {}
 
 
         },
@@ -59,7 +56,6 @@
         },
         methods: {
             trimToDistrict (district) {
-                this.districtNow=district;
                 this.$emit("trimToDistrict", district);
             },
             centerMap () {
@@ -98,11 +94,7 @@
                 this.centerMap();
                 this.zoomMap();
                 return mapCords;
-            },
-            districtNow () {
-
             }
-
 
         }
     }

@@ -1,6 +1,6 @@
 <template>
 <b-row>
-    <b-calendar :date-info-fn="light" @context="trimToDate">
+    <b-calendar :date-info-fn="light" @context="trimToDate" :start-weekday="1">
         <b-button @click="clearEvents" variant="outline-primary">ShowAll</b-button>
     </b-calendar>
 

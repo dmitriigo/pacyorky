@@ -8,6 +8,7 @@ import axios from 'axios'
 import './plugins/VCalendar-vue'
 import './plugins/vuelayers'
 import './plugins/VCarousel'
+import './plugins/ml.js'
 import VueAxios from 'vue-axios'
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);

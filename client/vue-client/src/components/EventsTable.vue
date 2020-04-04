@@ -55,6 +55,8 @@
 </template>
 
 <script>
+    import {MLBuilder} from "vue-multilanguage";
+
     export default {
         name: "CalendarEvents.vue",
         data() {
@@ -67,7 +69,7 @@
                 currentPage: 1,
                 fields: [
                     {
-                        key: 'title'
+                        key: this.mlMessage('title')
                     },
                     {
                         key: 'date'
@@ -89,14 +91,21 @@
         computed: {
             rows() {
                 return this.events.length
-            }
+            },
+
 
         }
             ,
         props: {
             events: {}
         },
+        components: {
+           MLBuilder
+        },
         methods: {
+            mlMessage (msg) {
+                return new MLBuilder(msg);
+            },
             showDetails (id) {
                this.modalEvent=this.events.filter(event => event.id === id)[0];
                 this.showModale=true;

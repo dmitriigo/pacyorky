@@ -1,6 +1,12 @@
 <template>
 
     <b-container>
+        <button
+                v-for="lang in $ml.list"
+                :key="lang"
+                @click="$ml.change(lang)"
+                v-text="lang"
+        />
         <div v-if="!loading">
             <Slider :events="events"/>
             <b-row>
@@ -9,7 +15,7 @@
             <b-row>
                 <EventsTable @trimToLocation="trimToLocation" v-bind:events="eventsForList"/>
             </b-row>
-            <EventsMap v-bind:events="eventsForMap" :districts="districts" @trimToDistrict="trimToDistrict" :oneDistrict="oneDistrict"/>
+            <EventsMap v-bind:events="eventsForMap" :districts="districts" @trimToDistrict="trimToDistrict"/>
         </div>
         <div class="lds-dual-ring" v-else></div>
         <div class="error" v-if="apiError"><h1>ERRROOOROORORRRRRR!!!</h1></div>
@@ -38,7 +44,6 @@
                 eventsForList: [],
                 eventsForCalendar: [],
                 districts: {},
-                oneDistrict: false
             }
         },
         mounted() {
