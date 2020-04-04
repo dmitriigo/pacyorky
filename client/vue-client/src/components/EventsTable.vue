@@ -69,13 +69,16 @@
                 currentPage: 1,
                 fields: [
                     {
-                        key: this.mlMessage('title')
+                        key: 'title',
+                        label: this.$ml.get('title')
                     },
                     {
-                        key: 'date'
+                        key: 'date',
+                        label: this.$ml.get('date')
                     },
                     {
-                        key: 'description'
+                        key: 'description',
+                        label: this.$ml.get('description')
                     },
                     {
                         key: 'more_info',
@@ -103,9 +106,6 @@
            MLBuilder
         },
         methods: {
-            mlMessage (msg) {
-                return new MLBuilder(msg);
-            },
             showDetails (id) {
                this.modalEvent=this.events.filter(event => event.id === id)[0];
                 this.showModale=true;
