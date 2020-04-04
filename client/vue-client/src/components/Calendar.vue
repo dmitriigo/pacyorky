@@ -1,7 +1,6 @@
 <template>
 <b-row>
     <b-calendar :date-info-fn="light" @context="trimToDate" :start-weekday="1">
-        <b-button @click="clearEvents" variant="outline-primary">ShowAll</b-button>
     </b-calendar>
 
 </b-row>
@@ -11,7 +10,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
 
     export default {
         name: "Calendar.vue",
@@ -37,9 +35,6 @@
             trimToDate (context) {
                 this.selectedDate = context.selectedYMD;
                 this.$emit("trimToDate", this.selectedDate);
-            },
-            clearEvents () {
-                this.$emit("trimToDate", "");
             }
         }
     }

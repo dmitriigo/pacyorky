@@ -9,9 +9,6 @@
                 :per-page="perPage"
                 aria-controls="my-table"
         ></b-pagination>
-
-        <p class="mt-3">Current Page: {{ currentPage }}</p>
-
         <b-table
                 id="my-table"
                 :items="events"
@@ -36,7 +33,7 @@
         <b-modal v-model="showModale" id="event-modal" hide-footer title="" scrollable centered>
             <div class="modal-event-item">
             <h1>{{modalEvent.title}}</h1>
-                <h3>Start date: {{modalEvent.date}}</h3>
+                <h3>{{$ml.get('date')}}: {{modalEvent.date}}</h3>
                 <h3 v-if="modalEvent.endTime">End time: {{modalEvent.endTime}}</h3>
                 <h3>Dictrict: {{modalEvent.district}}</h3>
                 <h3>Location: {{modalEvent.location}}</h3>
@@ -65,42 +62,40 @@
                 apiError: false,
                 modalEvent: {},
                 perPage: 3,
-                currentPage: 1,
-                fields: [
-                    {
-                        key: 'title',
-                        label: this.ml.get('title')
-                    },
-                    {
-                        key: 'date',
-                        label: this.ml.get('date')
-                    },
-                    {
-                        key: 'description',
-                        label: this.ml.get('description')
-                    },
-                    {
-                        key: 'more_info',
-                        label: ''
-                    },
-                    {
-                        key: 'location',
-                        label: ''
-                    }
-                ]
+                currentPage: 1
             }
         },
         computed: {
             rows() {
                 return this.events.length
             },
-
+            fields () { return [
+                {
+                    key: 'title',
+                    label: this.$ml.get('title')
+                },
+                {
+                    key: 'date',
+                    label: this.$ml.get('date')
+                },
+                {
+                    key: 'description',
+                    label: this.$ml.get('description')
+                },
+                {
+                    key: 'more_info',
+                    label: ''
+                },
+                {
+                    key: 'location',
+                    label: ''
+                }
+            ]}
 
         }
             ,
         props: {
-            events: {},
-            ml: {}
+            events: {}
         },
         methods: {
             showDetails (id) {

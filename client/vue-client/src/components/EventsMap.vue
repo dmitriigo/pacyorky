@@ -1,16 +1,11 @@
 <template>
-    <div>
-        <b-row>
-            <b-dropdown text="District">
+    <div class="p-map">
+            <b-dropdown :text="$ml.get('city')">
                 <b-dropdown-item v-for="district in districts" :key="district" @click="trimToDistrict(district)">
                     {{district}}
                 </b-dropdown-item>
             </b-dropdown>
-        </b-row>
-
-
-
-        <b-row>
+        <b-button @click="trimToDate">Show all</b-button>
         <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
                 data-projection="EPSG:4326" style="height: 400px">
             <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
@@ -27,7 +22,6 @@
                 <vl-source-osm></vl-source-osm>
             </vl-layer-tile>
         </vl-map>
-        </b-row>
     </div>
 </template>
 
@@ -49,6 +43,9 @@
             }
         },
         methods: {
+            trimToDate () {
+              this.$emit("trimToDate", "")
+            },
             trimToDistrict (district) {
                 this.$emit("trimToDistrict", district);
             },
@@ -95,5 +92,7 @@
 </script>
 
 <style scoped>
-
+.p-map {
+    width: 100%;
+}
 </style>

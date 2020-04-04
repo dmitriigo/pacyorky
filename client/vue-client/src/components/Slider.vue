@@ -27,7 +27,11 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+    .slider {
+        color: green;
+        border: #42b983 solid;
+    }
     .VueCarousel-slide {
         position: relative;
         background: #42b983;
