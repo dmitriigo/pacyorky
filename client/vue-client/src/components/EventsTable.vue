@@ -25,7 +25,11 @@
                 <b-button size="sm" @click="showDetails(row.item.id)" class="mr-2">
                     More info
                 </b-button>
-
+            </template>
+            <template v-slot:cell(location)="row">
+                <b-button size="sm" @click="trimToLocation(row.item.id)" class="mr-2">
+                    location
+                </b-button>
             </template>
 
         </b-table>
@@ -51,7 +55,6 @@
 </template>
 
 <script>
-    import axios from "axios";
     export default {
         name: "CalendarEvents.vue",
         data() {
@@ -74,8 +77,11 @@
                     },
                     {
                         key: 'more_info',
-                        label: '',
-
+                        label: ''
+                    },
+                    {
+                        key: 'location',
+                        label: ''
                     }
                 ]
             }
@@ -97,6 +103,9 @@
             },
             closeModal () {
                 this.showModale=false;
+            },
+            trimToLocation (id) {
+                this.$emit("trimToLocation", id);
             }
         }
     }

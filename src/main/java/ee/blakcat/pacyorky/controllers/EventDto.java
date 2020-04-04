@@ -1,5 +1,6 @@
 package ee.blakcat.pacyorky.controllers;
 
+import ee.blakcat.pacyorky.models.District;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 
 import java.text.SimpleDateFormat;
@@ -11,13 +12,13 @@ public class EventDto {
     private String date, endTime;
     private String eventOwner;
     private String link;
-    private String district;
+    private DistrictDTO district;
     private double[] locationPoint;
 
     public EventDto(PacyorkyEvent pacyorkyEvent) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         this.setId(pacyorkyEvent.getId());
-        this.setDistrict(pacyorkyEvent.getDistrict().name);
+        this.setDistrict(new DistrictDTO(pacyorkyEvent.getDistrict()));
         this.setDate(formatter.format(pacyorkyEvent.getStartTime()));
         this.setDescription(pacyorkyEvent.getDescription());
         this.setEndTime(Objects.isNull(pacyorkyEvent.getEndTime()) ? "" : formatter.format(pacyorkyEvent.getEndTime()));
@@ -45,11 +46,11 @@ public class EventDto {
         this.id = id;
     }
 
-    public String getDistrict() {
+    public DistrictDTO getDistrict() {
         return district;
     }
 
-    public void setDistrict(String district) {
+    public void setDistrict(DistrictDTO district) {
         this.district = district;
     }
 

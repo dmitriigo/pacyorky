@@ -2,13 +2,14 @@
 
     <b-container>
         <div v-if="!loading">
+            <Slider :events="events"/>
             <b-row>
                 <Calendar @trimToDate="trimToDate" v-bind:events="eventsForCalendar"/>
             </b-row>
             <b-row>
-                <EventsTable v-bind:events="eventsForList"/>
+                <EventsTable @trimToLocation="trimToLocation" v-bind:events="eventsForList"/>
             </b-row>
-            <EventsMap v-bind:events="eventsForMap"/>
+            <EventsMap v-bind:events="eventsForMap" :districts="districts" @trimToDistrict="trimToDistrict" :oneDistrict="oneDistrict"/>
         </div>
         <div class="lds-dual-ring" v-else></div>
         <div class="error" v-if="apiError"><h1>ERRROOOROORORRRRRR!!!</h1></div>
@@ -22,9 +23,11 @@
     import Calendar from "./components/Calendar"
     import EventsTable from "./components/EventsTable";
     import EventsMap from "./components/EventsMap";
+    import Slider from "./components/Slider";
 
 
     export default {
+        //TODO мультиланггггггг!!
         name: 'App',
         data() {
             return {
@@ -33,19 +36,27 @@
                 events: [],
                 apiError: false,
                 eventsForList: [],
-                eventsForCalendar: []
+                eventsForCalendar: [],
+                districts: {},
+                oneDistrict: false
             }
         },
         mounted() {
             this.getEvents();
         },
         components: {
+            Slider,
             EventsMap,
             Calendar,
             axios,
             EventsTable
         },
         methods: {
+            trimToDistrict(district) {
+              this.eventsForMap=this.events.filter(event => event.district.estName===district);
+              this.eventsForCalendar=this.events.filter(event => event.district.estName===district);
+              this.eventsForList=this.events.filter(event => event.district.estName===district)
+            },
             trimToDate(date) {
                 if (date === "") {
                     this.eventsForList = this.events;
@@ -56,6 +67,9 @@
 
                 }
             },
+            trimToLocation(id) {
+               this.eventsForMap= this.events.filter(event => event.id===id);
+            },
             getEvents() {
                 axios.get('/api/events')
                     .then(response => {
@@ -64,6 +78,9 @@
                         this.eventsForList = this.events;
                         this.eventsForCalendar = this.events;
                         this.eventsForMap = this.events;
+
+                        //TODO дописать айдишники
+                        this.districts=Array.from(new Set(this.events.map(event => event.district.estName)));
                     }).catch(error => {
                         console.log(error);
                         this.apiError = true

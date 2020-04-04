@@ -1,6 +1,18 @@
 <template>
     <div>
-        {{cords}}
+        <b-row>
+            <b-dropdown text="District">
+                <b-dropdown-item v-for="district in districts" :key="district" @click="trimToDistrict(district)">
+                    {{district}}
+                </b-dropdown-item>
+            </b-dropdown>
+            <div><h1>{{districtNow}}</h1></div>
+
+        </b-row>
+
+
+
+        <b-row>
         <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
                 data-projection="EPSG:4326" style="height: 400px">
             <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
@@ -21,9 +33,8 @@
             Zoom: {{ zoom }}<br>
             Center: {{ center }}<br>
             Rotation: {{ rotation }}<br>
-            My geolocation: {{ geolocPosition }}
         </div>
-
+        </b-row>
         <!-- --------------------------------------------------------------------------------------->
     </div>
 </template>
@@ -31,21 +42,67 @@
 <script>
     export default {
         props: {
-          events: {}
+          events: {},
+            districts: {},
+            oneDistrict: {}
+
+
         },
         name: "Map.vue",
         data() {
             return {
-                zoom: 7,
                 center: [25.70090718284081, 58.640417759404755],
+                mapCords: [0,0],
                 rotation: 0,
-                geolocPosition: undefined,
+                zoom: 7,
+            }
+        },
+        methods: {
+            trimToDistrict (district) {
+                this.districtNow=district;
+                this.$emit("trimToDistrict", district);
+            },
+            centerMap () {
+                if (this.mapCords[0]===0&&this.mapCords[1]===0) {
+                    this.center= [25.70090718284081, 58.640417759404755];
+                }
+                else {
+                    let x = 0;
+                    let y = 0;
+                    let cordx = this.mapCords.map(cord => cord[0]);
+                    cordx.forEach(cord => x += cord);
+                    x = x / cordx.length;
+                    let cordy = this.mapCords.map(cord => cord[1]);
+                    cordy.forEach(cord => y += cord);
+                    y = y / cordy.length;
+                    this.center = [x, y];
+                }
+            },
+            zoomMap() {
+                if (this.mapCords===[0,0]) this.zoom= 7;
+               else if (this.mapCords.length===1) this.zoom= 12;
+                else this.zoom=7;
+
             }
         },
         computed: {
             cords() {
-                return this.events.map(event => event.locationPoint)
+                let mapCords = this.events.map(event => event.locationPoint).filter(cord => cord[0]!==0&&cord[1]!==0);
+                if (mapCords.length ===0) {
+                    this.mapCords=[0,0];
+                    this.centerMap();
+                    this.zoomMap();
+                    return [0,0];
+                }
+                this.mapCords=mapCords;
+                this.centerMap();
+                this.zoomMap();
+                return mapCords;
+            },
+            districtNow () {
+
             }
+
 
         }
     }
