@@ -4,16 +4,17 @@
         <button
                 v-for="lang in $ml.list"
                 :key="lang"
-                @click="$ml.change(lang)"
+                @click="changeMl(lang)"
                 v-text="lang"
         />
+        <h1 v-text="$ml.get('title')"></h1>
         <div v-if="!loading">
             <Slider :events="events"/>
             <b-row>
                 <Calendar @trimToDate="trimToDate" v-bind:events="eventsForCalendar"/>
             </b-row>
             <b-row>
-                <EventsTable @trimToLocation="trimToLocation" v-bind:events="eventsForList"/>
+                <EventsTable @trimToLocation="trimToLocation" v-bind:events="eventsForList" :ml="ml"/>
             </b-row>
             <EventsMap v-bind:events="eventsForMap" :districts="districts" @trimToDistrict="trimToDistrict"/>
         </div>
@@ -33,7 +34,6 @@
 
 
     export default {
-        //TODO мультиланггггггг!!
         name: 'App',
         data() {
             return {
@@ -44,10 +44,12 @@
                 eventsForList: [],
                 eventsForCalendar: [],
                 districts: {},
+                ml:{}
             }
         },
         mounted() {
             this.getEvents();
+            this.ml=this.$ml;
         },
         components: {
             Slider,
@@ -57,6 +59,10 @@
             EventsTable
         },
         methods: {
+            changeMl (lang) {
+                this.$ml.change(lang);
+                this.ml=this.$ml;
+            },
             trimToDistrict(district) {
               this.eventsForMap=this.events.filter(event => event.district.estName===district);
               this.eventsForCalendar=this.events.filter(event => event.district.estName===district);

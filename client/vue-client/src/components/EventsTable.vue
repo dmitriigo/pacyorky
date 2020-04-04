@@ -55,7 +55,6 @@
 </template>
 
 <script>
-    import {MLBuilder} from "vue-multilanguage";
 
     export default {
         name: "CalendarEvents.vue",
@@ -70,15 +69,15 @@
                 fields: [
                     {
                         key: 'title',
-                        label: this.$ml.get('title')
+                        label: this.ml.get('title')
                     },
                     {
                         key: 'date',
-                        label: this.$ml.get('date')
+                        label: this.ml.get('date')
                     },
                     {
                         key: 'description',
-                        label: this.$ml.get('description')
+                        label: this.ml.get('description')
                     },
                     {
                         key: 'more_info',
@@ -100,10 +99,8 @@
         }
             ,
         props: {
-            events: {}
-        },
-        components: {
-           MLBuilder
+            events: {},
+            ml: {}
         },
         methods: {
             showDetails (id) {
