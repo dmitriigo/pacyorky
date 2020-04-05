@@ -1,14 +1,7 @@
 <template>
 
-
-
     <div class="table-main">
-        <b-pagination
-                v-model="currentPage"
-                :total-rows="rows"
-                :per-page="perPage"
-                aria-controls="my-table"
-        ></b-pagination>
+
         <b-table
                 id="my-table"
                 :items="events"
@@ -30,6 +23,12 @@
             </template>
 
         </b-table>
+        <b-pagination class="pag" align="center"
+                v-model="currentPage"
+                :total-rows="rows"
+                :per-page="perPage"
+                aria-controls="my-table"
+        ></b-pagination>
         <b-modal v-model="showModale" id="event-modal" hide-footer title="" scrollable centered>
             <div class="modal-event-item">
             <h1>{{modalEvent.title}}</h1>
@@ -61,7 +60,7 @@
                 loading:true,
                 apiError: false,
                 modalEvent: {},
-                perPage: 3,
+                perPage: 5,
                 currentPage: 1
             }
         },
@@ -112,7 +111,11 @@
     }
 </script>
 
-<style scoped>
+<style lang="less">
+    @primarycolor: #F6F0E4;
+    .pag {
+
+    }
     .buttons {
         display: flex;
         justify-content: space-between;
@@ -120,6 +123,7 @@
     }
     .table-main {
         width: 100%;
+        background-color: @primarycolor ;
     }
     #my-table {
         width: 100%;

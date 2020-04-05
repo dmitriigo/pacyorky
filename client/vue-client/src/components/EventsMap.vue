@@ -1,11 +1,20 @@
 <template>
     <div class="p-map">
+        <div class="buttons-on-map">
+            <div class="buttons-on-map-district-selector">
             <b-dropdown :text="$ml.get('city')">
                 <b-dropdown-item v-for="district in districts" :key="district" @click="trimToDistrict(district)">
                     {{district}}
                 </b-dropdown-item>
             </b-dropdown>
-        <b-button @click="trimToDate">Show all</b-button>
+            </div>
+            <div class="buttons-on-map-events">
+            <b-button> Past Events</b-button>
+                <b-button @click="trimToDate">Show all</b-button>
+            <b-button> Future Events</b-button>
+
+            </div>
+        </div>
         <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
                 data-projection="EPSG:4326" style="height: 400px">
             <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
@@ -91,8 +100,38 @@
     }
 </script>
 
-<style scoped>
+<style lang="less">
+    @primarycolor: #F6F0E4;
 .p-map {
     width: 100%;
+    margin: 20px;
+.btn {
+    border-radius: 20px;
+    background-color: #BDD9DC;
+    color: black;
 }
+
+    .buttons-on-map {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-district-selector{
+            width: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(214, 77, 85, 0.54);
+            padding: 10px;
+        }
+        &-events {
+          display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 70%;
+background-color: @primarycolor;
+            margin: 10px -5px 10px 10px;
+            padding: 10px;
+         }
+    } }
+
 </style>

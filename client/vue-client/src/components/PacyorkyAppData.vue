@@ -1,14 +1,14 @@
 <template>
-    <b-container>
-            <b-row>
-                <b-col>
+    <b-container id="calendar" class="calendar-data-all">
+            <b-row class="calendar-table">
+                <b-col cols="4">
                     <Calendar @trimToDate="trimToDate" v-bind:events="eventsForCalendar"/>
                 </b-col>
-                <b-col>
+                <b-col cols="8">
                     <EventsTable @trimToLocation="trimToLocation" v-bind:events="eventsForList"/>
                 </b-col>
             </b-row>
-            <b-row v-if="!loading">
+            <b-row class="calendar-data-all-map" v-if="!loading">
                 <EventsMap @trimToDate="trimToDate" v-bind:events="eventsForMap" :districts="districts" @trimToDistrict="trimToDistrict"/>
             </b-row>
             <b-row class="lds-dual-ring" v-else></b-row>
@@ -89,8 +89,21 @@
     }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+.calendar-table {
+    width: 100%;
+}
 
+    .calendar-data-all {
+display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        &-map{
+    width: 100%;
+         }
+    }
 
     .lds-dual-ring {
         width: 250px;

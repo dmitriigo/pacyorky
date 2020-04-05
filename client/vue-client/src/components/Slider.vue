@@ -27,10 +27,17 @@
     }
 </script>
 
-<style scoped lang="less">
+<style lang="less" scoped>
+    @primarycolor: #F6F0E4;
     .slider {
+        background-color: white;
         color: green;
-        border: #42b983 solid;
+        border: @primarycolor solid;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .VueCarousel-slide {
         position: relative;
@@ -41,6 +48,15 @@
         text-align: center;
         min-height: 100px;
     }
+
+    .VueCarousel-dot {
+        background-color: @primarycolor !important;
+    }
+    .VueCarousel-dot--active {
+        background-color: red !important;
+    }
+
+
 
     .label {
         position: absolute;

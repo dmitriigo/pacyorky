@@ -4,11 +4,12 @@
     <b-container>
 
 <b-row align-content="center" align-h="center" align-v="center">
-    <b-col class="main-content" cols="11" align-self="center">
+    <b-col class="main-content" align-self="center">
         <b-row><NavBar/></b-row>
-        <b-row><h1>Some Picture</h1></b-row>
+        <b-row class="present-pic"><h1>Some Picture</h1></b-row>
+        <b-row class="separator"><h1>Calendar for you!!!</h1></b-row>
 <Slider :events="events"/>
-        <b-row><PacyorkyAppData @getSliderEvents="getSliderEvents"/></b-row>
+        <b-row class="app-data"><PacyorkyAppData @getSliderEvents="getSliderEvents"/></b-row>
         <b-row><About/></b-row>
     </b-col>
 </b-row>
@@ -44,14 +45,42 @@
 
 <style lang="less">
 
+    @primarycolor: #F6F0E4;
+
+
+    .app-data {
+        background-color: white;
+        margin: 20px 0;
+        border-radius: 5px;
+    }
+
     .main-content {
-        background: #E1FCF8;
-        border: 20px solid #E1FCF8;
+        background: @primarycolor;
+        border: 20px solid @primarycolor;
         border-radius: 26px;
     }
 
     .logo {
         background-color: #4f4f4f;
+    }
+
+    .separator {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FF7373;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+
+    .present-pic {
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        margin: 20px 0;
     }
 
     #app {

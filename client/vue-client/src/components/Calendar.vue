@@ -1,6 +1,6 @@
 <template>
 <b-row>
-    <b-calendar :date-info-fn="light" @context="trimToDate" :start-weekday="1">
+    <b-calendar class="calendar-data" :date-info-fn="light" @context="trimToDate" :start-weekday="1" today-variant="today-var">
     </b-calendar>
 
 </b-row>
@@ -30,7 +30,7 @@
                 this.events.forEach(event => {
                     if (event.date===ymd) table=true;
                 });
-                return table ? 'table-info' : ''
+                return table ? 'selected-date' : ''
             },
             trimToDate (context) {
                 this.selectedDate = context.selectedYMD;
@@ -41,8 +41,20 @@
 </script>
 
 
-<style scoped>
+<style lang="less">
+    @primarycolor: #F6F0E4;
+    .calendar-data {
+        .selected-date {
+            background-color: @primarycolor;
+            border-radius: 20px;
+        }
 
-
+        .active {
+            background-color: rgba(214, 77, 85, 0.54) !important;
+        }
+        .btn-outline-today-var {
+          background-color: rgba(53, 131, 141, 0.61) !important;
+        }
+    }
 
 </style>
