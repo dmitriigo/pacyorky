@@ -8,8 +8,11 @@ The Pacyorky app is a single application for monitoring of various events posted
 3. PostgreSQL.
 4. [restFB.](https://restfb.com/)
 5. [clndr.js](https://kylestetz.github.io/CLNDR/)
+6. Frontend as Vue.js
 
 **Usage:**
+
+**Backend:**
 
 Setup application with environment variables:
 
@@ -17,12 +20,23 @@ APPID = 'you app id in FB'
 
 APPSECRET = 'you app secret in FB'
 
-PGUSER = 'login for postgre'
+PG_PACYORKY_USER = 'login for postgre'
 
-PGPASS = 'password for postgre'
+PG_PACYORKY_PASS = 'password for postgre'
 
-After, setup db name = 'pacyorky'
+DB_PACYORKY_HOST = 'full db path for jdbc'
 
 Run application! Data will be updated every 30 minutes automatically.
 
-Working app not available now, sorry
+**FrontEnd:**
+
+Open /client/vue-client
+
+run `npm install`
+
+run `npm run serve`
+
+
+Working app available at [Pacyorky site](http://pacyorky.ee)
+
+
