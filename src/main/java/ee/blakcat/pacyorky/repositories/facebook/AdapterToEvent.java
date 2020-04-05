@@ -11,6 +11,7 @@ public class AdapterToEvent {
 
 
     public static PacyorkyEvent convertFaceBookEventToPacyorkyEvent(Event event, Account account) {
+
         if (event.getPlace() == null) {
             Place place = new Place();
             place.setName("");

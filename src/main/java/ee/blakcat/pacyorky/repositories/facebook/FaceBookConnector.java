@@ -3,6 +3,7 @@ package ee.blakcat.pacyorky.repositories.facebook;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Version;
+import com.restfb.json.JsonObject;
 import com.restfb.types.Account;
 import com.restfb.types.Event;
 import com.restfb.types.User;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Repository

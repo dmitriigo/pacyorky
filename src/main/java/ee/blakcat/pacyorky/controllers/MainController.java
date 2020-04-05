@@ -11,12 +11,16 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Controller
+@RestController
+@RequestMapping ("/api")
 @EnableScheduling
 public class MainController {
     private UpdateService updateService;
@@ -31,18 +35,28 @@ public class MainController {
         this.objectMapper = objectMapper;
     }
 
-    @GetMapping("/")
-    public String index(Model model) {
-        List<PacyorkyEvent> events = eventService.findAll();
-
+    @GetMapping("/events/{id}")
+    public String oneEvent (@PathVariable String id) {
+       String eventDto = null;
         try {
-            String o = objectMapper.writeValueAsString(events.stream().map(this::convertEventToDto).collect(Collectors.toList()));
-            model.addAttribute("eventsis", o);
-        } catch (Throwable hz) {
-            hz.printStackTrace();
+            eventDto=objectMapper.writeValueAsString(new EventDto(eventService.findById(id)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return eventDto;
+    }
+
+    @GetMapping("/events")
+    public String index() {
+        List<PacyorkyEvent> events = eventService.findAll();
+        String eventsDTO= null;
+        try {
+            eventsDTO = objectMapper.writeValueAsString(events.stream().map(EventDto::new).collect(Collectors.toList()));
+        } catch (Throwable e) {
+            e.printStackTrace();
         }
 
-        return "index";
+        return eventsDTO;
     }
 
     // manual update
@@ -58,16 +72,5 @@ public class MainController {
         updateService.updateAll();
     }
 
-    private EventDto convertEventToDto(PacyorkyEvent sourceEvent) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        EventDto eventDto = new EventDto();
-        eventDto.setDate(formatter.format(sourceEvent.getStartTime()));
-        eventDto.setDescription(sourceEvent.getDescription());
-        eventDto.setEndTime(Objects.isNull(sourceEvent.getEndTime()) ? "" : formatter.format(sourceEvent.getEndTime()));
-        eventDto.setLocation(sourceEvent.getPlace());
-        eventDto.setTitle(sourceEvent.getName());
-        eventDto.setLink("https://www.facebook.com/events/" + sourceEvent.getId());
-        eventDto.setPacyorkyEventOwnerName(sourceEvent.getPacyorkyEventOwner().getName());
-        return eventDto;
-    }
+
 }

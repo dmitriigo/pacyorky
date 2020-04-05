@@ -25,4 +25,4 @@ After, setup db name = 'pacyorky'
 
 Run application! Data will be updated every 30 minutes automatically.
 
-Working app at [heroku](https://immense-gorge-34685.herokuapp.com/) (maybe unavailable)
+Working app not available now, sorry
