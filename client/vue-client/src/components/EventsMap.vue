@@ -2,16 +2,16 @@
     <div class="p-map">
         <div class="buttons-on-map">
             <div class="buttons-on-map-district-selector">
-            <b-dropdown :text="$ml.get('city')">
-                <b-dropdown-item v-for="district in districts" :key="district" @click="trimToDistrict(district)">
-                    {{district}}
+            <b-dropdown :text="$ml.get(districtNowAtButton)">
+                <b-dropdown-item v-for="district in districts" :key="district.id" @click="trimToDistrict(district)">
+                    {{$ml.get(district)}}
                 </b-dropdown-item>
             </b-dropdown>
             </div>
             <div class="buttons-on-map-events">
-            <b-button> Past Events</b-button>
-                <b-button @click="trimToDate">Show all</b-button>
-            <b-button> Future Events</b-button>
+            <b-button @click="pastEvents"> {{$ml.get('pevents')}}</b-button>
+                <b-button @click="trimToDate">{{$ml.get('allevents')}}</b-button>
+            <b-button @click="futureEvents"> {{$ml.get('fevents')}}</b-button>
 
             </div>
         </div>
@@ -39,7 +39,7 @@
         props: {
           events: {},
             districts: {},
-
+districtShow: {}
 
         },
         name: "Map.vue",
@@ -49,13 +49,21 @@
                 mapCords: [0,0],
                 rotation: 0,
                 zoom: 7,
+                districtNow: undefined
             }
         },
         methods: {
+            futureEvents () {
+               this.$emit("futureEvents")
+            },
+            pastEvents () {
+                this.$emit("pastEvents")
+            },
             trimToDate () {
               this.$emit("trimToDate", "")
             },
             trimToDistrict (district) {
+                this.districtNow = district;
                 this.$emit("trimToDistrict", district);
             },
             centerMap () {
@@ -94,6 +102,10 @@
                 this.centerMap();
                 this.zoomMap();
                 return mapCords;
+            },
+            districtNowAtButton () {
+                if (!this.districtShow) return "city";
+                else return this.districtNow;
             }
 
         }

@@ -7,7 +7,7 @@
                 :items="events"
                 :per-page="perPage"
                 :current-page="currentPage"
-                :fields="fields"
+                :fields="$ml.get('fields')"
                 :striped="true"
                 small
         >
@@ -29,16 +29,16 @@
                 :per-page="perPage"
                 aria-controls="my-table"
         ></b-pagination>
-        <b-modal v-model="showModale" id="event-modal" hide-footer title="" scrollable centered>
+        <b-modal v-model="showModale" id="event-modal" hide-footer title="" scrollable centered v-if="modalEvent">
             <div class="modal-event-item">
             <h1>{{modalEvent.title}}</h1>
                 <h3>{{$ml.get('date')}}: {{modalEvent.date}}</h3>
                 <h3 v-if="modalEvent.endTime">End time: {{modalEvent.endTime}}</h3>
-                <h3>Dictrict: {{modalEvent.district}}</h3>
+                <h3 v-if="modalEvent.district">District: {{$ml.get('district'+modalEvent.district.id)}}</h3>
                 <h3>Location: {{modalEvent.location}}</h3>
                 <h3>Owner: {{modalEvent.eventOwner}}</h3>
                 <h4>{{modalEvent.description}}</h4>
-                <div class="buttons">
+                <div class="modal-buttons">
                 <b-button :href=modalEvent.link target="_blank">See more info</b-button>
                 <b-button @click="closeModal">Close</b-button>
                 </div>
@@ -67,29 +67,7 @@
         computed: {
             rows() {
                 return this.events.length
-            },
-            fields () { return [
-                {
-                    key: 'title',
-                    label: this.$ml.get('title')
-                },
-                {
-                    key: 'date',
-                    label: this.$ml.get('date')
-                },
-                {
-                    key: 'description',
-                    label: this.$ml.get('description')
-                },
-                {
-                    key: 'more_info',
-                    label: ''
-                },
-                {
-                    key: 'location',
-                    label: ''
-                }
-            ]}
+            }
 
         }
             ,
@@ -113,10 +91,8 @@
 
 <style lang="less">
     @primarycolor: #F6F0E4;
-    .pag {
 
-    }
-    .buttons {
+    .modal-buttons {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -127,5 +103,10 @@
     }
     #my-table {
         width: 100%;
+        .btn {
+            border-radius: 20px;
+            background-color: #BDD9DC;
+            color: black;
+        }
     }
 </style>

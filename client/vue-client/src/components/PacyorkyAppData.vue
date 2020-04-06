@@ -9,7 +9,9 @@
                 </b-col>
             </b-row>
             <b-row class="calendar-data-all-map" v-if="!loading">
-                <EventsMap @trimToDate="trimToDate" v-bind:events="eventsForMap" :districts="districts" @trimToDistrict="trimToDistrict"/>
+                <EventsMap @trimToDate="trimToDate" v-bind:events="eventsForMap" :districts="districts" :districtShow="districtShow" @trimToDistrict="trimToDistrict"
+@futureEvents="futureEvents" @pastEvents="pastEvents"
+/>
             </b-row>
             <b-row class="lds-dual-ring" v-else></b-row>
             <b-row class="error" v-if="apiError"><h1>ERRROOOROORORRRRRR!!!</h1></b-row>
@@ -33,7 +35,8 @@
                 apiError: false,
                 eventsForList: [],
                 eventsForCalendar: [],
-                districts: {}
+                districts: {},
+                districtShow: false
             }
         },
         mounted() {
@@ -47,22 +50,37 @@
             EventsTable
         },
         methods: {
+            futureEvents () {
+                this.eventsForList = this.events.filter(event => new Date(event.date) >= Date.now());
+                this.eventsForMap = this.events.filter(event => new Date(event.date) >= Date.now());
+                this.eventsForCalendar = this.events.filter(event => new Date(event.date) >= Date.now());
+                this.districtShow=false;
+            },
+            pastEvents () {
+                this.eventsForList = this.events.filter(event => new Date(event.date) <= Date.now());
+                this.eventsForMap = this.events.filter(event => new Date(event.date) <= Date.now());
+                this.eventsForCalendar = this.events.filter(event => new Date(event.date) <= Date.now());
+                this.districtShow=false;
+            },
             getSliderEvents() {
                 this.$emit("getSliderEvents", this.events);
             },
             trimToDistrict(district) {
-                this.eventsForMap = this.events.filter(event => event.district.estName === district);
-                this.eventsForCalendar = this.events.filter(event => event.district.estName === district);
-                this.eventsForList = this.events.filter(event => event.district.estName === district)
+                this.eventsForMap = this.events.filter(event => ('district'+event.district.id) === district);
+                this.eventsForCalendar = this.events.filter(event => ('district'+event.district.id) === district);
+                this.eventsForList = this.events.filter(event => ('district'+event.district.id) === district);
+                this.districtShow = true;
             },
             trimToDate(date) {
                 if (date === "") {
                     this.eventsForList = this.events;
                     this.eventsForMap = this.events;
+                    this.eventsForCalendar = this.events;
+                    this.districtShow=false;
                 } else {
                     this.eventsForList = this.events.filter(event => event.date === date);
                     this.eventsForMap = this.events.filter(event => event.date === date);
-
+                    this.districtShow=false;
                 }
             },
             trimToLocation(id) {
@@ -76,8 +94,8 @@
                         this.eventsForList = this.events;
                         this.eventsForCalendar = this.events;
                         this.eventsForMap = this.events;
-                        //TODO дописать айдишники
-                        this.districts = Array.from(new Set(this.events.map(event => event.district.estName)));
+                        this.districts = Array.from(new Set(this.events.map(event => event.district.id)));
+                        this.districts= this.districts.map(district => "district"+district);
                         this.getSliderEvents();
                     }).catch(error => {
                     console.log(error);

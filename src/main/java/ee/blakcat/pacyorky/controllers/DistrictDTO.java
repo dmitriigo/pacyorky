@@ -6,11 +6,22 @@ import java.io.Serializable;
 
 public class DistrictDTO {
     String estName, ukrName, rusName;
+    int id;
 
     public DistrictDTO(District district) {
         this.estName = district.estName;
         this.ukrName = district.ukrName;
         this.rusName = district.rusName;
+        this.id=district.ordinal();
+
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEstName() {

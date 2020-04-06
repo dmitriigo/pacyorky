@@ -27,7 +27,7 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
     @primarycolor: #F6F0E4;
     .slider {
         background-color: white;
