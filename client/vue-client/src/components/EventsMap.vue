@@ -113,7 +113,7 @@ districtShow: {}
 </script>
 
 <style lang="less">
-    @primarycolor: #F6F0E4;
+    @primarycolor: #EBE1E4;
 .p-map {
     width: 100%;
     margin: 20px;
@@ -132,7 +132,7 @@ districtShow: {}
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(214, 77, 85, 0.54);
+            background-color: @primarycolor;
             padding: 10px;
         }
         &-events {

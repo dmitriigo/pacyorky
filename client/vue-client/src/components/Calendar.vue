@@ -42,7 +42,7 @@
 
 
 <style lang="less">
-    @primarycolor: #F6F0E4;
+    @primarycolor: #EBE1E4;
     .calendar-data {
         .selected-date {
             background-color: @primarycolor;

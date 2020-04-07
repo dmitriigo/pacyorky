@@ -29,12 +29,15 @@
 </script>
 
 <style lang="less">
+
+    @primarycolor: #EBE1E4;
     .buttons {
         width: 100%;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        background-color: #F6F0E4;
+        background-color: @primarycolor;
+        opacity: 0.8;
         .btn {
             border-radius: 20px !important;
             background-color:#BDD9DC ;

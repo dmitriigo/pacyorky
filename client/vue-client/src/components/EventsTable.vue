@@ -24,14 +24,14 @@
 
         </b-table>
         <b-pagination class="pag" align="center"
-                v-model="currentPage"
-                :total-rows="rows"
-                :per-page="perPage"
-                aria-controls="my-table"
+                      v-model="currentPage"
+                      :total-rows="rows"
+                      :per-page="perPage"
+                      aria-controls="my-table"
         ></b-pagination>
         <b-modal v-model="showModale" id="event-modal" hide-footer title="" scrollable centered v-if="modalEvent">
             <div class="modal-event-item">
-            <h1>{{modalEvent.title}}</h1>
+                <h1>{{modalEvent.title}}</h1>
                 <h3>{{$ml.get('date')}}: {{modalEvent.date}}</h3>
                 <h3 v-if="modalEvent.endTime">End time: {{modalEvent.endTime}}</h3>
                 <h3 v-if="modalEvent.district">District: {{$ml.get('district'+modalEvent.district.id)}}</h3>
@@ -39,8 +39,8 @@
                 <h3>Owner: {{modalEvent.eventOwner}}</h3>
                 <h4>{{modalEvent.description}}</h4>
                 <div class="modal-buttons">
-                <b-button :href=modalEvent.link target="_blank">See more info</b-button>
-                <b-button @click="closeModal">Close</b-button>
+                    <b-button :href=modalEvent.link target="_blank">See more info</b-button>
+                    <b-button @click="closeModal">Close</b-button>
                 </div>
 
             </div>
@@ -57,7 +57,7 @@
         data() {
             return {
                 showModale: false,
-                loading:true,
+                loading: true,
                 apiError: false,
                 modalEvent: {},
                 perPage: 5,
@@ -70,19 +70,19 @@
             }
 
         }
-            ,
+        ,
         props: {
             events: {}
         },
         methods: {
-            showDetails (id) {
-               this.modalEvent=this.events.filter(event => event.id === id)[0];
-                this.showModale=true;
+            showDetails(id) {
+                this.modalEvent = this.events.filter(event => event.id === id)[0];
+                this.showModale = true;
             },
-            closeModal () {
-                this.showModale=false;
+            closeModal() {
+                this.showModale = false;
             },
-            trimToLocation (id) {
+            trimToLocation(id) {
                 this.$emit("trimToLocation", id);
             }
         }
@@ -90,19 +90,59 @@
 </script>
 
 <style lang="less">
-    @primarycolor: #F6F0E4;
+    @primarycolor: #EBE1E4;
+    @secondaryColor: #BDD9DC;
 
     .modal-buttons {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        .btn {
+            border-radius: 20px;
+            background-color: #BDD9DC;
+            color: black;
+        }
     }
+
     .table-main {
         width: 100%;
-        background-color: @primarycolor ;
+        background-color: @primarycolor;
+
+        .page-item {
+            border: none;
+        }
+
+        .active {
+            .page-link {
+                color: rgba(53, 131, 141, 0.61) !important;
+                border: rgba(53, 131, 141, 0.61) solid !important;
+                border-radius: 20px;
+            }
+        }
+        .page-link {
+            border: none;
+        }
+        li {
+            background-color: @primarycolor;
+            border: none !important;
+
+            span {
+                background-color: @primarycolor !important;
+                color: #D64D55 !important;
+
+            }
+
+            button {
+                background-color: @primarycolor !important;
+                color: #D64D55 !important;
+            }
+        }
     }
+
     #my-table {
         width: 100%;
+
         .btn {
             border-radius: 20px;
             background-color: #BDD9DC;
