@@ -34,11 +34,12 @@
     .buttons {
         width: 100%;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
         background-color: @primarycolor;
-        opacity: 0.8;
+        opacity: 1;
         .btn {
+            margin: 0 20px;
             border-radius: 20px !important;
             background-color:#BDD9DC ;
             color: black;

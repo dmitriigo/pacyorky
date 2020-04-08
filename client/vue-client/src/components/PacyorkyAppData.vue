@@ -41,7 +41,6 @@
         },
         mounted() {
             this.getEvents();
-
         },
         components: {
             EventsMap,
@@ -87,16 +86,16 @@
                 this.eventsForMap = this.events.filter(event => event.id === id);
             },
             getEvents() {
-                axios.get('/api/events')
+               axios.get('/api/events')
                     .then(response => {
                         this.events = response.data;
-                        this.loading = false;
                         this.eventsForList = this.events;
                         this.eventsForCalendar = this.events;
                         this.eventsForMap = this.events;
                         this.districts = Array.from(new Set(this.events.map(event => event.district.id)));
                         this.districts= this.districts.map(district => "district"+district);
                         this.getSliderEvents();
+                        this.loading = false;
                     }).catch(error => {
                     console.log(error);
                     this.apiError = true

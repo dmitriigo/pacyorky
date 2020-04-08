@@ -49,11 +49,18 @@
         min-height: 100px;
     }
 
+    .VueCarousel-pagination {
+      
+    }
+
     .VueCarousel-dot {
-        background-color: @primarycolor !important;
+        background-color: #D64D55 !important;
+        line-height: 20px !important;
     }
     .VueCarousel-dot--active {
-        background-color: red !important;
+        background-color: #94C8D6 !important;
+        width: 15px !important;
+        height: 15px !important;
     }
 
 

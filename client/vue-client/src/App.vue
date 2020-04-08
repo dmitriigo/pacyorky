@@ -1,24 +1,32 @@
 <template>
-<div>
+    <div>
 
-    <b-row><PacyorkyHeader/></b-row>
-    <b-container>
+        <b-row>
+            <PacyorkyHeader/>
+        </b-row>
+        <b-container>
 
-<b-row align-content="center" align-h="center" align-v="center">
-    <b-col class="main-content" align-self="center">
-        <b-row><NavBar/></b-row>
-        <b-row class="present-pic"><h1>Some Picture</h1></b-row>
-        <b-row class="separator"><h1>Calendar for you!!!</h1></b-row>
-<Slider :events="events"/>
-        <b-row class="app-data"><PacyorkyAppData @getSliderEvents="getSliderEvents"/></b-row>
-        <b-row><About/></b-row>
-    </b-col>
-</b-row>
+            <b-row align-content="center" align-h="center" align-v="center">
+                <b-col class="main-content" align-self="center">
+                    <b-row>
+                        <NavBar/>
+                    </b-row>
+                    <b-row class="present-pic"><h1>Some Picture</h1></b-row>
+                    <b-row class="separator"><h1>Calendar for you!!!</h1></b-row>
+                    <Slider :events="events"/>
+                    <b-row class="app-data">
+                        <PacyorkyAppData @getSliderEvents="getSliderEvents"/>
+                    </b-row>
+                    <b-row>
+                        <About/>
+                    </b-row>
+                </b-col>
+            </b-row>
 
 
-    </b-container>
+        </b-container>
 
-</div>
+    </div>
 </template>
 
 <script>
@@ -28,6 +36,7 @@
     import NavBar from './components/NavBar'
     import Slider from "./components/Slider";
     import About from './components/About';
+
     export default {
         name: 'App',
         components: {NavBar, PacyorkyHeader, PacyorkyAppData, Slider, About},
@@ -36,16 +45,21 @@
                 events: []
             }
         },
+        mounted() {
+            //please don't touch, some unknown bug...
+            this.$ml.change('Russian');
+            this.$ml.change('English');
+        },
         methods: {
             getSliderEvents(events) {
-                this.events=events;
+                this.events = events;
             }
         }
     }
 </script>
 
 <style lang="less">
-
+@import "styles/fonts.css";
     @primarycolor: #EBE1E4;
 
 

@@ -12,6 +12,7 @@ import './plugins/ml.js'
 import VueAxios from 'vue-axios'
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
+//Vue.config.devtools = true
 new Vue({
   router,
   render: h => h(App),
