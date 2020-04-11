@@ -1,9 +1,11 @@
 <template>
-<b-row>
-    <b-calendar class="calendar-data" :date-info-fn="light" @context="trimToDate" :start-weekday="1" today-variant="today-var">
+    <b-calendar class="calendar-data"
+                :date-info-fn="light"
+                @context="trimToDate"
+                :start-weekday="1"
+                today-variant="today-var">
     </b-calendar>
 
-</b-row>
 
 
 
@@ -44,6 +46,8 @@
 <style lang="less">
     @primarycolor: #EBE1E4;
     .calendar-data {
+        background-color: #BDD9DC;
+        padding: 10px;
         .selected-date {
             background-color: @primarycolor;
             border-radius: 20px;

@@ -10,11 +10,8 @@
         </svg>
         <b-row align-content="center" align-h="center" align-v="center" class="header-description">
             <b-col class="header-description-container" cols="5">
-                <h4><span class="pacyorky"> Пацьoрки </span> інтегрує події українського
-                    культурного простору Естонії із сегменту українських громад та земляцтв у соцмережах до єдиної
-                    платформи
-                    <span class="pacyorky">Пацьoрки</span> допоможе слідкувати за культурним життям української громади
-                    Естонії, вчасно дізнаватись і не пропустити важливі та цікаві івенти </h4>
+                <h4><span class="pacyorky">{{$ml.get('pacyorky')}} </span>{{$ml.get('headerdescriptionpt1')}}
+                    <span class="pacyorky">{{$ml.get('pacyorky')}}</span> {{$ml.get('headerdescriptionpt2')}}</h4>
             </b-col>
         </b-row>
 
@@ -27,7 +24,7 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
     @primarycolor: #EBE1E4;
     .header- {
         &container {

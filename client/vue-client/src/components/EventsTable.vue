@@ -13,12 +13,12 @@
         >
             <template v-slot:cell(more_info)="row">
                 <b-button size="sm" @click="showDetails(row.item.id)" class="mr-2">
-                    More info
+                    {{$ml.get('moreinfo')}}
                 </b-button>
             </template>
             <template v-slot:cell(location)="row">
                 <b-button size="sm" @click="trimToLocation(row.item.id)" class="mr-2">
-                    location
+                    {{$ml.get('location')}}
                 </b-button>
             </template>
 
@@ -107,6 +107,7 @@
 
     .table-main {
         width: 100%;
+        height: 100%;
         background-color: @primarycolor;
 
         .page-item {

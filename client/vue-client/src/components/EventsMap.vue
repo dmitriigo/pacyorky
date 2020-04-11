@@ -1,19 +1,19 @@
 <template>
     <div class="p-map">
         <div class="buttons-on-map">
-            <div class="buttons-on-map-district-selector">
+            <b-col cols="4" class="buttons-on-map-district-selector">
             <b-dropdown :text="$ml.get(districtNowAtButton)">
                 <b-dropdown-item v-for="district in districts" :key="district.id" @click="trimToDistrict(district)">
                     {{$ml.get(district)}}
                 </b-dropdown-item>
             </b-dropdown>
-            </div>
-            <div class="buttons-on-map-events">
+            </b-col>
+            <b-col class="buttons-on-map-events">
             <b-button @click="pastEvents"> {{$ml.get('pevents')}}</b-button>
                 <b-button @click="trimToDate">{{$ml.get('allevents')}}</b-button>
             <b-button @click="futureEvents"> {{$ml.get('fevents')}}</b-button>
 
-            </div>
+            </b-col>
         </div>
         <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
                 data-projection="EPSG:4326" style="height: 400px">

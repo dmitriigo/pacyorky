@@ -1,10 +1,10 @@
 <template>
      <b-navbar fixed="top" class="buttons">
-        <b-button href="#head" variant="outline-dark">Main</b-button>
-        <b-button href="#calendar" variant="outline-dark">Calendar</b-button>
-        <b-button href="#game" variant="outline-dark">Game</b-button>
-        <b-button href="#project" variant="outline-dark">Project</b-button>
-        <b-dropdown variant="outline-dark" :text="langNow">
+        <b-button href="#head" variant="outline-dark">{{$ml.get('main')}}</b-button>
+        <b-button href="#calendar" variant="outline-dark">{{$ml.get('calendar')}}</b-button>
+        <b-button href="#game" variant="outline-dark">{{$ml.get('game')}}</b-button>
+        <b-button href="#project" variant="outline-dark">{{$ml.get('project')}}</b-button>
+        <b-dropdown :text="langNow">
             <b-dropdown-item v-for="lang in $ml.list" :key="lang" @click="$ml.change(lang), changeLang(lang)">
                 {{lang}}
             </b-dropdown-item>
@@ -43,6 +43,50 @@
             border-radius: 20px !important;
             background-color:#BDD9DC ;
             color: black;
+            font-family: Amatic SC;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 14px;
+        }
+        .show {
+            .btn {
+                background-color: #8EBABF;
+                color: black;
+                font-family: Amatic SC;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 14px;
+            }
+            .show {
+                background-color: #BDD9DC;
+                border: 1px solid #000000;
+                box-sizing: border-box;
+                border-radius: 20px;
+                padding: 5px;
+                li {
+                    a {
+                        font-family: Amatic SC;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 24px;
+                        line-height: 14px;
+                        margin: 5px;
+                        &:hover {
+                            background: #8EBABF;
+                            border: 1px solid #000000;
+                            box-sizing: border-box;
+                            border-radius: 20px;
+                            font-family: Amatic SC;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 24px;
+                            line-height: 14px;
+                        }
+                    }
+                }
+            }
         }
     }
 
