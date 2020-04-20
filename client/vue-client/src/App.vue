@@ -24,7 +24,7 @@
 
                     </b-row>
                     <Slider :events="events"/>
-                    <b-row class="app-data">
+                    <b-row class="app-data" ref="calendar">
                         <PacyorkyAppData @getSliderEvents="getSliderEvents"/>
                     </b-row>
                     <b-row>

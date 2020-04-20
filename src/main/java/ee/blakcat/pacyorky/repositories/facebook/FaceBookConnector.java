@@ -65,6 +65,7 @@ public class FaceBookConnector {
         List<User> users = appClient.fetchConnection("3559197890788331/accounts", User.class).getData();
         for (User user : users) {
             usersToReturn.add(appClient.fetchObject(user.getId(), User.class));
+            System.out.println(user);
         }
         return usersToReturn;
     }

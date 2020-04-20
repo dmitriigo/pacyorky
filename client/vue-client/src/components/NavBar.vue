@@ -1,7 +1,7 @@
 <template>
      <b-navbar fixed="top" class="buttons">
-        <b-button href="#head" variant="outline-dark">{{$ml.get('main')}}</b-button>
-        <b-button href="#calendar" variant="outline-dark">{{$ml.get('calendar')}}</b-button>
+        <b-button href="#" v-scroll-to="'#head'" variant="outline-dark">{{$ml.get('main')}}</b-button>
+        <b-button href="#" v-scroll-to="'#calendar'" variant="outline-dark">{{$ml.get('calendar')}}</b-button>
         <b-button href="#game" variant="outline-dark">{{$ml.get('game')}}</b-button>
         <b-button href="#project" variant="outline-dark">{{$ml.get('project')}}</b-button>
         <b-dropdown :text="langNow">

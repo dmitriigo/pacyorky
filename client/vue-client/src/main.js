@@ -9,6 +9,7 @@ import './plugins/VCalendar-vue'
 import './plugins/vuelayers'
 import './plugins/VCarousel'
 import './plugins/ml.js'
+import './plugins/scrollto'
 import VueAxios from 'vue-axios'
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
