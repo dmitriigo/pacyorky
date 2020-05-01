@@ -36,6 +36,7 @@ public class FaceBookConnector {
             eventsList.forEach(event -> pacyorkyEvents.add(getPacyorkyEvent(event, account)));
         });
 
+        System.out.println("Events: "+pacyorkyEvents.size());
         return pacyorkyEvents;
 
     }
@@ -65,8 +66,8 @@ public class FaceBookConnector {
         List<User> users = appClient.fetchConnection("3559197890788331/accounts", User.class).getData();
         for (User user : users) {
             usersToReturn.add(appClient.fetchObject(user.getId(), User.class));
-            System.out.println(user);
         }
+        System.out.println("Users: " + usersToReturn.size());
         return usersToReturn;
     }
 

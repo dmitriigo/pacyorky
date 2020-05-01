@@ -8,7 +8,9 @@ import java.util.Date;
 public class PacyorkyEvent {
     @Id
     private String id;
-    private String place, description, name;
+    private String place, name;
+    @Column (length = 2048)
+    private String description;
     private Date startTime, endTime;
     @ManyToOne(targetEntity = PacyorkyEventOwner.class, cascade = CascadeType.ALL)
     private PacyorkyEventOwner pacyorkyEventOwner;

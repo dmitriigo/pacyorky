@@ -3,3 +3,4 @@ Pacyorky.iml
 /target
 /client/vue-client (копия)
 /client/vue-client/node_modules
+/client/vue-client/public/img

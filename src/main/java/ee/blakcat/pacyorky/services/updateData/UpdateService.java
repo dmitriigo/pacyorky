@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +30,6 @@ public class UpdateService {
     }
 
     private void updateEvents() {
-//TODO обновление дистрикта
         List<PacyorkyEvent> pacyorkyEvents = faceBookConnector.getPacyorkyEvents();
         List<PacyorkyEvent> eventsAtDB = eventRepositoryJPA.findAll();
         List<String> eventsIDs = eventsAtDB.stream().map(PacyorkyEvent::getId).collect(Collectors.toList());
@@ -46,7 +44,14 @@ public class UpdateService {
                 }
             }
        });
-        eventRepositoryJPA.saveAll(pacyorkyEvents);
+        pacyorkyEvents.forEach(event -> {
+            try {
+                eventRepositoryJPA.save(event);
+            }
+            catch (Exception e) {
+                System.out.println("Exception when save event: id: "+ event.getId()+" exception: "+ e.toString());
+            }
+        });
     }
     private void updateLocationPoint (PacyorkyEvent pacyorkyEvent) {
         HttpClient httpClient = HttpClientBuilder.create().build();
