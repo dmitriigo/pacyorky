@@ -9,8 +9,10 @@
                 :loop="true"
         >
             <slide v-for="event in events" :key="event.id">
+                <div class="one-slide">
                <img src="/img/birdy4.png"/>
                 <h4>{{event.title}}</h4>
+                </div>
             </slide>
         </carousel>
         <img src="/img/birdy0.png"/>
@@ -43,6 +45,11 @@
 
 <style lang="less">
     @primarycolor: #EBE1E4;
+    .one-slide {
+        padding: 10px;
+        margin: 10px;
+        background-color: #42b983;
+    }
     .slider {
         background-color: white;
         color: green;
@@ -65,9 +72,12 @@
             margin: 30px;
         }
     }
+    .VueCarousel {
+        width: 100%;
+    }
     .VueCarousel-slide {
         position: relative;
-        background: #42b983;
+        background: white;
         color: #fff;
         font-family: Arial;
         font-size: 24px;

@@ -1,5 +1,8 @@
 <template>
-    <div class="about-us"><h1>About us..</h1></div>
+    <div class="about-us"><h1>About us..</h1>
+        <a href="/privacy_policy.html">Privacy policy</a>
+    </div>
+
 </template>
 
 <script>

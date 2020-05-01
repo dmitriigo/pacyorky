@@ -14,7 +14,7 @@
 />
             </b-row>
             <b-row class="lds-dual-ring" v-else></b-row>
-            <b-row class="error" v-if="apiError"><h1>ERRROOOROORORRRRRR!!!</h1></b-row>
+            <b-row class="error" v-if="apiError"><h1>Something gone wrong, please notify me: info@pacyorky.ee</h1></b-row>
     </b-container>
 
 </template>
