@@ -1,6 +1,7 @@
 package ee.blakcat.pacyorky.repositories.facebook;
 
 import com.restfb.types.Account;
+import com.restfb.types.CoverPhoto;
 import com.restfb.types.Event;
 import com.restfb.types.Place;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
@@ -17,6 +18,11 @@ public class AdapterToEvent {
             place.setName("");
             event.setPlace(place);
         }
+        if (event.getCover()==null) {
+           CoverPhoto coverPhoto = new CoverPhoto();
+           coverPhoto.setSource("");
+           event.setCover(coverPhoto);
+        }
         return new PacyorkyEvent(
                 event.getPlace().getName(),
                 event.getDescription(),
@@ -24,7 +30,8 @@ public class AdapterToEvent {
                 event.getId(),
                 event.getStartTime(),
                 event.getEndTime(),
-                convertFaceBookAccountToPacyorkyOwner(account)
+                convertFaceBookAccountToPacyorkyOwner(account),
+                event.getCover().getSource()
         );
     }
 

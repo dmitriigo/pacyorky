@@ -2,6 +2,7 @@ package ee.blakcat.pacyorky.repositories.facebook;
 
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
+import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.json.JsonObject;
 import com.restfb.types.Account;
@@ -77,7 +78,10 @@ public class FaceBookConnector {
         Set<Account> accounts = getFacebookAppAccounts();
         for (Account account : accounts) {
             FacebookClient client = getUserClient(account);
-            List<Event> events = new ArrayList<>(client.fetchConnection("me/events", Event.class).getData());
+            List<Event> events = new ArrayList<>(client.fetchConnection("me/events", Event.class,
+                    Parameter.with("fields",
+                            "cover,description,end_time,name,owner,place,start_time"
+                    )).getData());
             for (User user : users) {
                 if (user.getId().equals(account.getId())) account.setName(user.getName());
             }

@@ -76,7 +76,9 @@ export default new MLCreate({
             supportedby: 'Supported By',
             supporteddesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis varius ridiculus mi risus quis. Elementum ac dolor imperdiet non faucibus facilisi ',
             copyright: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis varius ridiculus mi risus quis.',
-            location: 'Location'
+            location: 'Location',
+            mapa: 'Map of ukrainians',
+            descformapa: 'Не знайшли цікавої події або збираєтесь у мандрівку Естонією? Відвідайте українські місця в Естонії!',
 
 
         }),
@@ -150,7 +152,9 @@ export default new MLCreate({
             supportedby: 'При поддержке',
             supporteddesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis varius ridiculus mi risus quis. Elementum ac dolor imperdiet non faucibus facilisi ',
             copyright: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis varius ridiculus mi risus quis.',
-            location: 'Место'
+            location: 'Место',
+            mapa: 'Map of ukrainians',
+            descformapa: 'Не знайшли цікавої події або збираєтесь у мандрівку Естонією? Відвідайте українські місця в Естонії!',
         }),
         new MLanguage('Ukrainian').create({
             title: 'Название',
@@ -222,7 +226,9 @@ export default new MLCreate({
             supportedby: 'При поддержке',
             supporteddesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis varius ridiculus mi risus quis. Elementum ac dolor imperdiet non faucibus facilisi ',
             copyright: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis varius ridiculus mi risus quis.',
-            location: 'Место'
+            location: 'Место',
+            mapa: 'Map of ukrainians',
+            descformapa: 'Не знайшли цікавої події або збираєтесь у мандрівку Естонією? Відвідайте українські місця в Естонії!',
         }),
 
         new MLanguage('Eesti').create({
@@ -294,7 +300,9 @@ export default new MLCreate({
             supportedby: 'Supported By',
             supporteddesc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis varius ridiculus mi risus quis. Elementum ac dolor imperdiet non faucibus facilisi ',
             copyright: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Turpis varius ridiculus mi risus quis.',
-            location: 'Location'
+            location: 'Location',
+            mapa: 'Map of ukrainians',
+            descformapa: 'Не знайшли цікавої події або збираєтесь у мандрівку Естонією? Відвідайте українські місця в Естонії!',
         })
     ]
 })

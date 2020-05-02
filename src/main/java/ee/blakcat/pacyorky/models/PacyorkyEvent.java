@@ -16,9 +16,9 @@ public class PacyorkyEvent {
     private PacyorkyEventOwner pacyorkyEventOwner;
     private District district;
     private double lat, lng;
-    private String pictureURL;
+    private String cover;
 
-    public PacyorkyEvent(String place, String description, String name, String facebookId, Date startTime, Date endTime, PacyorkyEventOwner pacyorkyEventOwner) {
+    public PacyorkyEvent(String place, String description, String name, String facebookId, Date startTime, Date endTime, PacyorkyEventOwner pacyorkyEventOwner, String cover) {
         this.id = facebookId;
         this.place = place;
         this.description = description;
@@ -28,6 +28,7 @@ public class PacyorkyEvent {
         this.pacyorkyEventOwner = pacyorkyEventOwner;
         //TODO обновление дистрикта при изменении
         this.district=District.getDistrict(place);
+        this.cover=cover;
     }
 
     public PacyorkyEvent(String name, Date startTime, String facebookId) {
@@ -40,12 +41,12 @@ public class PacyorkyEvent {
     public PacyorkyEvent() {
     }
 
-    public String getPictureURL() {
-        return pictureURL;
+    public String getCover() {
+        return cover;
     }
 
-    public void setPictureURL(String pictureURL) {
-        this.pictureURL = pictureURL;
+    public void setCover(String pictureURL) {
+        this.cover = pictureURL;
     }
 
     public District getDistrict() {

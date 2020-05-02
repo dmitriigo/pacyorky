@@ -31,12 +31,12 @@
         ></b-pagination>
         <b-modal v-model="showModale" id="event-modal" hide-footer title="" scrollable centered v-if="modalEvent">
             <div class="modal-event-item">
-                <h1>{{modalEvent.title}}</h1>
-                <h3>{{$ml.get('date')}}: {{modalEvent.date}}</h3>
-                <h3 v-if="modalEvent.endTime">End time: {{modalEvent.endTime}}</h3>
-                <h3 v-if="modalEvent.district">District: {{$ml.get('district'+modalEvent.district.id)}}</h3>
-                <h3>Location: {{modalEvent.location}}</h3>
-                <h3>Owner: {{modalEvent.eventOwner}}</h3>
+                <h2>{{modalEvent.title}}</h2>
+                <h4>{{$ml.get('date')}}: {{modalEvent.date}}</h4>
+                <h4 v-if="modalEvent.endTime">End time: {{modalEvent.endTime}}</h4>
+                <h4 v-if="modalEvent.district">District: {{$ml.get('district'+modalEvent.district.id)}}</h4>
+                <h4>Location: {{modalEvent.location}}</h4>
+                <h4>Owner: {{modalEvent.eventOwner}}</h4>
                 <h4>{{modalEvent.description}}</h4>
                 <div class="modal-buttons">
                     <b-button :href=modalEvent.link target="_blank">See more info</b-button>
@@ -102,6 +102,10 @@
             border-radius: 20px;
             background-color: #BDD9DC;
             color: black;
+            &:hover {
+                color: white !important;
+                background-color: black !important;
+            }
         }
     }
 
@@ -148,6 +152,10 @@
             border-radius: 20px;
             background-color: #BDD9DC;
             color: black;
+            &:hover {
+                color: white !important;
+                background-color: black !important;
+            }
         }
     }
 </style>

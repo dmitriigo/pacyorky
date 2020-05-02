@@ -49,6 +49,7 @@
         padding: 10px;
         margin: 10px;
         background-color: #42b983;
+        height: 100%;
     }
     .slider {
         background-color: white;

@@ -1,28 +1,29 @@
 <template>
-    <div class="p-map">
-        <div class="buttons-on-map">
-            <b-col cols="4" class="buttons-on-map-district-selector">
-            <b-dropdown :text="$ml.get(districtNowAtButton)">
+    <b-col>
+        <b-row class="m-0 mb-2 mt-2 w-100">
+            <b-col align="center" align-self="center" class="p-2 ml-1 mr-1 map-btn invert-btn">
+            <b-dropdown size="lg" class="w-75 p-3" :text="$ml.get(districtNowAtButton)">
                 <b-dropdown-item v-for="district in districts" :key="district.id" @click="trimToDistrict(district)">
                     {{$ml.get(district)}}
                 </b-dropdown-item>
             </b-dropdown>
             </b-col>
-            <b-col class="buttons-on-map-events">
+            <b-col cols="8" align="center" class="d-flex justify-content-around p-0 pl-2 w-100">
+                <div class="map-btn w-100 m-0 p-3 d-flex justify-content-around invert-btn">
             <b-button @click="pastEvents"> {{$ml.get('pevents')}}</b-button>
                 <b-button @click="trimToDate">{{$ml.get('allevents')}}</b-button>
             <b-button @click="futureEvents"> {{$ml.get('fevents')}}</b-button>
-
+                </div>
             </b-col>
-        </div>
-        <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
+        </b-row>
+        <vl-map class="m-1 pr-1" :load-tiles-while-animating="true" :load-tiles-while-interacting="true"
                 data-projection="EPSG:4326" style="height: 400px">
             <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
                     <vl-feature id="position-feature">
                         <vl-geom-multi-point :coordinates="cords"></vl-geom-multi-point>
                          <vl-style-box>
                             <vl-style-circle :radius="12">
-                                <vl-style-fill color="#36D9C3"></vl-style-fill>
+                                <vl-style-fill color="#960F16"></vl-style-fill>
                                 <vl-style-stroke color="black"></vl-style-stroke>
                             </vl-style-circle>
                         </vl-style-box>
@@ -31,7 +32,12 @@
                 <vl-source-osm></vl-source-osm>
             </vl-layer-tile>
         </vl-map>
-    </div>
+        <b-row class=" m-1 w-100 mapa-desc">
+            <b-col cols="4" align="center" align-self="center" class="invert-btn" ><b-button href="https://mapauaest.wordpress.com/" target="_blank">{{$ml.get('mapa')}}</b-button></b-col>
+            <b-col cols="8" class="p-3"><h4>{{$ml.get('descformapa')}}</h4></b-col>
+        </b-row>
+        <b-row align-v="center" align-h="center"><b-img class="w-50" src="/img/birdy0.png"></b-img></b-row>
+    </b-col>
 </template>
 
 <script>
@@ -114,36 +120,68 @@ districtShow: {}
 
 <style lang="less">
     @primarycolor: #EBE1E4;
-.p-map {
-    width: 100%;
-    margin: 20px;
-.btn {
-    border-radius: 20px;
-    background-color: #BDD9DC;
-    color: black;
+
+    .mapa-desc {
+        background-color: @primarycolor;
+    }
+.map-btn {
+    background-color: @primarycolor;
+
+
+    .btn {
+        margin: 0 20px;
+        border-radius: 20px !important;
+        background-color:#BDD9DC ;
+        color: black;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 14px;
+
+    }
+    .show {
+        .btn {
+            background-color: #8EBABF;
+            color: black;
+            font-family: Amatic SC;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 14px;
+            &:hover {
+                color: white !important;
+                background-color: black !important;
+            }
+        }
+        .show {
+            background-color: #BDD9DC;
+            border: 1px solid #000000;
+            box-sizing: border-box;
+            border-radius: 20px;
+            padding: 5px;
+            li {
+                a {
+                    font-family: Amatic SC;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 24px;
+                    line-height: 14px;
+                    margin: 5px;
+                    &:hover {
+                        background: #8EBABF;
+                        border: 1px solid #000000;
+                        box-sizing: border-box;
+                        border-radius: 20px;
+                        font-family: Amatic SC;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 24px;
+                        line-height: 14px;
+                    }
+                }
+            }
+        }
+    }
 }
 
-    .buttons-on-map {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        &-district-selector{
-            width: 30%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: @primarycolor;
-            padding: 10px;
-        }
-        &-events {
-          display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            width: 70%;
-background-color: @primarycolor;
-            margin: 10px -5px 10px 10px;
-            padding: 10px;
-         }
-    } }
 
 </style>

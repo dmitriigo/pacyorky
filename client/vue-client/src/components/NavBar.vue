@@ -1,11 +1,11 @@
 <template>
-     <b-navbar fixed="top" class="buttons">
+     <b-navbar fixed="top" class="buttons invert-btn">
         <b-button href="#" v-scroll-to="'#head'" variant="outline-dark">{{$ml.get('main')}}</b-button>
         <b-button href="#" v-scroll-to="'#calendar'" variant="outline-dark">{{$ml.get('calendar')}}</b-button>
-        <b-button href="#game" variant="outline-dark">{{$ml.get('game')}}</b-button>
-        <b-button href="#project" variant="outline-dark">{{$ml.get('project')}}</b-button>
+        <b-button href="#" v-scroll-to="'#game'" variant="outline-dark">{{$ml.get('game')}}</b-button>
+        <b-button href="#" v-scroll-to="'#project'" variant="outline-dark">{{$ml.get('project')}}</b-button>
         <b-dropdown :text="langNow">
-            <b-dropdown-item v-for="lang in $ml.list" :key="lang" @click="$ml.change(lang), changeLang(lang)">
+            <b-dropdown-item v-for="lang in $ml.list" v-if="lang!==langNow" :key="lang" @click="$ml.change(lang), changeLang(lang)">
                 {{lang}}
             </b-dropdown-item>
         </b-dropdown>
@@ -44,10 +44,14 @@
             background-color:#BDD9DC ;
             color: black;
             font-family: Amatic SC;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 24px;
-            line-height: 14px;
+            font-style: normal !important;
+            font-weight: bold !important;
+            font-size: 24px !important;
+            line-height: 14px !important;
+            &:hover {
+                color: white !important;
+                background-color: black !important;
+            }
         }
         .show {
             .btn {

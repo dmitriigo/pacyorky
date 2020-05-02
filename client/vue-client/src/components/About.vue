@@ -1,7 +1,36 @@
 <template>
-    <div class="about-us"><h1>About us..</h1>
-        <a href="/privacy_policy.html">Privacy policy</a>
-    </div>
+    <b-col class="m-3">
+        <b-row class="about-us pt-3">
+            <b-col>
+                <div class="about-pane">
+                    <h3>{{$ml.get('vodograi')}}</h3>
+                    <p>{{$ml.get('aboutpt1')}}</p>
+                </div>
+            </b-col>
+            <b-col>
+                <div class="about-pane">
+                    <h3>{{$ml.get('pacyorky')}}</h3>
+                    <p>{{$ml.get('aboutpt2')}}</p>
+                </div>
+            </b-col>
+            <b-col>
+                <div class="about-pane">
+                    <h3>{{$ml.get('connectus')}}</h3>
+                    <p>{{$ml.get('aboutpt3')}}</p>
+                </div>
+            </b-col>
+        </b-row>
+        <b-row align-h="center" align-v="center" class="about-us pb-3"><img style="width: 70%" src="/img/Illustration12.png">
+        </b-row>
+        <b-row class="p-3 pt-5">
+            <b-col align="center"><img style="width: 40%" src="/img/is_logo.png" alt=""></b-col>
+            <b-col>
+                <h3>{{$ml.get('supportedby')}}</h3>
+                <p>{{$ml.get('supporteddesc')}}</p>
+            </b-col>
+            <b-col align="center"><img style="width: 70%" src="/img/ee.png" alt=""></b-col>
+        </b-row>
+    </b-col>
 
 </template>
 
@@ -11,10 +40,18 @@
     }
 </script>
 
-<style scoped>
-.about-us {
-    width: 100%;
-    height: 100px;
-    border: #42b983 solid;
-}
+<style lang="less">
+    .about-us {
+        background-color: white;
+    }
+
+    .about-pane {
+        background-color: rgba(189, 217, 220, 0.47);
+        border-radius: 5px;
+        padding: 10px;
+
+        h3 {
+            text-align: center;
+        }
+    }
 </style>

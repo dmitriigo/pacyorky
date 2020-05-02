@@ -1,11 +1,12 @@
 <template>
-    <b-container id="calendar" class="calendar-data-all">
+    <b-container id="calendar" class="ml-4">
+        <b-row class="m-2 w-100" align-h="center"><h2 align="center">{{$ml.get("calendarandmap")}}</h2></b-row>
             <b-row class="calendar-table">
-                <b-col cols="4">
-                    <Calendar @trimToDate="trimToDate" v-bind:events="eventsForCalendar"/>
+                <b-col class="p-0 mr-3 ml-1">
+                    <Calendar align="center" class="w-100 ml-3" @trimToDate="trimToDate" v-bind:events="eventsForCalendar"/>
                 </b-col>
-                <b-col cols="8">
-                    <EventsTable @trimToLocation="trimToLocation" v-bind:events="eventsForList"/>
+                <b-col cols="8" sm="col">
+                    <EventsTable class="p-3" @trimToLocation="trimToLocation" v-bind:events="eventsForList"/>
                 </b-col>
             </b-row>
             <b-row class="calendar-data-all-map" v-if="!loading">

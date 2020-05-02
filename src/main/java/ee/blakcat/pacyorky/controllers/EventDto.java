@@ -14,6 +14,7 @@ public class EventDto {
     private String link;
     private DistrictDTO district;
     private double[] locationPoint;
+    private String cover;
 
     public EventDto(PacyorkyEvent pacyorkyEvent) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -27,8 +28,16 @@ public class EventDto {
         this.setLink("https://www.facebook.com/events/" + pacyorkyEvent.getId());
         this.setEventOwner(pacyorkyEvent.getPacyorkyEventOwner().getName());
         this.locationPoint=new LocationDTO (pacyorkyEvent).getLocationPoint();
+        this.cover=pacyorkyEvent.getCover();
     }
 
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     public double[] getLocationPoint() {
         return locationPoint;

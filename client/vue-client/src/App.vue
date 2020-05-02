@@ -18,7 +18,7 @@
                     </b-row>
                     <b-row class="separator">
                         <b-col cols="3"><img src="/img/birdy10.png"></b-col>
-                        <b-col class="separator-text" align-self="center"> <h1>{{$ml.get('separator1')}}</h1></b-col>
+                        <b-col class="separator-text" align-self="center"> <h2>{{$ml.get('separator1')}}</h2></b-col>
                         <b-col cols="3"><img src="/img/birdy11.png"></b-col>
 
 
@@ -27,10 +27,29 @@
                     <b-row class="app-data" ref="calendar">
                         <PacyorkyAppData @getSliderEvents="getSliderEvents"/>
                     </b-row>
+                    <b-row class="separator" id="game">
+                        <b-col cols="3"><img src="/img/birdy10.png"></b-col>
+                        <b-col class="separator-text" align-self="center"> <h2>{{$ml.get('game')}} {{$ml.get('pacyorky')}}</h2></b-col>
+                        <b-col cols="3"><img src="/img/birdy11.png"></b-col>
+                    </b-row>
+                    <b-row>
+                        <Game/>
+                    </b-row>
+                    <b-row class="separator" id="project">
+                        <b-col cols="3"><img src="/img/birdy10.png"></b-col>
+                        <b-col class="separator-text" align-self="center"> <h2>{{$ml.get('aboutproject')}}</h2></b-col>
+                        <b-col cols="3"><img src="/img/birdy11.png"></b-col>
+                    </b-row>
                     <b-row>
                         <About/>
                     </b-row>
                 </b-col>
+            </b-row>
+            <b-row class="copyright mt-3" align-v="center" align-h="center">
+                <b-col> <p>{{$ml.get('copyright')}}</p> </b-col>
+                <b-col>   <h2>PACYORKY.EE</h2> </b-col>
+                <b-col>  <a href="/privacy_policy.html">Privacy policy</a> </b-col>
+
             </b-row>
 
 
@@ -46,10 +65,11 @@
     import NavBar from './components/NavBar'
     import Slider from "./components/Slider";
     import About from './components/About';
+    import Game from "./components/Game";
 
     export default {
         name: 'App',
-        components: {NavBar, PacyorkyHeader, PacyorkyAppData, Slider, About},
+        components: {Game, NavBar, PacyorkyHeader, PacyorkyAppData, Slider, About},
         data() {
             return {
                 events: []
@@ -80,6 +100,10 @@ body {
 
 .all-content {
     width: 100%;
+}
+
+.copyright {
+border: @primarycolor solid;
 }
 
 
@@ -117,7 +141,7 @@ body {
                 width: 70%;
                 height: auto;
             }
-            h1 {
+            h2 {
                 font-family: Amatic SC;
                 font-style: normal;
                 font-weight: bold;
@@ -140,6 +164,22 @@ body {
         }
 
     }
+
+.invert-btn {
+    .btn {
+        margin: 0 20px;
+        border-radius: 20px !important;
+        background-color:#BDD9DC ;
+        color: black;
+        font-style: normal;
+        font-size: 18px;
+        line-height: 24px;
+        &:hover {
+            color: white;
+            background-color: black;
+        }
+    }
+}
 
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
