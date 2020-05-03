@@ -23,8 +23,18 @@
                <img class="w-25 m-2" :src="'img/'+lang+'.svg'"/>{{lang}}
             </b-dropdown-item>
         </b-dropdown>
+                 <div class="ml-4">
+                     <a href="https://www.facebook.com/groups/sillamaevodograi" target="_blank" class="ml-2 mr-2" style="color: black">  <font-awesome-icon   :icon="['fab', 'facebook-square']" /> </a>
+                   <!--рассылка-->
+                     <a  href="#" class="ml-2 mr-2" style="color: black">  <font-awesome-icon  :icon="['far', 'bell']" /></a>
+                     <a href="mailto:info@pacyorky.ee"  class="ml-2 mr-2" style="color: black"> <font-awesome-icon  :icon="['far', 'envelope']" /></a>
+                     <a href="https://www.facebook.com/vodograi.estonia/" class="ml-2 mr-2" style="color: black"> <font-awesome-icon  :icon="['far', 'thumbs-up']" /></a>
+                     <a href="#" class="ml-2 mr-2" style="color: black"> <font-awesome-icon :icon="['fas', 'share-alt']" /></a>
+                 </div>
              </b-navbar-nav>
+
          </b-collapse>
+
      </b-navbar>
 </template>
 
@@ -84,7 +94,6 @@
                         font-weight: bold;
                         font-size: 24px;
                         line-height: 14px;
-                        margin: 5px;
                         &:hover {
                             background: #8EBABF;
                             border: 1px solid #000000;

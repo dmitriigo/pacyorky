@@ -10,6 +10,7 @@ import './plugins/vuelayers'
 import './plugins/VCarousel'
 import './plugins/ml.js'
 import './plugins/scrollto'
+import './plugins/fa'
 import VueAxios from 'vue-axios'
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
