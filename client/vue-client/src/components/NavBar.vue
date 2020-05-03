@@ -1,5 +1,8 @@
 <template>
-     <b-navbar fixed="top" class="buttons invert-btn">
+     <b-navbar toggleable="md" fixed="top" class="buttons invert-btn">
+         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+         <b-collapse id="nav-collapse" is-nav>
+             <b-navbar-nav align="center" class="w-100">
         <b-button href="#" v-scroll-to="'#head'" variant="outline-dark">{{$ml.get('main')}}</b-button>
         <b-button href="#" v-scroll-to="'#calendar'" variant="outline-dark">{{$ml.get('calendar')}}</b-button>
         <b-button href="#" v-scroll-to="'#game'" variant="outline-dark">{{$ml.get('game')}}</b-button>
@@ -9,6 +12,8 @@
                 {{lang}}
             </b-dropdown-item>
         </b-dropdown>
+             </b-navbar-nav>
+         </b-collapse>
      </b-navbar>
 </template>
 

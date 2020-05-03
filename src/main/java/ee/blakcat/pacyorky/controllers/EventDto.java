@@ -17,12 +17,11 @@ public class EventDto {
     private String cover;
 
     public EventDto(PacyorkyEvent pacyorkyEvent) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         this.setId(pacyorkyEvent.getId());
         this.setDistrict(new DistrictDTO(pacyorkyEvent.getDistrict()));
-        this.setDate(formatter.format(pacyorkyEvent.getStartTime()));
+        this.setDate(pacyorkyEvent.getStartTime().toString());
         this.setDescription(pacyorkyEvent.getDescription());
-        this.setEndTime(Objects.isNull(pacyorkyEvent.getEndTime()) ? "" : formatter.format(pacyorkyEvent.getEndTime()));
+        this.setEndTime(Objects.isNull(pacyorkyEvent.getEndTime()) ? "" : pacyorkyEvent.getEndTime().toString());
         this.setLocation(pacyorkyEvent.getPlace());
         this.setTitle(pacyorkyEvent.getName());
         this.setLink("https://www.facebook.com/events/" + pacyorkyEvent.getId());

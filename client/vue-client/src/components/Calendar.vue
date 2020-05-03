@@ -3,6 +3,7 @@
                 :date-info-fn="light"
                 @context="trimToDate"
                 :start-weekday="1"
+                :value-as-date="true"
                 today-variant="today-var">
     </b-calendar>
 
@@ -27,15 +28,16 @@
 
         },
         methods: {
-            light (ymd) {
+            light (ymd, date) {
                 let table = false;
                 this.events.forEach(event => {
-                    if (event.date===ymd) table=true;
+                   if (new Date(event.date).toDateString()===date.toDateString()) table=true;
+
                 });
                 return table ? 'selected-date' : ''
             },
             trimToDate (context) {
-                this.selectedDate = context.selectedYMD;
+                this.selectedDate = context.selectedDate;
                 this.$emit("trimToDate", this.selectedDate);
             }
         }

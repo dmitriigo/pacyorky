@@ -4,7 +4,7 @@
 
         <b-table
                 id="my-table"
-                :items="events"
+                :items="tableEvents"
                 :per-page="perPage"
                 :current-page="currentPage"
                 :fields="$ml.get('fields')"
@@ -32,9 +32,11 @@
         <b-modal v-model="showModale" id="event-modal" hide-footer title="" scrollable centered v-if="modalEvent">
             <div class="modal-event-item">
                 <h2>{{modalEvent.title}}</h2>
-                <h4>{{$ml.get('date')}}: {{modalEvent.date}}</h4>
-                <h4 v-if="modalEvent.endTime">End time: {{modalEvent.endTime}}</h4>
-                <h4 v-if="modalEvent.district">District: {{$ml.get('district'+modalEvent.district.id)}}</h4>
+                <h4>{{$ml.get('date')}}: {{modalEvent.startDate}}</h4>
+                <h4>{{$ml.get('time')}}: {{modalEvent.startTime}}</h4>
+                <h4 v-if="modalEvent.endTime">{{$ml.get('enddate')}}: {{modalEvent.endDate}}</h4>
+                <h4 v-if="modalEvent.endTime">{{$ml.get('time')}}: {{modalEvent.endTimeCoverted}}</h4>
+                <h4 v-if="modalEvent.district">{{$ml.get('location')}}: {{$ml.get('district'+modalEvent.district.id)}}</h4>
                 <h4>Location: {{modalEvent.location}}</h4>
                 <h4>Owner: {{modalEvent.eventOwner}}</h4>
                 <h4>{{modalEvent.description}}</h4>
@@ -67,6 +69,20 @@
         computed: {
             rows() {
                 return this.events.length
+            },
+            tableEvents () {
+                let tevents = [...this.events];
+                tevents.forEach(event => {
+                    let date = new Date(event.date);
+                    event.startDate = date.toDateString();
+                    event.startTime = date.toLocaleTimeString();
+                    if (event.endTime) {
+                        let endDate = new Date(event.endTime);
+                        event.endDate = endDate.toDateString();
+                        event.endTimeCoverted = endDate.toLocaleTimeString();
+                    }
+                })
+                return tevents;
             }
 
         }

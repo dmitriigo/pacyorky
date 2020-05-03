@@ -10,11 +10,14 @@ export default new MLCreate({
         new MLanguage('English').create({
             title: 'Title',
             date: 'Date',
+            enddate: 'end date',
+            time: 'Time',
             description: 'Description',
             city: 'City',
+            errormsg: 'Something gone wrong, please notify me',
             fields: [
                 {
-                    key: 'date',
+                    key: 'startDate',
                     label: 'Date'
                 },
                 {
@@ -85,11 +88,14 @@ export default new MLCreate({
         new MLanguage('Russian').create({
             title: 'Название',
             date: 'Дата',
+            enddate: 'end date',
+            time: 'Time',
             description: 'Описание',
             city: 'Город',
+            errormsg: 'Something gone wrong, please notify me',
             fields: [
                 {
-                    key: 'date',
+                    key: 'startDate',
                     label: 'Дата'
                 },
                 {
@@ -159,11 +165,14 @@ export default new MLCreate({
         new MLanguage('Ukrainian').create({
             title: 'Название',
             date: 'Дата',
+            enddate: 'end date',
+            time: 'Time',
             description: 'Описание',
             city: 'Город',
+            errormsg: 'Something gone wrong, please notify me',
             fields: [
                 {
-                    key: 'date',
+                    key: 'startDate',
                     label: 'Дата'
                 },
                 {
@@ -234,11 +243,14 @@ export default new MLCreate({
         new MLanguage('Eesti').create({
             title: 'Oi !',
             date: 'Você ',
+            time: 'Time',
+            enddate: 'end date',
             description: 'чячяч',
             city: 'City',
+            errormsg: 'Something gone wrong, please notify me',
             fields: [
                 {
-                    key: 'date',
+                    key: 'startDate',
                     label: 'Date'
                 },
                 {

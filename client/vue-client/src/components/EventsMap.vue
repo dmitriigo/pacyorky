@@ -23,7 +23,7 @@
                         <vl-geom-multi-point :coordinates="cords"></vl-geom-multi-point>
                          <vl-style-box>
                             <vl-style-circle :radius="12">
-                                <vl-style-fill color="#960F16"></vl-style-fill>
+                                <vl-style-fill color="#D64D55"></vl-style-fill>
                                 <vl-style-stroke color="black"></vl-style-stroke>
                             </vl-style-circle>
                         </vl-style-box>
@@ -66,7 +66,7 @@ districtShow: {}
                 this.$emit("pastEvents")
             },
             trimToDate () {
-              this.$emit("trimToDate", "")
+              this.$emit("trimToDate", null)
             },
             trimToDistrict (district) {
                 this.districtNow = district;

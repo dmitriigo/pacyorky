@@ -8,10 +8,12 @@
                 :scroll-per-page="false"
                 :loop="true"
         >
-            <slide v-for="event in events" :key="event.id">
+            <slide v-for="event in sliderEvents" :key="event.id">
                 <div class="one-slide">
-               <img src="/img/birdy4.png"/>
-                <h4>{{event.title}}</h4>
+               <img :src="event.cover"/>
+                    <div class="slider-button invert-btn">
+                    <b-button :href="event.link" target="_blank">{{event.title}}</b-button>
+                </div>
                 </div>
             </slide>
         </carousel>
@@ -28,6 +30,9 @@
             events: {}
         },
         computed: {
+            sliderEvents () {
+              return this.events.filter(event => event.cover);
+            }
         },
         data ()  {
             return {
@@ -48,8 +53,8 @@
     .one-slide {
         padding: 10px;
         margin: 10px;
-        background-color: #42b983;
-        height: 100%;
+        background-color: @primarycolor;
+        height: 95%;
     }
     .slider {
         background-color: white;
@@ -62,16 +67,15 @@
         align-items: center;
         img {
             width: 50%;
+            height: 70%;
         }
-        h2 {
-            font-family: Amatic SC;
-            font-style: normal;
-            font-weight: bold;
-            font-size: 48px;
-            line-height: 14px;
-            color: #000000;
-            margin: 30px;
+        &-button {
+            height: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
     }
     .VueCarousel {
         width: 100%;

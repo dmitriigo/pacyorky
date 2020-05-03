@@ -15,7 +15,7 @@
 />
             </b-row>
             <b-row class="lds-dual-ring" v-else></b-row>
-            <b-row class="error" v-if="apiError"><h1>Something gone wrong, please notify me: info@pacyorky.ee</h1></b-row>
+            <b-row class="error" v-if="apiError"><h1>{{$ml.get('errormsg')}}: info@pacyorky.ee</h1></b-row>
     </b-container>
 
 </template>
@@ -72,14 +72,14 @@
                 this.districtShow = true;
             },
             trimToDate(date) {
-                if (date === "") {
+                if (date === null) {
                     this.eventsForList = this.events;
                     this.eventsForMap = this.events;
                     this.eventsForCalendar = this.events;
                     this.districtShow=false;
                 } else {
-                    this.eventsForList = this.events.filter(event => event.date === date);
-                    this.eventsForMap = this.events.filter(event => event.date === date);
+                    this.eventsForList = this.events.filter(event => new Date(event.date).toLocaleDateString() === date.toLocaleDateString());
+                    this.eventsForMap = this.events.filter(event => new Date(event.date).toLocaleDateString() === date.toLocaleDateString());
                     this.districtShow=false;
                 }
             },
@@ -162,7 +162,6 @@ display: flex;
 
     .error {
         width: 100%;
-        height: 100%;
         background-color: red;
     }
 </style>

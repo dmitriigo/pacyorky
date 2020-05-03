@@ -2,7 +2,7 @@
     <div id="head" class="header-container">
         <b-row lg="12" align-h="end" class="header-icons">
         </b-row>
-        <b-row align-content="center" align-h="center" align-v="center" class="header-logo"><img
+        <b-row align-content="center" align-h="center" align-v="center" class="header-logo w-100"><img
                 src="/img/Illustration.png"/></b-row>
         <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 250">
             <path fill="#EBE1E4" fill-opacity="1"
