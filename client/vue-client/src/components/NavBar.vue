@@ -3,13 +3,24 @@
          <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
          <b-collapse id="nav-collapse" is-nav>
              <b-navbar-nav align="center" class="w-100">
-        <b-button href="#" v-scroll-to="'#head'" variant="outline-dark">{{$ml.get('main')}}</b-button>
-        <b-button href="#" v-scroll-to="'#calendar'" variant="outline-dark">{{$ml.get('calendar')}}</b-button>
-        <b-button href="#" v-scroll-to="'#game'" variant="outline-dark">{{$ml.get('game')}}</b-button>
-        <b-button href="#" v-scroll-to="'#project'" variant="outline-dark">{{$ml.get('project')}}</b-button>
-        <b-dropdown :text="langNow">
-            <b-dropdown-item v-for="lang in $ml.list" v-if="lang!==langNow" :key="lang" @click="$ml.change(lang), changeLang(lang)">
-                {{lang}}
+        <b-button href="#" v-scroll-to="{
+            el: '#head'
+        }" variant="outline-dark">{{$ml.get('main')}}</b-button>
+        <b-button href="#" v-scroll-to="{
+            el:'#calendar',
+            offset: -30
+        }" variant="outline-dark">{{$ml.get('calendar')}}</b-button>
+        <b-button href="#" v-scroll-to="{
+            el: '#game',
+            offset: -30
+        }" variant="outline-dark">{{$ml.get('game')}}</b-button>
+        <b-button href="#" v-scroll-to="{
+            el: '#project',
+            offset: -30
+        }" variant="outline-dark">{{$ml.get('project')}}</b-button>
+        <b-dropdown :text="$ml.current">
+            <b-dropdown-item v-for="lang in $ml.list" v-if="lang!==$ml.current" :key="lang" @click="$ml.change(lang)">
+               <img class="w-25 m-2" :src="'img/'+lang+'.svg'"/>{{lang}}
             </b-dropdown-item>
         </b-dropdown>
              </b-navbar-nav>
@@ -20,15 +31,7 @@
 <script>
     export default {
         name: "NavBar.vue",
-        data () {
-            return {
-                langNow: "English"
-        }
-        },
         methods: {
-            changeLang (lang) {
-                this.langNow=lang;
-            }
         }
     }
 </script>

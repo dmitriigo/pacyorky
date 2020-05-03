@@ -1,16 +1,12 @@
 <template>
-    <div class="all-content">
-
-        <b-row>
+        <b-container fluid="true">
+            <NavBar/>
+            <b-container id="head" fluid="true">
             <PacyorkyHeader/>
-        </b-row>
+            </b-container>
         <b-container>
-
             <b-row align-content="center" align-h="center" align-v="center">
                 <b-col class="main-content" align-self="center">
-                    <b-row>
-                        <NavBar/>
-                    </b-row>
                     <b-row class="present-pic">
                         <b-col cols="2"><img src="/img/birdy2.png"></b-col>
                         <b-col align-self="center" ><img src="/img/birdy0.png"></b-col>
@@ -33,7 +29,7 @@
                         <b-col cols="3"><img src="/img/birdy11.png"></b-col>
                     </b-row>
                     <b-row>
-                        <Game/>
+                        <!--<Game/>-->
                     </b-row>
                     <b-row class="separator" id="project">
                         <b-col cols="3"><img src="/img/birdy10.png"></b-col>
@@ -52,10 +48,8 @@
 
             </b-row>
 
-
         </b-container>
-
-    </div>
+        </b-container>
 </template>
 
 <script>
@@ -78,7 +72,7 @@
         mounted() {
             //please don't touch, some unknown bug...
             this.$ml.change('Russian');
-            this.$ml.change('English');
+            this.$ml.change('Ukrainian');
         },
         methods: {
             getSliderEvents(events) {
