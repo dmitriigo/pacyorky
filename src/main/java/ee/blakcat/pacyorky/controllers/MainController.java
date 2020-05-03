@@ -6,14 +6,12 @@ import ee.blakcat.pacyorky.services.EventService;
 import ee.blakcat.pacyorky.services.updateData.UpdateService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -26,6 +24,8 @@ public class MainController {
     private UpdateService updateService;
     private EventService eventService;
     private ObjectMapper objectMapper;
+    @Value("${updateSecret}")
+    private String updateKey;
 
     @Autowired
     public MainController(UpdateService updateService, EventService eventService, ObjectMapper objectMapper) {
@@ -69,7 +69,21 @@ public class MainController {
     //auto update
     @Scheduled(fixedRate = 1800000)
     public void autoUpdate() {
-        updateService.updateAll();
+            updateService.updateAll();
+    }
+
+    @GetMapping ("/update")
+    public boolean manualUpdate(@RequestParam String key) {
+        if (key.equals(updateKey)) {
+            try {
+                updateService.updateAll();
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+
+        }
+        return false;
     }
 
 

@@ -9,6 +9,8 @@ import com.restfb.types.Account;
 import com.restfb.types.Event;
 import com.restfb.types.User;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
+import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 

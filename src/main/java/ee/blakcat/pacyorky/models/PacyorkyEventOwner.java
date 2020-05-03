@@ -13,6 +13,7 @@ public class PacyorkyEventOwner {
     private String name;
     @OneToMany(cascade = CascadeType.ALL, targetEntity = PacyorkyEvent.class)
     private List<PacyorkyEvent> pacyorkyEvents;
+    private boolean active;
 
     public PacyorkyEventOwner(String name, String facebookId) {
         this.id = facebookId;
@@ -22,6 +23,14 @@ public class PacyorkyEventOwner {
 
     public PacyorkyEventOwner() {
 
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getName() {

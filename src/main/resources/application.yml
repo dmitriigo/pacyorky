@@ -17,5 +17,6 @@ spring:
     cache: false
 appId: ${APPID}
 appSecret: ${APPSECRET}
+updateSecret: ${UPDATE_KEY}
 server:
   port: ${PORT:8080}

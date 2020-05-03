@@ -3,7 +3,6 @@ package ee.blakcat.pacyorky.controllers;
 import ee.blakcat.pacyorky.models.District;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 
-import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class EventDto {
