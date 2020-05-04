@@ -8,6 +8,7 @@ export default new MLCreate({
     save: process.env.NODE_ENV === 'production',
     languages: [
         new MLanguage('Ukrainian').create({
+            flag: '<img src="/img/Ukrainian.svg"/>',
             title: 'Назва',
             date: 'Дата',
             enddate: 'Дата закінчення',
@@ -86,7 +87,7 @@ export default new MLCreate({
             supportedby: 'Нас підтримують:',
             supporteddesc: 'Проект здійснюється за фінансової підтримки Міністерства Культури Естонії та Фонду Інтеграції та Міграції Естонії.',
             copyright: '©2020 Українське Земляцтво Сілламяе «Водограй»',
-            location: 'Місто',
+            location: 'Адреса',
             mapa: 'Мапа українців в Естонії',
             descformapa: 'Не знайшли цікавої події або збираєтесь у мандрівку Естонією? Відвідайте українські місця в Естонії!',
         }),
@@ -170,7 +171,7 @@ export default new MLCreate({
             supportedby: 'Meid toetavad:',
             supporteddesc: 'Projekti läbiviimise rahaline toetus: Eesti Kultuuriministeerium ja Integratsiooni ja Migratsiooni Sihtasutus Eestis.',
             copyright: '©2020 Ukraina kaasmaalaskond Sillamäe «Vodograi».',
-            location: 'Koht',
+            location: 'Aadress',
             mapa: 'Ukrainlaste kaart Eestis',
             descformapa: 'Ei leidnud huvitavat sündmust või plaanid minna Eestis reisimas? Külasta ukraina kohti Eestis!',
         }),
@@ -253,7 +254,7 @@ export default new MLCreate({
             supportedby: 'Supported By',
             supporteddesc: 'The project Pacyorky is supported by the Ministry of Culture of Estonia and Estonian Integration and Migration Foundation.',
             copyright: '©2020 Ukrainian community of Sillamäe «Vodograi»',
-            location: 'Location',
+            location: 'Address',
             mapa: 'Map of ukrainians in Estonia',
             descformapa: 'Did not find an interesting event or planning a trip across Estonia? Visit Ukrainian locations in Estonia!',
 
@@ -338,7 +339,7 @@ aboutpt2: 'Проект Украинского землячества Силла
             supportedby: 'Нас поддерживают:',
             supporteddesc: 'Проект осуществляется с финансовой поддержкой Министерства Культуры эстонии и Фонда Интеграции и Миграции Эстонии.',
             copyright: '©2020 Украинское землячество Силламяэ «Водограй»',
-            location: 'Город',
+            location: 'Адрес',
             mapa: 'Карта украинцев в Эстонии',
             descformapa: 'Не нашли интересного события или собираетесь в путешествие по Эстонии? Посетите украинские места Эстонии!',
         })

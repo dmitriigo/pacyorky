@@ -1,18 +1,18 @@
 <template>
     <b-col>
         <b-row class="m-0 mb-2 mt-2 w-100">
-            <b-col align="center" align-self="center" class="p-2 ml-1 mr-1 map-btn invert-btn">
-            <b-dropdown size="lg" class="w-75 p-3" :text="$ml.get(districtNowAtButton)">
+            <b-col align="center" align-self="center" class="ml-1 mr-1 map-btn city-choose invert-btn">
+            <b-dropdown size="lg" class="w-75 p-2" :text="$ml.get(districtNowAtButton)">
                 <b-dropdown-item v-for="district in districts" :key="district.id" @click="trimToDistrict(district)">
                     {{$ml.get(district)}}
                 </b-dropdown-item>
             </b-dropdown>
             </b-col>
             <b-col cols="8" align="center" class="d-flex justify-content-around p-0 pl-2 w-100">
-                <div class="map-btn w-100 m-0 p-3 d-flex justify-content-around invert-btn">
-            <b-button @click="pastEvents"> {{$ml.get('pevents')}}</b-button>
-                <b-button @click="trimToDate">{{$ml.get('allevents')}}</b-button>
-            <b-button @click="futureEvents"> {{$ml.get('fevents')}}</b-button>
+                <div class="map-btn trim-btn w-100 m-0 d-flex justify-content-around align-items-center invert-btn">
+                    <div class="btn-wrapper"> <b-button @click="pastEvents"> {{$ml.get('pevents')}}</b-button></div>
+                    <div class="btn-wrapper"> <b-button @click="trimToDate">{{$ml.get('allevents')}}</b-button></div>
+                    <div class="btn-wrapper">     <b-button @click="futureEvents"> {{$ml.get('fevents')}}</b-button></div>
                 </div>
             </b-col>
         </b-row>
@@ -33,10 +33,10 @@
             </vl-layer-tile>
         </vl-map>
         <b-row class=" m-1 w-100 mapa-desc">
-            <b-col cols="4" align="center" align-self="center" class="invert-btn" ><b-button href="https://mapauaest.wordpress.com/" target="_blank">{{$ml.get('mapa')}}</b-button></b-col>
-            <b-col cols="8" class="p-3"><h4>{{$ml.get('descformapa')}}</h4></b-col>
+            <b-col cols="4" align="center" align-self="center" class="invert-btn"  ><b-button style="line-height: 22px !important;" href="https://mapauaest.wordpress.com/" target="_blank">{{$ml.get('mapa')}}</b-button></b-col>
+            <b-col cols="8" class="p-3" style="text-align: center"><span>{{$ml.get('descformapa')}}</span></b-col>
         </b-row>
-        <b-row align-v="center" align-h="center"><b-img class="w-50" src="/img/birdy0.png"></b-img></b-row>
+        <b-row align-v="center" align-h="center"><b-img class="w-75" src="/img/Illustration1.png"></b-img></b-row>
     </b-col>
 </template>
 
@@ -121,9 +121,16 @@ districtShow: {}
 <style lang="less">
     @primarycolor: #EBE1E4;
 
+    .btn-wrapper{
+        .btn {
+            line-height: 19px !important;
+        };
+    }
+
     .mapa-desc {
         background-color: @primarycolor;
     }
+
 .map-btn {
     background-color: @primarycolor;
 
@@ -135,7 +142,7 @@ districtShow: {}
         color: black;
         font-style: normal;
         font-size: 16px;
-        line-height: 14px;
+
 
     }
     .show {

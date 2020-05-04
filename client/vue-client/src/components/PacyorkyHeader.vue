@@ -61,7 +61,6 @@
                 h4 {
                     font-family: 'Open Sans', sans-serif;
                     font-style: normal;
-                    font-weight: bold;
                     font-size: 18px;
                     line-height: 26px;
 

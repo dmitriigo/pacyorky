@@ -1,14 +1,18 @@
-<template>
+<template xmlns="http://www.w3.org/1999/html">
 
     <div class="table-main">
-
+        <b-pagination class="pag" align="center"
+                      v-model="currentPage"
+                      :total-rows="rows"
+                      :per-page="perPage"
+                      aria-controls="my-table"
+        ></b-pagination>
         <b-table
                 id="my-table"
                 :items="tableEvents"
                 :per-page="perPage"
                 :current-page="currentPage"
                 :fields="$ml.get('fields')"
-                :striped="true"
                 small
         >
             <template v-slot:cell(more_info)="row">
@@ -23,26 +27,31 @@
             </template>
 
         </b-table>
-        <b-pagination class="pag" align="center"
-                      v-model="currentPage"
-                      :total-rows="rows"
-                      :per-page="perPage"
-                      aria-controls="my-table"
-        ></b-pagination>
-        <b-modal v-model="showModale" id="event-modal" hide-footer title="" scrollable centered v-if="modalEvent">
+
+        <b-modal v-model="showModale" id="event-modal" hide-footer size="lg" :title="modalEvent.title" scrollable centered v-if="modalEvent">
             <div class="modal-event-item">
-                <h2>{{modalEvent.title}}</h2>
-                <h4>{{$ml.get('date')}}: {{modalEvent.startDate}}</h4>
-                <h4>{{$ml.get('time')}}: {{modalEvent.startTime}}</h4>
-                <h4 v-if="modalEvent.endTime">{{$ml.get('enddate')}}: {{modalEvent.endDate}}</h4>
-                <h4 v-if="modalEvent.endTime">{{$ml.get('time')}}: {{modalEvent.endTimeCoverted}}</h4>
-                <h4 v-if="modalEvent.district">{{$ml.get('location')}}: {{$ml.get('district'+modalEvent.district.id)}}</h4>
-                <h4>Location: {{modalEvent.location}}</h4>
-                <h4>Owner: {{modalEvent.eventOwner}}</h4>
-                <h4>{{modalEvent.description}}</h4>
+                <div class="modal-event-item-text d-flex flex-column">
+                    <div class="modal-item-dates d-flex justify-content-around align-content-center">
+                    <div class="modal-item-start-date">
+                        <h5>{{$ml.get('date')}}: <span style="font-weight: normal">{{modalEvent.startDate}}</span></h5>
+                <h5>{{$ml.get('time')}}: <span style="font-weight: normal">{{modalEvent.startTime}}</span></h5>
+                    </div>
+                    <div class="modal-item-end-date">
+                <h5 v-if="modalEvent.endTime">{{$ml.get('enddate')}}: <span style="font-weight: normal">{{modalEvent.endDate}}</span></h5>
+                <h5 v-if="modalEvent.endTime">{{$ml.get('time')}}: <span style="font-weight: normal">{{modalEvent.endTimeCoverted}}</span></h5>
+                    </div>
+                    </div>
+                    <hr style="color: black; width: 100%; margin: 0 0 10px;"/>
+                <h5 v-if="modalEvent.district">{{$ml.get('city')}}: <span style="font-weight: normal">{{$ml.get('district'+modalEvent.district.id)}}</span></h5>
+                <h5>{{$ml.get('location')}}: <span style="font-weight: normal">{{modalEvent.location}}</span></h5>
+                    <hr style="color: black; width: 100%; margin: 0 0 10px;"/>
+                <h5>{{$ml.get('owner')}}: <span style="font-weight: normal">{{modalEvent.eventOwner}}</span></h5>
+                    <hr style="color: black; width: 100%; margin: 0 0 10px;"/>
+                <p style="text-align: justify">{{modalEvent.description}}</p>
+                </div>
                 <div class="modal-buttons">
-                    <b-button :href=modalEvent.link target="_blank">See more info</b-button>
-                    <b-button @click="closeModal">Close</b-button>
+                    <b-button :href=modalEvent.link target="_blank">{{$ml.get('seemoreinfo')}}</b-button>
+                    <b-button @click="closeModal">{{$ml.get('close')}}</b-button>
                 </div>
 
             </div>
@@ -109,6 +118,11 @@
     @primarycolor: #EBE1E4;
     @secondaryColor: #BDD9DC;
 
+    .modal-title {
+        width: 100%;
+        text-align: center;
+        font-size: 30px;
+    }
     .modal-buttons {
         display: flex;
         justify-content: space-between;
@@ -128,42 +142,49 @@
     .table-main {
         width: 100%;
         height: 100%;
-        background-color: @primarycolor;
-
+        background-color: @secondaryColor;
+tr {
+    background-color: white !important;
+    &:hover {
+        background-color: #eeeeee !important;
+    }
+}
         .page-item {
-            border: none;
+            border: none !important;
+            outline: 0 !important;
         }
 
         .active {
             .page-link {
-                color: rgba(53, 131, 141, 0.61) !important;
-                border: rgba(53, 131, 141, 0.61) solid !important;
+                color: red !important;
                 border-radius: 20px;
+                outline: 0 !important;
             }
         }
         .page-link {
             border: none;
         }
         li {
-            background-color: @primarycolor;
+            background-color: @secondaryColor;
             border: none !important;
 
             span {
-                background-color: @primarycolor !important;
-                color: #D64D55 !important;
+                background-color: @secondaryColor !important;
+                color: black !important;
 
             }
 
             button {
-                background-color: @primarycolor !important;
-                color: #D64D55 !important;
+                outline: 0 !important;
+                background-color: @secondaryColor !important;
+                color: black !important;
             }
         }
     }
 
     #my-table {
         width: 100%;
-
+height: 80%;
         .btn {
             border-radius: 20px;
             background-color: #BDD9DC;

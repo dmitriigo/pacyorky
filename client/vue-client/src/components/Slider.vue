@@ -1,6 +1,6 @@
 <template>
     <div class="slider">
-        <h2>{{$ml.get('fevents')}}</h2>
+        <h2 class="m-0 p-5">{{$ml.get('fevents')}}</h2>
         <carousel
                 :autoplay="aplay"
                 :autoplay-timeout="2000"
@@ -11,8 +11,8 @@
             <slide v-for="event in sliderEvents" :key="event.id">
                 <div class="one-slide">
                <img :src="event.cover"/>
-                    <div class="slider-button invert-btn">
-                    <b-button :href="event.link" target="_blank">{{event.title}}</b-button>
+                    <div class="slider-event-link d-flex justify-content-center align-content-center align-items-center">
+                    <a style="color: black; font-size: 16px; font-weight: normal" :href="event.link" target="_blank">{{event.title}}</a>
                 </div>
                 </div>
             </slide>
@@ -42,7 +42,7 @@
         mounted() {
             //slider css fix
             setTimeout(() => {
-                this.aplay = true;
+                this.aplay = false;
             }, 1000);
         }
     }
@@ -50,11 +50,17 @@
 
 <style lang="less">
     @primarycolor: #EBE1E4;
+    .VueCarousel-inner {
+        max-height: 300px;
+    }
     .one-slide {
-        padding: 10px;
-        margin: 10px;
-        background-color: @primarycolor;
-        height: 95%;
+        margin: 30px;
+        background-color: #BDD9DC;
+        border: 1px solid #D3D3D3;
+        height: 90%;
+    }
+    .slider-event-link {
+        height: 10%;
     }
     .slider {
         background-color: white;
@@ -67,7 +73,15 @@
         align-items: center;
         img {
             width: 50%;
-            height: 70%;
+            height: 90%;
+        }
+        h2 {
+            font-family: Amatic SC;
+            font-style: normal;
+            color: black;
+            font-weight: bold;
+            font-size: 54px;
+            line-height: 14px;
         }
         &-button {
             height: 30%;
@@ -97,20 +111,28 @@
 height: 30px;
         margin-bottom: 10px;
         .VueCarousel-dot-container {
-            margin: 0 !important;
+            margin: 5px !important;
             height: 30px;
+            align-items: center !important;
+            align-content: center;
+            align-self: center;
         }
     }
 
     .VueCarousel-dot {
         background-color: #D64D55 !important;
-        margin: 0 !important;
+        margin: 5px !important;
+        outline: 0 !important;
+        border: 2px solid black !important;
+        padding: 0 !important;
+        width: 15px !important;
+        height: 15px !important;
     }
     .VueCarousel-dot--active {
         background-color: #94C8D6 !important;
-        width: 15px !important;
-        height: 15px !important;
-        margin: 0 !important;
+        width: 20px !important;
+        height: 20px !important;
+        margin: 5px !important;
     }
 
 

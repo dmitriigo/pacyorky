@@ -1,6 +1,6 @@
 <template>
     <b-container id="calendar" class="ml-4">
-        <b-row class="m-2 w-100" align-h="center"><h2 align="center">{{$ml.get("calendarandmap")}}</h2></b-row>
+        <b-row class="m-4 w-100 p-4" align-h="center"><h2 align="center">{{$ml.get("calendarandmap")}}</h2></b-row>
             <b-row class="calendar-table">
                 <b-col class="p-0 mr-3 ml-1">
                     <Calendar align="center" class="w-100 ml-3" @trimToDate="trimToDate" v-bind:events="eventsForCalendar"/>
@@ -110,6 +110,16 @@
 <style lang="less" scoped>
 .calendar-table {
     width: 100%;
+}
+
+#calendar {
+    h2 {
+        font-family: Amatic SC;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 60px;
+        line-height: 14px;
+    }
 }
 
     .calendar-data-all {

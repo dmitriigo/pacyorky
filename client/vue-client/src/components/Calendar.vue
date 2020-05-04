@@ -50,9 +50,16 @@
     .calendar-data {
         background-color: #BDD9DC;
         padding: 10px;
+        .btn {
+            &:hover{
+                background-color: #eeeeee !important;
+
+            }
+        }
         .selected-date {
             background-color: @primarycolor;
-            border-radius: 20px;
+            border-radius: 50%;
+            border: none !important;
         }
 
         .active {

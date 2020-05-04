@@ -5,18 +5,27 @@
                 <div class="about-pane">
                     <h3>{{$ml.get('vodograi')}}</h3>
                     <p>{{$ml.get('aboutpt1')}}</p>
+                    <div class="about-pane-img">
+                    <img src="/img/emblema.png" />
+                    </div>
                 </div>
             </b-col>
             <b-col>
                 <div class="about-pane">
                     <h3>{{$ml.get('pacyorky')}}</h3>
                     <p>{{$ml.get('aboutpt2')}}</p>
+                    <div class="about-pane-img">
+                        <img src="/img/plogo.png" />
+                    </div>
                 </div>
             </b-col>
             <b-col>
                 <div class="about-pane">
                     <h3>{{$ml.get('connectus')}}</h3>
                     <p>{{$ml.get('aboutpt3')}}</p>
+                    <div class="about-pane-img">
+                        <img src="/img/laptop-512.png" />
+                    </div>
                 </div>
             </b-col>
         </b-row>
@@ -49,9 +58,32 @@
         background-color: rgba(189, 217, 220, 0.47);
         border-radius: 5px;
         padding: 10px;
-
+        display: flex;
+        flex-direction: column;
+        justify-content: normal;
+        align-items: center;
+&-img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+    img {
+        width: 25%;
+    }
+}
+        height: 100%;
         h3 {
             text-align: center;
+            font-family: Amatic SC;
+            color: black;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 48px;
+        }
+        p {
+            text-align: justify;
+            padding: 1rem;
         }
     }
 </style>

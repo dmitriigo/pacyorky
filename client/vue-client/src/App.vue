@@ -90,6 +90,7 @@ html {
 }
 body {
     width: 100%;
+    background-color: #E6EFF6;
 }
 
 .all-content {
@@ -139,7 +140,7 @@ border: @primarycolor solid;
                 font-family: Amatic SC;
                 font-style: normal;
                 font-weight: bold;
-                font-size: 48px;
+                font-size: 60px;
                 line-height: 14px;
             }
         }
@@ -161,13 +162,15 @@ border: @primarycolor solid;
 
 .invert-btn {
     .btn {
+        font-family: Amatic SC;
         margin: 0 20px;
         border-radius: 20px !important;
         background-color:#BDD9DC ;
         color: black;
         font-style: normal;
-        font-size: 18px;
-        line-height: 24px;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 14px;
         &:hover {
             color: white;
             background-color: black;
