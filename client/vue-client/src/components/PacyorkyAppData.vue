@@ -1,12 +1,12 @@
 <template>
-    <b-container id="calendar" class="ml-4">
-        <b-row class="m-4 w-100 p-4" align-h="center"><h2 align="center">{{$ml.get("calendarandmap")}}</h2></b-row>
+    <b-container id="calendar" class="ml-md-4">
+        <b-row class="m-md-4 m-3 p-md-4" align-h="center"><h2 align="center">{{$ml.get("calendarandmap")}}</h2></b-row>
             <b-row class="calendar-table">
-                <b-col class="p-0 mr-3 ml-1">
-                    <Calendar align="center" class="w-100 ml-3" @trimToDate="trimToDate" v-bind:events="eventsForCalendar"/>
+                <b-col class="p-xl-0 p-md-3 mr-xl-3 ml-xl-1">
+                    <Calendar align="center" class="w-100 ml-xl-3" @trimToDate="trimToDate" v-bind:events="eventsForCalendar"/>
                 </b-col>
-                <b-col cols="8" sm="col">
-                    <EventsTable class="p-3" @trimToLocation="trimToLocation" v-bind:events="eventsForList"/>
+                <b-col class="col-xl-8 col-md-12 w-100">
+                    <EventsTable class="p-3 w-100" @trimToLocation="trimToLocation" v-bind:events="eventsForList"/>
                 </b-col>
             </b-row>
             <b-row class="calendar-data-all-map" v-if="!loading">
@@ -117,8 +117,15 @@
         font-family: Amatic SC;
         font-style: normal;
         font-weight: bold;
-        font-size: 60px;
+        font-size: 18px;
         line-height: 14px;
+        @media (min-width: 768px) {
+            font-family: Amatic SC;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 60px;
+            line-height: 14px;
+        }
     }
 }
 

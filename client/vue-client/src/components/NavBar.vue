@@ -66,6 +66,13 @@
             font-weight: bold !important;
             font-size: 24px !important;
             line-height: 14px !important;
+            @media (max-width: 1024px) {
+                font-family: Amatic SC;
+                font-style: normal !important;
+                font-weight: bold !important;
+                font-size: 24px !important;
+                line-height: 14px !important;
+            }
             &:hover {
                 color: white !important;
                 background-color: black !important;
@@ -76,10 +83,17 @@
                 background-color: #8EBABF;
                 color: black;
                 font-family: Amatic SC;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 24px;
-                line-height: 14px;
+                font-style: normal !important;
+                font-weight: bold !important;
+                font-size: 24px !important;
+                line-height: 14px !important;
+                @media (max-width: 1024px) {
+                    font-family: Amatic SC;
+                    font-style: normal !important;
+                    font-weight: bold !important;
+                    font-size: 24px !important;
+                    line-height: 14px !important;
+                }
             }
             .show {
                 background-color: #BDD9DC;
@@ -90,20 +104,34 @@
                 li {
                     a {
                         font-family: Amatic SC;
-                        font-style: normal;
-                        font-weight: bold;
-                        font-size: 24px;
-                        line-height: 14px;
+                        font-style: normal !important;
+                        font-weight: bold !important;
+                        font-size: 24px !important;
+                        line-height: 14px !important;
+                        @media (max-width: 1024px) {
+                            font-family: Amatic SC;
+                            font-style: normal !important;
+                            font-weight: bold !important;
+                            font-size: 24px !important;
+                            line-height: 14px !important;
+                        }
                         &:hover {
                             background: #8EBABF;
                             border: 1px solid #000000;
                             box-sizing: border-box;
                             border-radius: 20px;
                             font-family: Amatic SC;
-                            font-style: normal;
-                            font-weight: bold;
-                            font-size: 24px;
-                            line-height: 14px;
+                            font-style: normal !important;
+                            font-weight: bold !important;
+                            font-size: 24px !important;
+                            line-height: 14px !important;
+                            @media (max-width: 1024px) {
+                                font-family: Amatic SC;
+                                font-style: normal !important;
+                                font-weight: bold !important;
+                                font-size: 24px !important;
+                                line-height: 14px !important;
+                            }
                         }
                     }
                 }
