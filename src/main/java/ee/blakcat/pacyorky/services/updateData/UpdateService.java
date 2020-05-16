@@ -2,7 +2,8 @@ package ee.blakcat.pacyorky.services.updateData;
 
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
-import ee.blakcat.pacyorky.repositories.facebook.FaceBookConnector;
+import ee.blakcat.pacyorky.repositories.facebook.LFaceBookConnector;
+import ee.blakcat.pacyorky.repositories.facebook.LFaceBookConnectorEventsFromUserImpl;
 import fr.dudie.nominatim.client.JsonNominatimClient;
 import fr.dudie.nominatim.client.request.NominatimSearchRequest;
 import fr.dudie.nominatim.model.Address;
@@ -17,10 +18,11 @@ import java.util.stream.Collectors;
 @Service
 public class UpdateService {
     private EventRepositoryJPA eventRepositoryJPA;
-    private FaceBookConnector faceBookConnector;
+    //private FaceBookConnector faceBookConnector;
+    private LFaceBookConnector faceBookConnector;
 
     @Autowired
-    public UpdateService(EventRepositoryJPA eventRepositoryJPA, FaceBookConnector faceBookConnector) {
+    public UpdateService(EventRepositoryJPA eventRepositoryJPA, LFaceBookConnector faceBookConnector) {
         this.eventRepositoryJPA = eventRepositoryJPA;
         this.faceBookConnector = faceBookConnector;
     }
@@ -43,28 +45,28 @@ public class UpdateService {
                     updateLocationPoint(pacyorkyEvent);
                 }
             }
-       });
+        });
         pacyorkyEvents.forEach(event -> {
             try {
                 eventRepositoryJPA.save(event);
-            }
-            catch (Exception e) {
-                System.out.println("Exception when save event: id: "+ event.getId()+" exception: "+ e.toString());
+            } catch (Exception e) {
+                System.out.println("Exception when save event: id: " + event.getId() + " exception: " + e.toString());
             }
         });
     }
-    private void updateLocationPoint (PacyorkyEvent pacyorkyEvent) {
+
+    private void updateLocationPoint(PacyorkyEvent pacyorkyEvent) {
         HttpClient httpClient = HttpClientBuilder.create().build();
         JsonNominatimClient jsonNominatimClient = new JsonNominatimClient(httpClient, "info@pacyorky.ee");
         NominatimSearchRequest nominatimSearchRequest = new NominatimSearchRequest();
-            try {
-                nominatimSearchRequest.setQuery(pacyorkyEvent.getPlace());
-                Address tempaddress = jsonNominatimClient.search(nominatimSearchRequest).get(0);
-                pacyorkyEvent.setLat(tempaddress.getLatitude());
-                pacyorkyEvent.setLng(tempaddress.getLongitude());
-            } catch (Exception e) {
-                pacyorkyEvent.setLng(0);
-                pacyorkyEvent.setLat(0);
-            }
+        try {
+            nominatimSearchRequest.setQuery(pacyorkyEvent.getPlace());
+            Address tempaddress = jsonNominatimClient.search(nominatimSearchRequest).get(0);
+            pacyorkyEvent.setLat(tempaddress.getLatitude());
+            pacyorkyEvent.setLng(tempaddress.getLongitude());
+        } catch (Exception e) {
+            pacyorkyEvent.setLng(0);
+            pacyorkyEvent.setLat(0);
+        }
     }
 }

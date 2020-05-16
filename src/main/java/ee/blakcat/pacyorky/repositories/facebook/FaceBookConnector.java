@@ -18,7 +18,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-@Repository
+//@Repository
 public class FaceBookConnector {
 
     private DefaultFacebookClient facebookClient;
@@ -60,13 +60,13 @@ public class FaceBookConnector {
 
     private Set<Account> getFacebookAppAccounts() {
         FacebookClient appClient = getAppClient();
-        return new HashSet<>(appClient.fetchConnection("3559197890788331/accounts", Account.class).getData());
+        return new HashSet<>(appClient.fetchConnection(appId + "/accounts", Account.class).getData());
     }
 
     private Set<User> getFaceBookAppUsers() {
         FacebookClient appClient = getAppClient();
         Set<User> usersToReturn = new HashSet<>();
-        List<User> users = appClient.fetchConnection("3559197890788331/accounts", User.class).getData();
+        List<User> users = appClient.fetchConnection(appId + "/accounts", User.class).getData();
         for (User user : users) {
             usersToReturn.add(appClient.fetchObject(user.getId(), User.class));
         }
