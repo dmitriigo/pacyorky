@@ -1,8 +1,6 @@
-package ee.blakcat.pacyorky.controllers;
+package ee.blakcat.pacyorky.dto;
 
 import ee.blakcat.pacyorky.models.District;
-
-import java.io.Serializable;
 
 public class DistrictDTO {
     String estName, ukrName, rusName;
@@ -12,7 +10,7 @@ public class DistrictDTO {
         this.estName = district.estName;
         this.ukrName = district.ukrName;
         this.rusName = district.rusName;
-        this.id=district.ordinal();
+        this.id = district.ordinal();
 
     }
 

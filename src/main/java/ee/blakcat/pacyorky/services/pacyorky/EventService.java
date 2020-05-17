@@ -1,15 +1,17 @@
-package ee.blakcat.pacyorky.services;
+package ee.blakcat.pacyorky.services.pacyorky;
 
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class EventService {
-    private EventRepositoryJPA eventRepositoryJPA;
+    private final EventRepositoryJPA eventRepositoryJPA;
 
     @Autowired
     public EventService(EventRepositoryJPA eventRepositoryJPA) {
