@@ -1,6 +1,5 @@
-package ee.blakcat.pacyorky.controllers;
+package ee.blakcat.pacyorky.dto;
 
-import ee.blakcat.pacyorky.models.District;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 
 import java.util.Objects;
@@ -25,8 +24,8 @@ public class EventDto {
         this.setTitle(pacyorkyEvent.getName());
         this.setLink("https://www.facebook.com/events/" + pacyorkyEvent.getId());
         this.setEventOwner(pacyorkyEvent.getPacyorkyEventOwner().getName());
-        this.locationPoint=new LocationDTO (pacyorkyEvent).getLocationPoint();
-        this.cover=pacyorkyEvent.getCover();
+        this.locationPoint = new LocationDTO(pacyorkyEvent).getLocationPoint();
+        this.cover = pacyorkyEvent.getCover();
     }
 
     public String getCover() {

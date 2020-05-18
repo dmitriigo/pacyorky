@@ -13,6 +13,7 @@ public class FaceBookClientConfig {
     private String appId;
     @Value("${appSecret}")
     private String appSecret;
+
     @Bean
     public FacebookClient getFaceBookClient() {
         FacebookClient facebookClient = new DefaultFacebookClient(Version.LATEST);

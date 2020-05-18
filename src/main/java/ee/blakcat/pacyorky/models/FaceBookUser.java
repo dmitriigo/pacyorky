@@ -1,11 +1,8 @@
 package ee.blakcat.pacyorky.models;
 
-import com.restfb.types.User;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class FaceBookUser {
@@ -18,9 +15,19 @@ public class FaceBookUser {
     public FaceBookUser() {
     }
 
-    public FaceBookUser(User user) {
-        this.id = user.getId();
-        this.name = user.getName();
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FaceBookUser that = (FaceBookUser) o;
+        return access == that.access &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, access);
     }
 
     @Override

@@ -9,7 +9,7 @@ public class PacyorkyEvent {
     @Id
     private String id;
     private String place, name;
-    @Column (length = 2048)
+    @Column(length = 2048)
     private String description;
     private Date startTime, endTime;
     @ManyToOne(targetEntity = PacyorkyEventOwner.class, cascade = CascadeType.ALL)
@@ -27,8 +27,8 @@ public class PacyorkyEvent {
         this.endTime = endTime;
         this.pacyorkyEventOwner = pacyorkyEventOwner;
         //TODO обновление дистрикта при изменении
-        this.district=District.getDistrict(place);
-        this.cover=cover;
+        this.district = District.getDistrict(place);
+        this.cover = cover;
     }
 
     public PacyorkyEvent(String name, Date startTime, String facebookId) {
