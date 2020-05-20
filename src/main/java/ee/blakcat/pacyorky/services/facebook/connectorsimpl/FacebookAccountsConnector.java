@@ -27,7 +27,6 @@ public class FacebookAccountsConnector implements FacebookConnector<Account> {
 
     }
 
-
     @Override
     public Collection<Account> getData() {
         return facebookClient.fetchConnection(appId + "/accounts", Account.class).getData();

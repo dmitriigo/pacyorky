@@ -35,7 +35,7 @@ public class FacebookEventService {
         return events;
     }
 
-    public Set<Event> getOneUserEvents(FacebookClient userClient) {
+    private Set<Event> getOneUserEvents(FacebookClient userClient) {
         return new HashSet<>(userClient.fetchConnection("me/events", Event.class,
                 Parameter.with("fields",
                         "cover,description,end_time,name,owner,place,start_time"

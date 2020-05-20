@@ -8,14 +8,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class FaceBookClientConfig {
+public class FacebookClientConfig {
     @Value("${appId}")
     private String appId;
     @Value("${appSecret}")
     private String appSecret;
 
     @Bean
-    public FacebookClient getFaceBookClient() {
+    public FacebookClient getFacebookClient() {
         FacebookClient facebookClient = new DefaultFacebookClient(Version.LATEST);
         return facebookClient.createClientWithAccessToken(
                 facebookClient.obtainAppAccessToken(appId, appSecret)

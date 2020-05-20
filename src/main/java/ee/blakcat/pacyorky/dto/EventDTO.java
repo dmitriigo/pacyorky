@@ -4,7 +4,7 @@ import ee.blakcat.pacyorky.models.PacyorkyEvent;
 
 import java.util.Objects;
 
-public class EventDto {
+public class EventDTO {
     private String id;
     private String location, description, title;
     private String date, endTime;
@@ -14,7 +14,7 @@ public class EventDto {
     private double[] locationPoint;
     private String cover;
 
-    public EventDto(PacyorkyEvent pacyorkyEvent) {
+    public EventDTO(PacyorkyEvent pacyorkyEvent) {
         this.setId(pacyorkyEvent.getId());
         this.setDistrict(new DistrictDTO(pacyorkyEvent.getDistrict()));
         this.setDate(pacyorkyEvent.getStartTime().toString());

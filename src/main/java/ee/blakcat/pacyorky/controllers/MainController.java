@@ -1,10 +1,10 @@
 package ee.blakcat.pacyorky.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ee.blakcat.pacyorky.dto.EventDto;
+import ee.blakcat.pacyorky.dto.EventDTO;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.services.pacyorky.EventService;
-import ee.blakcat.pacyorky.services.updateData.UpdateServiceImpl;
+import ee.blakcat.pacyorky.services.updateData.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -18,16 +18,16 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 @EnableScheduling
 public class MainController {
-    private final UpdateServiceImpl updateServiceImpl;
+    private final UpdateService updateService;
     private final EventService eventService;
     private final ObjectMapper objectMapper;
     @Value("${updateSecret}")
     private String updateKey;
 
     @Autowired
-    public MainController(UpdateServiceImpl updateServiceImpl, EventService eventService, ObjectMapper objectMapper) {
+    public MainController(UpdateService updateService, EventService eventService, ObjectMapper objectMapper) {
 
-        this.updateServiceImpl = updateServiceImpl;
+        this.updateService = updateService;
         this.eventService = eventService;
         this.objectMapper = objectMapper;
     }
@@ -36,7 +36,7 @@ public class MainController {
     public String oneEvent(@PathVariable String id) {
         String eventDto = null;
         try {
-            eventDto = objectMapper.writeValueAsString(new EventDto(eventService.findById(id)));
+            eventDto = objectMapper.writeValueAsString(new EventDTO(eventService.findById(id)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,7 +48,7 @@ public class MainController {
         List<PacyorkyEvent> events = eventService.findAll();
         String eventsDTO = null;
         try {
-            eventsDTO = objectMapper.writeValueAsString(events.stream().map(EventDto::new).collect(Collectors.toList()));
+            eventsDTO = objectMapper.writeValueAsString(events.stream().map(EventDTO::new).collect(Collectors.toList()));
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -66,22 +66,19 @@ public class MainController {
     //auto update
     @Scheduled(fixedRate = 1800000)
     public void autoUpdate() {
-        updateServiceImpl.updateAll();
+        updateService.updateAll();
     }
 
     @GetMapping("/update")
     public boolean manualUpdate(@RequestParam String key) {
         if (key.equals(updateKey)) {
             try {
-                updateServiceImpl.updateAll();
+                updateService.updateAll();
                 return true;
             } catch (Exception e) {
                 return false;
             }
-
         }
         return false;
     }
-
-
 }

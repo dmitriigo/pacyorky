@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Component
-public class FaceBookEventOwnerToPacyorkyEventOwnerAdapter implements Adapter<Event.Owner, PacyorkyEventOwner> {
+public class FacebookEventOwnerToPacyorkyEventOwnerAdapter implements Adapter<Event.Owner, PacyorkyEventOwner> {
     @Override
     public PacyorkyEventOwner convert(Event.Owner owner) {
         return new PacyorkyEventOwner(owner.getName(), owner.getId());

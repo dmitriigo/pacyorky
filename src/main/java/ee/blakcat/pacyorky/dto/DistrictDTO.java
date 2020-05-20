@@ -3,8 +3,10 @@ package ee.blakcat.pacyorky.dto;
 import ee.blakcat.pacyorky.models.District;
 
 public class DistrictDTO {
-    String estName, ukrName, rusName;
-    int id;
+    private String estName;
+    private String ukrName;
+    private String rusName;
+    private int id;
 
     public DistrictDTO(District district) {
         this.estName = district.estName;

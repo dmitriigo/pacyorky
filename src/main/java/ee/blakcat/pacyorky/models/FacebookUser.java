@@ -5,21 +5,21 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class FaceBookUser {
+public class FacebookUser {
 
     @Id
     private String id;
     private String name;
     private boolean access;
 
-    public FaceBookUser() {
+    public FacebookUser() {
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FaceBookUser that = (FaceBookUser) o;
+        FacebookUser that = (FacebookUser) o;
         return access == that.access &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name);
@@ -32,7 +32,7 @@ public class FaceBookUser {
 
     @Override
     public String toString() {
-        return "FaceBookUser{" +
+        return "FacebookUser{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", access=" + access +

@@ -1,8 +1,8 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: ${PG_PACYORKY_USER:root}
-    password: ${PG_PACYORKY_PASS:toor}
+    username: ${PG_PACYORKY_USER:postgres}
+    password: ${PG_PACYORKY_PASS:new_password}
     url: ${DB_PACYORKY_HOST:jdbc:postgresql://localhost:5432/pacyorky}
   jpa:
     generate-dll: true
@@ -15,8 +15,8 @@ spring:
             non_contextual_creation: true
   thymeleaf:
     cache: false
-appId: ${APPID}
-appSecret: ${APPSECRET}
+appId: ${APPID:566159457374869}
+appSecret: ${APPSECRET:e182c657f48495730f6f712f8fbcbdb6}
 updateSecret: ${UPDATE_KEY:0}
 server:
   port: ${PORT:3000}

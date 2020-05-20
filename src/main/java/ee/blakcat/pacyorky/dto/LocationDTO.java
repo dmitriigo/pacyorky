@@ -2,9 +2,9 @@ package ee.blakcat.pacyorky.dto;
 
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 
-public class LocationDTO {
+class LocationDTO {
 
-    double[] locationPoint;
+    private double[] locationPoint;
 
     public LocationDTO(PacyorkyEvent pacyorkyEvent) {
         locationPoint = new double[2];

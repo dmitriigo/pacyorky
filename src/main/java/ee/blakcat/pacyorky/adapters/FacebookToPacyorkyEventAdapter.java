@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 @Component
 public class FacebookToPacyorkyEventAdapter implements Adapter<Event, PacyorkyEvent> {
 
-    final Adapter<Event.Owner, PacyorkyEventOwner> pacyorkyEventOwnerAdapter;
+    final private Adapter<Event.Owner, PacyorkyEventOwner> pacyorkyEventOwnerAdapter;
 
     @Autowired
     public FacebookToPacyorkyEventAdapter(Adapter<Event.Owner, PacyorkyEventOwner> pacyorkyEventOwnerAdapter) {

@@ -1,9 +1,9 @@
 package ee.blakcat.pacyorky.services.updateData;
 
-import ee.blakcat.pacyorky.models.FaceBookUser;
+import ee.blakcat.pacyorky.models.FacebookUser;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
-import ee.blakcat.pacyorky.repositories.database.FaceBookUserRepositoryJPA;
+import ee.blakcat.pacyorky.repositories.database.FacebookUserRepositoryJPA;
 import ee.blakcat.pacyorky.services.pacyorky.LocationPointService;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 @Service
 public class UpdateServiceImpl implements UpdateService {
     private final EventRepositoryJPA eventRepositoryJPA;
-    private final FaceBookUserRepositoryJPA faceBookUserRepositoryJPA;
+    private final FacebookUserRepositoryJPA faceBookUserRepositoryJPA;
     private final PacyorkyService pacyorkyService;
     private final LocationPointService locationPointService;
 
     @Autowired
-    public UpdateServiceImpl(EventRepositoryJPA eventRepositoryJPA, FaceBookUserRepositoryJPA faceBookUserRepositoryJPA, PacyorkyService pacyorkyService, LocationPointService locationPointService) {
+    public UpdateServiceImpl(EventRepositoryJPA eventRepositoryJPA, FacebookUserRepositoryJPA faceBookUserRepositoryJPA, PacyorkyService pacyorkyService, LocationPointService locationPointService) {
         this.eventRepositoryJPA = eventRepositoryJPA;
         this.faceBookUserRepositoryJPA = faceBookUserRepositoryJPA;
         this.pacyorkyService = pacyorkyService;
@@ -35,9 +35,9 @@ public class UpdateServiceImpl implements UpdateService {
     }
 
     private void updateUsers() {
-        Set<FaceBookUser> userSet = pacyorkyService.getUsers();
-        Set<String> userAtDBId = faceBookUserRepositoryJPA.findAll().stream().map(FaceBookUser::getId).collect(Collectors.toSet());
-        for (FaceBookUser user : userSet) {
+        Set<FacebookUser> userSet = pacyorkyService.getUsers();
+        Set<String> userAtDBId = faceBookUserRepositoryJPA.findAll().stream().map(FacebookUser::getId).collect(Collectors.toSet());
+        for (FacebookUser user : userSet) {
             if (!userAtDBId.contains(user.getId())) {
                 faceBookUserRepositoryJPA.save(user);
             }
