@@ -1,4 +1,10 @@
 spring:
+  mail:
+    host: pacyorky.ee
+    port: 587
+    username: no-reply@pacyorky.ee
+    password: xD7bS7vXhIXkdJdI
+
   datasource:
     driver-class-name: org.postgresql.Driver
     username: ${PG_PACYORKY_USER:postgres}
@@ -13,8 +19,6 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-  thymeleaf:
-    cache: false
 appId: ${APPID:566159457374869}
 appSecret: ${APPSECRET:e182c657f48495730f6f712f8fbcbdb6}
 updateSecret: ${UPDATE_KEY:0}
