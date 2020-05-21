@@ -1,5 +1,6 @@
 package ee.blakcat.pacyorky.models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -16,7 +17,16 @@ public class PacyorkyUser {
     @ManyToMany
     private Set<PacyorkyEvent> pacyorkyEventsToSend;
     private boolean confirmed;
+    @Column (unique = true)
+    private String controlString;
 
+    public String getControlString() {
+        return controlString;
+    }
+
+    public void setControlString(String controlString) {
+        this.controlString = controlString;
+    }
 
     public Set<PacyorkyEvent> getPacyorkyEventsToSend() {
         return pacyorkyEventsToSend;
