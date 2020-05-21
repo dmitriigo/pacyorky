@@ -23,12 +23,8 @@ public class FacebookUserConnector implements FacebookConnector<User> {
         this.accountFacebookConnector = accountFacebookConnector;
     }
 
-    @Override
-    public User getOne() {
-        return getData().stream().findAny().orElseThrow(RuntimeException::new);
-    }
 
-    public User getOne(String id) {
+    private User getOne(String id) {
         return facebookClient.fetchObject(id, User.class);
     }
 

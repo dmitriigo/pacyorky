@@ -3,6 +3,7 @@ package ee.blakcat.pacyorky.services.facebook.services;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.types.Event;
+import ee.blakcat.pacyorky.services.facebook.FacebookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,20 +11,21 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class FacebookEventService {
+public class FacebookEventServiceFromUser implements FacebookService<Event> {
 
     private final FacebookAccountService facebookAccountService;
     private final FacebookClient facebookClient;
 
     @Autowired
-    public FacebookEventService(FacebookAccountService facebookAccountService, FacebookClient facebookClient) {
+    public FacebookEventServiceFromUser(FacebookAccountService facebookAccountService, FacebookClient facebookClient) {
         this.facebookAccountService = facebookAccountService;
         this.facebookClient = facebookClient;
     }
 
-    public Set<Event> getAllAllowedEvents() {
+    @Override
+    public Set<Event> getAllowedData() {
         Set<Event> events = new HashSet<>();
-        facebookAccountService.allowedAccounts().forEach(account -> {
+        facebookAccountService.getAllowedData().forEach(account -> {
             Set<Event> oneUserEvents = getOneUserEvents(facebookClient.createClientWithAccessToken(account.getAccessToken()));
             oneUserEvents.forEach(event -> {
                 Event.Owner owner = new Event.Owner();

@@ -6,7 +6,7 @@ import ee.blakcat.pacyorky.adapters.Adapter;
 import ee.blakcat.pacyorky.models.FacebookUser;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.FacebookUserRepositoryJPA;
-import ee.blakcat.pacyorky.services.facebook.services.FacebookService;
+import ee.blakcat.pacyorky.services.facebook.services.FacebookMainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,23 +20,23 @@ import java.util.stream.Collectors;
 public class PacyorkyServiceImpl implements PacyorkyService {
     private final Adapter<User, FacebookUser> facebookUserToDatabaseUserAdapter;
     private final Adapter<Event, PacyorkyEvent> facebookToPacyorkyEventAdapter;
-    private final FacebookService facebookService;
+    private final FacebookMainService facebookMainService;
     private final FacebookUserRepositoryJPA faceBookUserRepositoryJPA;
 
     @Autowired
-    public PacyorkyServiceImpl(Adapter<User, FacebookUser> facebookUserToDatabaseUserAdapter, Adapter<Event, PacyorkyEvent> facebookToPacyorkyEventAdapter, FacebookService facebookService, FacebookUserRepositoryJPA faceBookUserRepositoryJPA) {
+    public PacyorkyServiceImpl(Adapter<User, FacebookUser> facebookUserToDatabaseUserAdapter, Adapter<Event, PacyorkyEvent> facebookToPacyorkyEventAdapter, FacebookMainService facebookMainService, FacebookUserRepositoryJPA faceBookUserRepositoryJPA) {
         this.facebookUserToDatabaseUserAdapter = facebookUserToDatabaseUserAdapter;
         this.facebookToPacyorkyEventAdapter = facebookToPacyorkyEventAdapter;
-        this.facebookService = facebookService;
+        this.facebookMainService = facebookMainService;
         this.faceBookUserRepositoryJPA = faceBookUserRepositoryJPA;
     }
 
     public Set<FacebookUser> getUsers() {
-        return new HashSet<>(facebookUserToDatabaseUserAdapter.convertAll(facebookService.getAllUsers()));
+        return new HashSet<>(facebookUserToDatabaseUserAdapter.convertAll(facebookMainService.getAllUsers()));
     }
 
     public Set<PacyorkyEvent> getEvents() {
-        return facebookService.getAllowedEvents().stream().map(this::convertEvent).collect(Collectors.toSet());
+        return facebookMainService.getAllowedEvents().stream().map(this::convertEvent).collect(Collectors.toSet());
     }
 
     private PacyorkyEvent convertEvent(Event event) {

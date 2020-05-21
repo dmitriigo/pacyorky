@@ -4,6 +4,7 @@ import com.restfb.types.Account;
 import ee.blakcat.pacyorky.models.FacebookUser;
 import ee.blakcat.pacyorky.repositories.database.FacebookUserRepositoryJPA;
 import ee.blakcat.pacyorky.services.facebook.FacebookConnector;
+import ee.blakcat.pacyorky.services.facebook.FacebookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class FacebookAccountService {
+public class FacebookAccountService implements FacebookService<Account> {
     private final FacebookConnector<Account> accountFacebookConnector;
     private final FacebookUserRepositoryJPA faceBookUserRepositoryJPA;
 
@@ -21,7 +22,8 @@ public class FacebookAccountService {
         this.faceBookUserRepositoryJPA = faceBookUserRepositoryJPA;
     }
 
-    public Set<Account> allowedAccounts() {
+    @Override
+    public Set<Account> getAllowedData() {
         return accountFacebookConnector.getData().stream().filter(account ->
                 faceBookUserRepositoryJPA.findByAccessTrue().stream()
                         .map(FacebookUser::getId).collect(Collectors.toList())
