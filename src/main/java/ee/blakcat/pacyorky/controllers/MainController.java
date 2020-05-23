@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
-@EnableScheduling
 public class MainController {
     private final UpdateService updateService;
     private final EventService eventService;
@@ -56,18 +55,7 @@ public class MainController {
         return eventsDTO;
     }
 
-    // manual update
-//    @GetMapping ("/update")
-//    public String update () {
-//        updateService.updateAll();
-//        return "update";
-//    }
 
-    //auto update
-    @Scheduled(fixedRate = 1800000)
-    public void autoUpdate() {
-        updateService.updateAll();
-    }
 
     @GetMapping("/update")
     public boolean manualUpdate(@RequestParam String key) {

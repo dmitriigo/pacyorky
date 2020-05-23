@@ -28,7 +28,7 @@ public class MailServiceImpl implements MailService<PacyorkyEvent> {
 
     @Override
     public void updateTask(Set<PacyorkyEvent> events) {
-        List<PacyorkyUser> users = pacyorkyUserRepository.findAllConfirmed();
+        List<PacyorkyUser> users = pacyorkyUserRepository.findAllByConfirmedTrue();
         for (PacyorkyUser user : users) {
             if (user.getMailSendPeriod()== MailSendPeriod.HOURLY) sendToOneUser(events, user);
             else if (user.getMailSendPeriod()==MailSendPeriod.WEEKLY) {

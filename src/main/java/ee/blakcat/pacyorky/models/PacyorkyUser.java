@@ -1,15 +1,16 @@
 package ee.blakcat.pacyorky.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import org.springframework.data.jpa.repository.Modifying;
+
+import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 public class PacyorkyUser {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private long id;
     private String eMail;
     private MailLang mailLang;
@@ -19,6 +20,10 @@ public class PacyorkyUser {
     private boolean confirmed;
     @Column (unique = true)
     private String controlString;
+
+    public PacyorkyUser() {
+    }
+
 
     public String getControlString() {
         return controlString;
@@ -74,5 +79,37 @@ public class PacyorkyUser {
 
     public void setMailLang(MailLang mailLang) {
         this.mailLang = mailLang;
+    }
+
+    @Override
+    public String toString() {
+        return "PacyorkyUser{" +
+                "id=" + id +
+                ", eMail='" + eMail + '\'' +
+                ", mailLang=" + mailLang +
+                ", mailSendPeriod=" + mailSendPeriod +
+                ", pacyorkyEventsToSend=" + pacyorkyEventsToSend +
+                ", confirmed=" + confirmed +
+                ", controlString='" + controlString + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PacyorkyUser that = (PacyorkyUser) o;
+        return id == that.id &&
+                confirmed == that.confirmed &&
+                Objects.equals(eMail, that.eMail) &&
+                mailLang == that.mailLang &&
+                mailSendPeriod == that.mailSendPeriod &&
+                Objects.equals(pacyorkyEventsToSend, that.pacyorkyEventsToSend) &&
+                Objects.equals(controlString, that.controlString);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, eMail, mailLang, mailSendPeriod, pacyorkyEventsToSend, confirmed, controlString);
     }
 }
