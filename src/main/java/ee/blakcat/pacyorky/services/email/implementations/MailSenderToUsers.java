@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 
-@Service
+//@Service
 public class MailSenderToUsers implements MailSender <PacyorkyEvent> {
     private final String from = "no-reply@pacyorky.ee";
     private JavaMailSender javaMailSender;
