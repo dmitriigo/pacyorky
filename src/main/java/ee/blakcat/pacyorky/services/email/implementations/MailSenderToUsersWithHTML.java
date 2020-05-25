@@ -32,8 +32,7 @@ public class MailSenderToUsersWithHTML implements MailSender<PacyorkyEvent> {
         javaMailSender.send(mimeMessage -> {
             MimeMessageHelper message = template.getTemplate(mimeMessage);
             message.setFrom(from);
-            message.setTo("lulkast@yandex.ru");
-            // message.setTo(pacyorkyUser.geteMail());
+            message.setTo(pacyorkyUser.geteMail());
             String html = MailSenderToUsersWithHTML.this.makeHtml(data, template);
             message.setText(html, true);
         });

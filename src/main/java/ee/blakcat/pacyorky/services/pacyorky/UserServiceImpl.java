@@ -4,6 +4,7 @@ import ee.blakcat.pacyorky.models.MailLang;
 import ee.blakcat.pacyorky.models.MailSendPeriod;
 import ee.blakcat.pacyorky.models.PacyorkyUser;
 import ee.blakcat.pacyorky.repositories.database.PacyorkyUserRepository;
+import ee.blakcat.pacyorky.services.email.MailSenderWelcomeLetter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,12 @@ import java.util.UUID;
 @Service
 public class UserServiceImpl implements UserService {
     private PacyorkyUserRepository pacyorkyUserRepository;
+    private MailSenderWelcomeLetter mailSenderWelcomeLetter;
 
     @Autowired
-    public UserServiceImpl(PacyorkyUserRepository pacyorkyUserRepository) {
+    public UserServiceImpl(PacyorkyUserRepository pacyorkyUserRepository, MailSenderWelcomeLetter mailSenderWelcomeLetter) {
         this.pacyorkyUserRepository = pacyorkyUserRepository;
+        this.mailSenderWelcomeLetter = mailSenderWelcomeLetter;
     }
 
     @Override
@@ -30,6 +33,7 @@ public class UserServiceImpl implements UserService {
         pacyorkyUser.setControlString(UUID.randomUUID().toString());
         try {
             pacyorkyUserRepository.save(pacyorkyUser);
+            mailSenderWelcomeLetter.sendMail(pacyorkyUser);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
