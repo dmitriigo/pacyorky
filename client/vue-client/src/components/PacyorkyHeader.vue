@@ -2,7 +2,7 @@
     <b-row class="w-100 m-0 p-0" align-h="center" align-v="center">
         <b-col class="w-100 m-0 p-0">
             <b-row align-content="center" align-h="center" align-v="center" class="header-logo w-100 m-0 p-0 pt-5">
-                <b-col align-self="center" class="w-100 d-flex justify-content-center align-content-center pt-5 mt-4">
+                <b-col align-self="center" class="w-100 h-auto d-flex justify-content-center align-content-center pt-5 mt-4">
                 <img src="/img/Illustration.png"/>
                 </b-col>
             </b-row>

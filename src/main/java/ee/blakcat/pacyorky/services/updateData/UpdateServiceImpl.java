@@ -14,6 +14,8 @@ import ee.blakcat.pacyorky.services.pacyorky.PacyorkyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -22,6 +24,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@EnableScheduling
 public class UpdateServiceImpl implements UpdateService {
     private final EventRepositoryJPA eventRepositoryJPA;
     private final FacebookUserRepositoryJPA faceBookUserRepositoryJPA;
@@ -40,6 +43,7 @@ public class UpdateServiceImpl implements UpdateService {
     }
 
     @Override
+    //@Scheduled(fixedRate = 1800000)
     public void updateAll() {
         updateUsers();
         updateEvents();
