@@ -3,6 +3,7 @@ package ee.blakcat.pacyorky.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.blakcat.pacyorky.dto.EventDTO;
+import ee.blakcat.pacyorky.dto.MailUserDTO;
 import ee.blakcat.pacyorky.dto.VariantDTO;
 import ee.blakcat.pacyorky.models.MailLang;
 import ee.blakcat.pacyorky.models.MailSendPeriod;
@@ -38,8 +39,8 @@ public class MainController {
     }
 
     @PostMapping ("/add-mail")
-    public boolean addMailUser (@RequestParam String eMail, @RequestParam MailLang mailLang, @RequestParam MailSendPeriod mailSendPeriod) {
-        userService.addUser(eMail, mailLang, mailSendPeriod);
+    public boolean addMailUser (@RequestBody MailUserDTO mailUserDTO) {
+        userService.addUser(mailUserDTO.geteMail(), mailUserDTO.getMailLang(), mailUserDTO.getMailSendPeriod());
         return true;
     }
 

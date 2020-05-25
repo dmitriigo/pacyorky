@@ -26,7 +26,7 @@
                  <div class="ml-4">
                      <a href="https://www.facebook.com/groups/sillamaevodograi" target="_blank" class="ml-2 mr-2" style="color: black">  <font-awesome-icon   :icon="['fab', 'facebook-square']" /> </a>
                    <!--рассылка-->
-                     <a  href="#" class="ml-2 mr-2" style="color: black">  <font-awesome-icon  :icon="['far', 'bell']" /></a>
+                     <button @click="openModalWindow" class="ml-2 mr-2" style="color: black">  <font-awesome-icon  :icon="['far', 'bell']" /></button>
                      <a href="mailto:info@pacyorky.ee"  class="ml-2 mr-2" style="color: black"> <font-awesome-icon  :icon="['far', 'envelope']" /></a>
                      <a href="https://www.facebook.com/vodograi.estonia/" class="ml-2 mr-2" style="color: black"> <font-awesome-icon  :icon="['far', 'thumbs-up']" /></a>
                      <a href="#" class="ml-2 mr-2" style="color: black"> <font-awesome-icon :icon="['fas', 'share-alt']" /></a>
@@ -42,6 +42,9 @@
     export default {
         name: "NavBar.vue",
         methods: {
+            openModalWindow() {
+                this.$emit("openModalWindow");
+            }
         }
     }
 </script>

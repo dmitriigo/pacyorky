@@ -60,7 +60,7 @@ public class MailSenderWelcomeLetterWithHTML implements MailSenderWelcomeLetter 
             e.printStackTrace();
         }
         return "<body>\n" +
-                "<a href=\"" + URL + "\">" + text + "</a>";
+                "<a style=\"margin: 10px; padding: 10px; border: solid black;\" href=\"" + URL + "\">" + text + "</a>";
     }
 
     private String makeFooter(String footer) {

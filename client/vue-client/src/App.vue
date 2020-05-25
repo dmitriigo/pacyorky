@@ -1,6 +1,6 @@
 <template>
         <b-container fluid="true">
-            <NavBar/>
+            <NavBar @openModalWindow="openModalWindow"/>
             <b-container id="head" fluid="true">
             <PacyorkyHeader/>
             </b-container>
@@ -49,6 +49,7 @@
             </b-row>
 
         </b-container>
+            <ModalMailRegister @closeModalWindow="closeModalWindow" :mail-modal="mailModal"/>
         </b-container>
 </template>
 
@@ -60,13 +61,15 @@
     import Slider from "./components/Slider";
     import About from './components/About';
     import Game from "./components/Game";
+    import ModalMailRegister from "./components/ModalMailRegister";
 
     export default {
         name: 'App',
-        components: {Game, NavBar, PacyorkyHeader, PacyorkyAppData, Slider, About},
+        components: {ModalMailRegister, Game, NavBar, PacyorkyHeader, PacyorkyAppData, Slider, About},
         data() {
             return {
-                events: []
+                events: [],
+                mailModal: false
             }
         },
         mounted() {
@@ -77,6 +80,12 @@
         methods: {
             getSliderEvents(events) {
                 this.events = events;
+            },
+            openModalWindow () {
+              this.mailModal = true;
+            },
+            closeModalWindow () {
+                this.mailModal=false;
             }
         }
     }
