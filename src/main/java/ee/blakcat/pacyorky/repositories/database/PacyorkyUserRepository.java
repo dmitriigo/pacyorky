@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PacyorkyUserRepository extends JpaRepository<PacyorkyUser, Long> {
-    List<PacyorkyUser> findAllByConfirmedTrue();
+    List<PacyorkyUser> findAllByConfirmedIsTrue();
 
     PacyorkyUser findByControlString(String controlString);
 }
