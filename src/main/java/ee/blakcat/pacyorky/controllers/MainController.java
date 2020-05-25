@@ -1,16 +1,20 @@
 package ee.blakcat.pacyorky.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ee.blakcat.pacyorky.dto.EventDTO;
+import ee.blakcat.pacyorky.dto.VariantDTO;
+import ee.blakcat.pacyorky.models.MailLang;
+import ee.blakcat.pacyorky.models.MailSendPeriod;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.services.pacyorky.EventService;
+import ee.blakcat.pacyorky.services.pacyorky.UserService;
 import ee.blakcat.pacyorky.services.updateData.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.soap.SAAJResult;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,15 +24,34 @@ public class MainController {
     private final UpdateService updateService;
     private final EventService eventService;
     private final ObjectMapper objectMapper;
+    private final UserService userService;
     @Value("${updateSecret}")
     private String updateKey;
 
     @Autowired
-    public MainController(UpdateService updateService, EventService eventService, ObjectMapper objectMapper) {
+    public MainController(UpdateService updateService, EventService eventService, ObjectMapper objectMapper, UserService userService) {
 
         this.updateService = updateService;
         this.eventService = eventService;
         this.objectMapper = objectMapper;
+        this.userService = userService;
+    }
+
+    @PostMapping ("/add-mail")
+    public boolean addMailUser (@RequestParam String eMail, @RequestParam MailLang mailLang, @RequestParam MailSendPeriod mailSendPeriod) {
+        userService.addUser(eMail, mailLang, mailSendPeriod);
+        return true;
+    }
+
+    @GetMapping ("/mail-variant")
+    public String getVariants () {
+        VariantDTO variantDTO = new VariantDTO();
+        try {
+            return objectMapper.writeValueAsString(variantDTO);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @GetMapping("/events/{id}")

@@ -12,7 +12,7 @@ public interface UserService {
 
     boolean addUser (String eMail, MailLang mailLang, MailSendPeriod mailSendPeriod);
 
-    boolean confirmUser(String controlString);
+    boolean confirmUser(Long id, String confirmString);
 
     boolean deleteUser(String controlString);
 }

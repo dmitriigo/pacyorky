@@ -1,13 +1,9 @@
 package ee.blakcat.pacyorky.services.updateData;
 
 import ee.blakcat.pacyorky.models.FacebookUser;
-import ee.blakcat.pacyorky.models.MailLang;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
-import ee.blakcat.pacyorky.models.PacyorkyUser;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
 import ee.blakcat.pacyorky.repositories.database.FacebookUserRepositoryJPA;
-import ee.blakcat.pacyorky.repositories.database.PacyorkyUserRepository;
-import ee.blakcat.pacyorky.services.email.MailSender;
 import ee.blakcat.pacyorky.services.email.MailService;
 import ee.blakcat.pacyorky.services.pacyorky.LocationPointService;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyService;
@@ -15,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -49,8 +44,8 @@ public class UpdateServiceImpl implements UpdateService {
         updateEvents();
     }
 
-    private void sendMails (Set<PacyorkyEvent> events) {
-       mailService.updateTask(events);
+    private void sendMails(Set<PacyorkyEvent> events) {
+        mailService.updateTask(events);
     }
 
     private void updateUsers() {
@@ -68,13 +63,12 @@ public class UpdateServiceImpl implements UpdateService {
         List<String> eventsIDs = eventRepositoryJPA.findAll().stream().map(PacyorkyEvent::getId).collect(Collectors.toList());
         Set<PacyorkyEvent> events = pacyorkyService.getEvents();
         Set<PacyorkyEvent> eventsForMail = new HashSet<>();
-        logger.info("Events for update: "+events.size());
+        logger.info("Events for update: " + events.size());
         for (PacyorkyEvent pacyorkyEvent : events) {
             if (!eventsIDs.contains(pacyorkyEvent.getId())) {
                 locationPointService.updateLocationPoint(pacyorkyEvent);
                 eventsForMail.add(pacyorkyEvent);
-            }
-            else {
+            } else {
                 PacyorkyEvent eventAtDB = eventRepositoryJPA.findById(pacyorkyEvent.getId()).orElseThrow(RuntimeException::new);
                 pacyorkyEvent.setLat(eventAtDB.getLat());
                 pacyorkyEvent.setLng(eventAtDB.getLng());
@@ -88,7 +82,7 @@ public class UpdateServiceImpl implements UpdateService {
                 System.out.println("Exception when save event: id: " + pacyorkyEvent.getId() + " exception: " + e.toString());
             }
         }
-        if (!eventsForMail.isEmpty())  sendMails(eventsForMail);
+        if (!eventsForMail.isEmpty()) sendMails(eventsForMail);
 
     }
 
