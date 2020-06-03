@@ -2,11 +2,10 @@ package ee.blakcat.pacyorky.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ee.blakcat.pacyorky.dto.AddMailMessageDTO;
 import ee.blakcat.pacyorky.dto.EventDTO;
 import ee.blakcat.pacyorky.dto.MailUserDTO;
 import ee.blakcat.pacyorky.dto.VariantDTO;
-import ee.blakcat.pacyorky.models.MailLang;
-import ee.blakcat.pacyorky.models.MailSendPeriod;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.services.pacyorky.EventService;
 import ee.blakcat.pacyorky.services.pacyorky.UserService;
@@ -15,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.soap.SAAJResult;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,14 +36,14 @@ public class MainController {
         this.userService = userService;
     }
 
-    @PostMapping ("/add-mail")
-    public boolean addMailUser (@RequestBody MailUserDTO mailUserDTO) {
-        userService.addUser(mailUserDTO.geteMail(), mailUserDTO.getMailLang(), mailUserDTO.getMailSendPeriod());
-        return true;
+    @PostMapping("/add-mail")
+    public AddMailMessageDTO addMailUser(@RequestBody MailUserDTO mailUserDTO) {
+        boolean result = userService.addUser(mailUserDTO.geteMail(), mailUserDTO.getMailLang(), mailUserDTO.getMailSendPeriod());
+        return new AddMailMessageDTO(result, mailUserDTO.getMailLang(), mailUserDTO.geteMail());
     }
 
-    @GetMapping ("/mail-variant")
-    public String getVariants () {
+    @GetMapping("/mail-variant")
+    public String getVariants() {
         VariantDTO variantDTO = new VariantDTO();
         try {
             return objectMapper.writeValueAsString(variantDTO);
@@ -78,7 +76,6 @@ public class MainController {
 
         return eventsDTO;
     }
-
 
 
     @GetMapping("/update")

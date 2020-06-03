@@ -30,11 +30,11 @@ public class MailServiceImpl implements MailService<PacyorkyEvent> {
     public void updateTask(Set<PacyorkyEvent> events) {
         List<PacyorkyUser> users = pacyorkyUserRepository.findAllByConfirmedIsTrue();
         for (PacyorkyUser user : users) {
-            if (user.getMailSendPeriod()== MailSendPeriod.HOURLY) sendToOneUser(events, user);
-            else if (user.getMailSendPeriod()==MailSendPeriod.WEEKLY) {
-              if (user.getPacyorkyEventsToSend()==null) user.setPacyorkyEventsToSend(new HashSet<>());
-              user.getPacyorkyEventsToSend().addAll(events);
-              pacyorkyUserRepository.save(user);
+            if (user.getMailSendPeriod() == MailSendPeriod.HOURLY) sendToOneUser(events, user);
+            else if (user.getMailSendPeriod() == MailSendPeriod.WEEKLY) {
+                if (user.getPacyorkyEventsToSend() == null) user.setPacyorkyEventsToSend(new HashSet<>());
+                user.getPacyorkyEventsToSend().addAll(events);
+                pacyorkyUserRepository.save(user);
             }
         }
     }

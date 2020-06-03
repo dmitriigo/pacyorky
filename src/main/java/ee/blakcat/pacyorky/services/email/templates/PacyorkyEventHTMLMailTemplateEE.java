@@ -13,7 +13,7 @@ import javax.mail.internet.MimeMessage;
 public class PacyorkyEventHTMLMailTemplateEE implements PacyorkyEventHTMLMailTemplate {
 
     private final String title = "Tere! Pasyorky on järgmised uued sündmused:\n";
-    private final MailLang mailLang = MailLang.UA;
+    private final MailLang mailLang = MailLang.EE;
     private final String footer = "Parimate soovidega";
 
 

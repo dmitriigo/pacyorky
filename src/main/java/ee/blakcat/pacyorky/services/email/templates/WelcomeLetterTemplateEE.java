@@ -12,7 +12,7 @@ import javax.mail.internet.MimeMessage;
 public class WelcomeLetterTemplateEE implements WelcomeLetterTemplate {
     private final String title = "Tere!\n" +
             "Oma konto kinnitamiseks kasutage allolevat linki:\n";
-    private final MailLang mailLang = MailLang.UA;
+    private final MailLang mailLang = MailLang.EE;
     private final String footer = "Parimate soovidega";
     private final String link = "linki";
 

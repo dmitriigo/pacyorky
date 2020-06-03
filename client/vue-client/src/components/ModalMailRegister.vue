@@ -4,7 +4,7 @@
               <col>  <b-button  variant="light" @click="closeModalWindow"><b-icon icon="x" ></b-icon></b-button>  </col>
             </template>
         <div class="modal-event-item">
-            <b-form @submit="saveUser">
+            <b-form v-on:submit.prevent="saveUser">
                 <b-form-group
                         id="input-group-1"
                         label="Email address:"
@@ -47,6 +47,7 @@
 <script>
     import axios from "axios";
 
+
     export default {
         name: "ModalMailRegister",
         data() {
@@ -73,16 +74,17 @@
             closeModalWindow() {
                 this.$emit("closeModalWindow")
             },
-            saveUser(event) {
-               axios.post("/api/add-mail", {
-                   eMail : this.form.email,
-                   mailLang : this.form.lang,
-                   mailSendPeriod : this.form.period}
-               ).then(response => {
-                   console.log(response);
-               })
-               console.log(this.form);
-            }
+            saveUser: function (event) {
+                axios.post("/api/add-mail", {
+                    eMail : this.form.email,
+                    mailLang : this.form.lang,
+                    mailSendPeriod : this.form.period}
+                ).then(function (response) {
+                    let data = JSON.parse( response.request.response );
+                    alert (data.message);
+                }).catch(() => {
+                }).then(this.closeModalWindow());
+            },
         }
     }
 </script>
