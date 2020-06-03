@@ -14,7 +14,7 @@ public class PacyorkyEventHTMLMailTemplateEN implements PacyorkyEventHTMLMailTem
 
     private final String title = "Hello! Pasyorky have next new events:\n";
     private final MailLang mailLang = MailLang.EN;
-    private final String footer = "Best regards\n";
+    private final String footer = "Best regards";
 
 
     @Override

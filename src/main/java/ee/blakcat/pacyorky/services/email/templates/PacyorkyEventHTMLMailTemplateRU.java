@@ -14,7 +14,7 @@ public class PacyorkyEventHTMLMailTemplateRU implements PacyorkyEventHTMLMailTem
 
     private final String title = "Привет! Пацёрки нашли несколько новых мероприятий:\n";
     private final MailLang mailLang = MailLang.RU;
-    private final String footer = "С наилучшими пожеланиями,\n";
+    private final String footer = "С наилучшими пожеланиями";
 
 
     @Override

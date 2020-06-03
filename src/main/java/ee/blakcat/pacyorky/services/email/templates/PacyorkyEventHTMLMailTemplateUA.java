@@ -14,7 +14,7 @@ public class PacyorkyEventHTMLMailTemplateUA implements PacyorkyEventHTMLMailTem
 
     private final String title = "Вітання! Пацьорки знайшли кілька нових подій:\n";
     private final MailLang mailLang = MailLang.UA;
-    private final String footer = "З повагою,\n";
+    private final String footer = "З повагою";
 
 
     @Override

@@ -1,5 +1,8 @@
 <template>
-    <b-modal v-model="mailModal" id="jk" hide-footer size="lg" title="" scrollable centered>
+    <b-modal v-model="mailModal" id="jk"  hide-footer size="lg" title="" scrollable centered>
+           <template v-slot:modal-header="{ close }" >
+              <col>  <b-button  variant="light" @click="closeModalWindow"><b-icon icon="x" ></b-icon></b-button>  </col>
+            </template>
         <div class="modal-event-item">
             <b-form @submit="saveUser">
                 <b-form-group
@@ -32,11 +35,11 @@
                             required
                     ></b-form-select>
                 </b-form-group>
-                <b-button type="submit" variant="primary">Submit</b-button>
+                 <div class="modal-buttons">
+                   <b-button type="submit" variant="primary">Submit</b-button>
+                   <b-button @click="closeModalWindow">{{$ml.get('close')}}</b-button>
+                 </div>
             </b-form>
-            <div class="modal-buttons">
-                <b-button @click="closeModalWindow">{{$ml.get('close')}}</b-button>
-            </div>
         </div>
     </b-modal>
 </template>

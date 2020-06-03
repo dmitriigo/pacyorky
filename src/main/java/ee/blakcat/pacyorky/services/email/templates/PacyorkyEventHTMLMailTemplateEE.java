@@ -14,7 +14,8 @@ public class PacyorkyEventHTMLMailTemplateEE implements PacyorkyEventHTMLMailTem
 
     private final String title = "Tere! Pasyorky on järgmised uued sündmused:\n";
     private final MailLang mailLang = MailLang.UA;
-    private final String footer = "Parimate soovidega\n";
+    private final String footer = "Parimate soovidega";
+
 
 
     @Override
