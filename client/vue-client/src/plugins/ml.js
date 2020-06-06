@@ -8,7 +8,6 @@ export default new MLCreate({
     save: process.env.NODE_ENV === 'production',
     languages: [
         new MLanguage('Ukrainian').create({
-            flag: '<img src="/img/Ukrainian.svg"/>',
             title: 'Назва',
             date: 'Дата',
             enddate: 'Дата закінчення',
@@ -78,12 +77,12 @@ export default new MLCreate({
             aboutproject: 'Про проект',
             vodograi: 'Водограй',
             connectus: 'Долучитись',
-            aboutpt1: 'Українське земляцтво міста Сілламяе "Водограй" це громадська організація,  метою якої є збереження української культури, мови та традицій. "Водограй" проводить роботу у культурно-освітньому, молодіжному та інформаційному напрямках. При земляцтві також діє недільна школа, дитячий ансамбль “Едельвейс” та видається інфолист “Рідна хата”. Розсилку інфолиста на електронную адресу можна замовити, повідомив про своє бажання на sillamae.vodograi@gmail.com',
-            aboutpt2: 'Проект Українського земляцтва Сілламяе "Водограй" «Пацьорки» розпочався у 2020 році. Мета проекту – створити вебдодаток-календар, який висвітлюватиме об’яви про події українських громад, земляцтв і товариств Естонії. ' +
-                'Бути в курсі культурних подій іноді важко. Для того, щоб слідкувати за всіма заходами потрібно бути учасником чисельних груп у Фейсбуці. І всеодно часто трапляється так, що ми дізнаємось про цікаві концерти, семінари та заходи, які залюбки хотіли би відвідати, вже після їх завершення через новини і пости у соцмережах. Пацьорки допоможе не пропустити події української діаспори Естонії і прожити рік яскраво.',
-            aboutpt3: 'Якщо ви керівник української громади/товариства/колективу/школи і бажаєте долучитись до Пацьорки у якості організатора українських культурних подій в Естонії, напишіть нам на адресу info@pacyorky.ee' +
-                'Пацьорки автоматично інтегрує події, які ви створюєте у Фейсбуці, і презентує їх відвідувачам платформи. Пацьорки допоможе поширювати інформацію про ваші заходи та залучати на ваші заходи більше гостей, які цікавляться українською культурою.' +
-                'Додаток Пацьорки є безкоштовним для користувачів та організаторів культурних подій.',
+            aboutpt1: 'Українське земляцтво міста Сілламяе "Водограй" це громадська організація,  метою якої є збереження української культури, мови та традицій. <br> <br> "Водограй" проводить роботу у культурно-освітньому, молодіжному та інформаційному напрямках. <br> <br> При земляцтві також діє недільна школа, дитячий ансамбль “Едельвейс” та видається інфолист “Рідна хата”. <br> <br> Розсилку інфолиста на електронную адресу можна замовити, повідомив про своє бажання <a href="mailto:sillamae.vodograi@gmail.com">sillamae.vodograi@gmail.com</a>',
+            aboutpt2: 'Проект Українського земляцтва Сілламяе "Водограй" «Пацьорки» розпочався у 2020 році. Мета проекту – створити вебдодаток-календар, який висвітлюватиме об’яви про події українських громад, земляцтв і товариств Естонії. <br> <br> ' +
+                'Бути в курсі культурних подій іноді важко. Для того, щоб слідкувати за всіма заходами потрібно бути учасником чисельних груп у Фейсбуці. І всеодно часто трапляється так, що ми дізнаємось про цікаві концерти, семінари та заходи, які залюбки хотіли би відвідати, вже після їх завершення через новини і пости у соцмережах. <br> <br> Пацьорки допоможе не пропустити події української діаспори Естонії і прожити рік яскраво.',
+            aboutpt3: 'Якщо ви керівник української громади/товариства/колективу/школи і бажаєте долучитись до Пацьорки у якості організатора українських культурних подій в Естонії, напишіть нам на адресу <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a> <br> <br> ' +
+                'Пацьорки автоматично інтегрує події, які ви створюєте у Фейсбуці, і презентує їх відвідувачам платформи. <br> <br> Пацьорки допоможе поширювати інформацію про ваші заходи та залучати на ваші заходи більше гостей, які цікавляться українською культурою.' +
+                ' <br> <br>Додаток Пацьорки є безкоштовним для користувачів та організаторів культурних подій.',
             supportedby: 'Нас підтримують:',
             supporteddesc: 'Проект здійснюється за фінансової підтримки Міністерства Культури Естонії та Фонду Інтеграції та Міграції Естонії.',
             copyright: '©2020 Українське Земляцтво Сілламяе «Водограй»',
@@ -161,13 +160,13 @@ export default new MLCreate({
             aboutproject: 'Projektist',
             vodograi: 'Vodograi',
             connectus: 'Liitu meiega',
-            aboutpt1: 'Ukraina kaasmaalaskond Sillamäe "Vodograi" on mittetulundusühing, mille eesmärgiks on ukraina rahvuskultuuri, keele, kommete ja traditsioonide säilitamine. Kaasmaalaskonna töö suunad: kultuurhariduslik, noorsootöö,' +
-                'informatsiooniline. Ukraina kaasmaalaskonna "Vodograi" juures toimivad: pühapäevakool, laste lauluansambel "Edelveis", uudiskirja "Ridna hata" ilmumine. Kui soovite saada uudiskirja oma e-portile, andke meile teada sillamae.vodograi@gmail.com aadressile.',
+            aboutpt1: 'Ukraina kaasmaalaskond Sillamäe "Vodograi" on mittetulundusühing, mille eesmärgiks on ukraina rahvuskultuuri, keele, kommete ja traditsioonide säilitamine. <br> <br> Kaasmaalaskonna töö suunad: kultuurhariduslik, noorsootöö,' +
+                ' informatsiooniline. <br> <br> Ukraina kaasmaalaskonna "Vodograi" juures toimivad: pühapäevakool, laste lauluansambel "Edelveis", uudiskirja "Ridna hata" ilmumine. <br><br>  Kui soovite saada uudiskirja oma e-postile, andke meile teada <a href="mailto:sillamae.vodograi@gmail.com">sillamae.vodograi@gmail.com</a> aadressile.',
             aboutpt2: 'Ukraina kaasmaalaskond Sillamäe "Vodograi" projekt "Pacyorky" algas 2020.aastal. Projekti eesmäärgiks on luua veebirakendust-kalendrit, mis näitaks kuulutusi Eestis toimuvatest ukraina seltskonna üritustest.'+
-                'Mõnikord on nii raske jääda kõikide kutuuriüritustega kursis. Selleks on vaja osaleda hulkalistes Facebook gruppides. Ja ikka juhtub nii, et mõni huvitav kontsert, seminar või üritus jäi silma vahele, ning saame sellest teada juba kui see on lõppenud kas uudisteat või sotsiaalse võrgustiku postitustest. Pacyorky aitab olla kursis eesti ukraina diaaspora kultuurieluga ning veeta aasta säravalt.',
-            aboutpt3: 'Kui te olete ukraina seltsi/ansambli/kooli juht ja soovite liituda Pacyorky\'ga, kirjutage meile info@pacyorky.ee aadressile.' +
-                'Pacyorky rakendus automaatselt integreerib teie Facebook üritusi ja esitab teie üritusi platvormi külastajatele. Pacyorky aitab teid levitafa infot teie ürituste kohta ning meelitada oma sündmustele rohkem külalisi, kes tunnevad huvi ukraina kultuuri vastu.' +
-                'Pacyorky rakendus on tasuta kasutajatele ja kultuuriürituste korraldajatele.',
+                ' <br> <br> Mõnikord on nii raske jääda kõikide kutuuriüritustega kursis. Selleks on vaja osaleda hulkalistes Facebook gruppides. Ja ikka juhtub nii, et mõni huvitav kontsert, seminar või üritus jäi silma vahele, ning saame sellest teada juba kui see on lõppenud kas uudisteat või sotsiaalse võrgustiku postitustest. <br> <br> Pacyorky aitab olla kursis eesti ukraina diaaspora kultuurieluga ning veeta aasta säravalt.',
+            aboutpt3: 'Kui te olete ukraina seltsi/ansambli/kooli juht ja soovite liituda Pacyorky\'ga, kirjutage meile <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a> aadressile.' +
+                '<br> <br>Pacyorky rakendus automaatselt integreerib teie Facebook üritusi ja esitab teie üritusi platvormi külastajatele. <br> <br> Pacyorky aitab teid levitafa infot teie ürituste kohta ning meelitada oma sündmustele rohkem külalisi, kes tunnevad huvi ukraina kultuuri vastu.' +
+                '<br> <br>Pacyorky rakendus on tasuta kasutajatele ja kultuuriürituste korraldajatele.',
             supportedby: 'Meid toetavad:',
             supporteddesc: 'Projekti läbiviimise rahaline toetus: Eesti Kultuuriministeerium ja Integratsiooni ja Migratsiooni Sihtasutus Eestis.',
             copyright: '©2020 Ukraina kaasmaalaskond Sillamäe «Vodograi».',
@@ -245,12 +244,12 @@ export default new MLCreate({
             aboutproject: 'About Our Project',
             vodograi: 'Vodograi',
             connectus: 'Join us',
-            aboutpt1: 'Ukrainian community of Sillamäe «Vodograi» is a non-governmental organization, which aims to preserve Ukrainian culture, language and customs. «Vodograi» conducts work in cultural, educational, youth and informative fields. Community has Sunday school, kids vocal ansambel "Edelveis" and publishes newsletter "Ridna Hata". If you wish to receive the Vodograi\'s newsletter on your e-mail, please subscribe by letting us know on sillamae.vodograi@gmail.com',
+            aboutpt1: 'Ukrainian community of Sillamäe «Vodograi» is a non-governmental organization, which aims to preserve Ukrainian culture, language and customs. <br> <br> «Vodograi» conducts work in cultural, educational, youth and informative fields. <br> <br> Community has Sunday school, kids vocal ansambel "Edelveis" and publishes newsletter "Ridna Hata". <br> <br> If you wish to receive the Vodograi\'s newsletter on your e-mail, please subscribe by letting us know on <a href="mailto:sillamae.vodograi@gmail.com">sillamae.vodograi@gmail.com</a>',
             aboutpt2: 'Project of Ukrainian community of Sillamäe «Vodograi» «Pacyorky» started in 2020. Main aim of the project is to create a webapplication-calendar, which would highlight events of Ukrainian communities of Estonia.'+
-                'It could be hard to stay updated about all upcoming cultural events. In order to follow all events we have to sunscribe for numerous facebook groups. And anyway it sometimes happens that we get to know about an interesting concert, seminar or event, which we would love to go to, after its end from new or social network posts. Pacyorky will help not to miss interesting and important events of Ukrainian diaspora in Estonia and have a bright year!',
-            aboutpt3: 'If you are a head or management personnel of Ukrainian community/ansamble/school and would like to join Pacyorky as an owner of Ukrainian events in Estonia, please let us know info@pacyorky.ee' +
+                '<br> <br>It could be hard to stay updated about all upcoming cultural events. In order to follow all events we have to sunscribe for numerous facebook groups. And anyway it sometimes happens that we get to know about an interesting concert, seminar or event, which we would love to go to, after its end from new or social network posts. <br> <br> Pacyorky will help not to miss interesting and important events of Ukrainian diaspora in Estonia and have a bright year!',
+            aboutpt3: 'If you are a head or management personnel of Ukrainian community/ansamble/school and would like to join Pacyorky as an owner of Ukrainian events in Estonia, please let us know <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a>' +
 
-'Pacyorky application is free for use by guest users and event owners',
+'<br> <br> Pacyorky application is free for use by guest users and event owners',
             supportedby: 'Supported By',
             supporteddesc: 'The project Pacyorky is supported by the Ministry of Culture of Estonia and Estonian Integration and Migration Foundation.',
             copyright: '©2020 Ukrainian community of Sillamäe «Vodograi»',
@@ -330,12 +329,12 @@ export default new MLCreate({
             aboutproject: 'О проекте',
             vodograi: 'Водограй',
             connectus: 'Присоединиться',
-            aboutpt1: 'Украинское землячество города Силламяэ "Водограй" это общественная организация, целью которой является сохранение украинской культуры, языка и традиций. "Водограй" проводит работу в культурно-образовательном, молодежном и информационном направлениях. При землячестве также действует воскресная школа, детский ансамбль "Эдельвейс" и выдается инфолист "Родной дом". Рассылку инфолиста на электронную почту можно заказать, написав о своем желании на электронную почту sillamae.vodograi@gmail.com',  
+            aboutpt1: 'Украинское землячество города Силламяэ "Водограй" это общественная организация, целью которой является сохранение украинской культуры, языка и традиций. <br> <br> "Водограй" проводит работу в культурно-образовательном, молодежном и информационном направлениях. <br> <br> При землячестве также действует воскресная школа, детский ансамбль "Эдельвейс" и выдается инфолист "Родной дом". <br> <br> Рассылку инфолиста на электронную почту можно заказать, написав о своем желании на электронную почту <a href="mailto:sillamae.vodograi@gmail.com">sillamae.vodograi@gmail.com</a>',
 aboutpt2: 'Проект Украинского землячества Силламяэ "Водограй" "Пацёрки" начался в 2020 году. Цель проекта - создать вебприложение-календарь, который будет объединять объявления о событиях украинских общин, землячеств и обществ Эстонии. ' +
-                'Быть в курсе культурных мероприятий иногда сложно. Для того, чтобы следить за всеми мероприятиями, необходимо быть участником многочисленных групп в Фейсбуке. И все же случается так, что мы узнаем про интересные концерты, семинары и мероприятия, которые с удовольствием хотели бы посетить, уже после их завершения из новостей или постах в соцсетях. Пацёрки поможет не пропустить события украинской диаспоры Эстонии и прожить год ярко.',
-            aboutpt3: 'Если вы руководитель украинской общины/общества/коллектива/школы и желаете присоедениться к Пацёркам в качестве организатора украинских культурных мероприятий в Эстонии, напишите нам на адрес info@pacyorky.ee' +
-                'Пацёрки автоматически интегрирует события, которые вы создаете в Фейсбук, и представляет их посетителям платформы. Пацёрки поможет распространять информацию про ваши мероприятия и привлекать на ваши мероприятия больше гостей, которые интересуются украинской культурой.' +
-                'Приложение Пацёрки бесплатное для пользователей и орагнизаторов культурных событий.',
+                '<br> <br> Быть в курсе культурных мероприятий иногда сложно. Для того, чтобы следить за всеми мероприятиями, необходимо быть участником многочисленных групп в Фейсбуке. И все же случается так, что мы узнаем про интересные концерты, семинары и мероприятия, которые с удовольствием хотели бы посетить, уже после их завершения из новостей или постах в соцсетях. <br> <br> Пацёрки поможет не пропустить события украинской диаспоры Эстонии и прожить год ярко.',
+            aboutpt3: 'Если вы руководитель украинской общины/общества/коллектива/школы и желаете присоедениться к Пацёркам в качестве организатора украинских культурных мероприятий в Эстонии, напишите нам на адрес <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a>' +
+                '<br> <br>Пацёрки автоматически интегрирует события, которые вы создаете в Фейсбук, и представляет их посетителям платформы. <br> <br> Пацёрки поможет распространять информацию про ваши мероприятия и привлекать на ваши мероприятия больше гостей, которые интересуются украинской культурой.' +
+                ' <br> <br>Приложение Пацёрки бесплатное для пользователей и орагнизаторов культурных событий.',
             supportedby: 'Нас поддерживают:',
             supporteddesc: 'Проект осуществляется с финансовой поддержкой Министерства Культуры эстонии и Фонда Интеграции и Миграции Эстонии.',
             copyright: '©2020 Украинское землячество Силламяэ «Водограй»',

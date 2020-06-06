@@ -16,10 +16,8 @@
                         <b-col cols="3"><img src="/img/birdy10.png"></b-col>
                         <b-col class="separator-text" align-self="center"> <h2>{{$ml.get('separator1')}}</h2></b-col>
                         <b-col cols="3"><img src="/img/birdy11.png"></b-col>
-
-
                     </b-row>
-                    <Slider :events="events"/>
+                    <Slider class="d-none d-xl-flex" :events="events"/>
                     <b-row class="app-data" ref="calendar">
                         <PacyorkyAppData @getSliderEvents="getSliderEvents"/>
                     </b-row>
@@ -149,8 +147,22 @@ border: @primarycolor solid;
                 font-family: Amatic SC;
                 font-style: normal;
                 font-weight: bold;
-                font-size: 60px;
+                font-size: 18px;
                 line-height: 14px;
+                @media (min-width: 768px) {
+                    font-family: Amatic SC;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 40px;
+                    line-height: 14px;
+                }
+                @media (min-width: 1024px) {
+                    font-family: Amatic SC;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 60px;
+                    line-height: 14px;
+                }
             }
         }
     }
@@ -171,15 +183,22 @@ border: @primarycolor solid;
 
 .invert-btn {
     .btn {
-        font-family: Amatic SC;
         margin: 0 20px;
         border-radius: 20px !important;
         background-color:#BDD9DC ;
         color: black;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 24px;
-        line-height: 14px;
+        font-family: Amatic SC;
+        font-style: normal !important;
+        font-weight: bold !important;
+        font-size: 24px !important;
+        line-height: 14px !important;
+        @media (max-width: 768px) {
+            font-family: Amatic SC;
+            font-style: normal !important;
+            font-weight: bold !important;
+            font-size: 18px !important;
+            line-height: 14px !important;
+        }
         &:hover {
             color: white;
             background-color: black;

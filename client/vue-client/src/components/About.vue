@@ -1,28 +1,28 @@
 <template>
     <b-col class="m-3">
         <b-row class="about-us pt-3">
-            <b-col>
+            <b-col class="col-sm-12 mb-sm-3 mb-xl-0 col-xl-4">
                 <div class="about-pane">
                     <h3>{{$ml.get('vodograi')}}</h3>
-                    <p>{{$ml.get('aboutpt1')}}</p>
+                    <p v-html="$ml.get('aboutpt1')"></p>
                     <div class="about-pane-img">
                     <img src="/img/emblema.png" />
                     </div>
                 </div>
             </b-col>
-            <b-col>
+            <b-col class="col-sm-12 mb-sm-3 mb-xl-0 col-xl-4">
                 <div class="about-pane">
                     <h3>{{$ml.get('pacyorky')}}</h3>
-                    <p>{{$ml.get('aboutpt2')}}</p>
+                    <p v-html="$ml.get('aboutpt2')"></p>
                     <div class="about-pane-img">
                         <img src="/img/plogo.png" />
                     </div>
                 </div>
             </b-col>
-            <b-col>
+            <b-col class="col-sm-12 col-xl-4">
                 <div class="about-pane">
                     <h3>{{$ml.get('connectus')}}</h3>
-                    <p>{{$ml.get('aboutpt3')}}</p>
+                    <p v-html="$ml.get('aboutpt3')"></p>
                     <div class="about-pane-img">
                         <img src="/img/laptop-512.png" />
                     </div>
