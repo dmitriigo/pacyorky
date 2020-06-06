@@ -53,7 +53,7 @@ public class MailSenderWelcomeLetterWithHTML implements MailSenderWelcomeLetter 
 
     private String makeBody(String controlString, Long id, String text) {
         URL URL = null;
-        String link = "https://pacyorky.ee/confirm?user=" + id + "&token=" + controlString;
+        String link = "https://pacyorky.ee:3000/confirm?user=" + id + "&token=" + controlString;
         try {
             URL = new URL(link);
         } catch (MalformedURLException e) {

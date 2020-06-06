@@ -18,8 +18,7 @@ public class ConfirmMail {
 
     @GetMapping("/confirm")
     public String confirm(@RequestParam String user, @RequestParam String token, Model model) {
-        if (userService.confirmUser(Long.parseLong(user), token)) model.addAttribute("error", "CONFIRMED");
-        else model.addAttribute("error", "FAILED");
-        return "error";
+        model.addAttribute("confirmed", userService.confirmUser(Long.parseLong(user), token));
+        return "confirmmail";
     }
 }

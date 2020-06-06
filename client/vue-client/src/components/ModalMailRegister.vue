@@ -1,7 +1,7 @@
 <template>
     <b-modal v-model="mailModal" id="jk"  hide-footer size="lg" title="" scrollable centered>
            <template v-slot:modal-header="{ close }" >
-              <col>  <b-button  variant="light" @click="closeModalWindow"><b-icon icon="x" ></b-icon></b-button>  </col>
+              <b-button class="ml-auto"  variant="light" @click="closeModalWindow"><b-icon icon="x" ></b-icon></b-button>
             </template>
         <div class="modal-event-item">
             <b-form v-on:submit.prevent="saveUser">
@@ -35,6 +35,8 @@
                             required
                     ></b-form-select>
                 </b-form-group>
+                <div v-if="infoBlock" style="color: green">success</div>
+                <div v-if="error" style="color: red">{{$ml.get('errormsg')}}</div>
                  <div class="modal-buttons">
                    <b-button type="submit" variant="primary">Submit</b-button>
                    <b-button @click="closeModalWindow">{{$ml.get('close')}}</b-button>
@@ -59,6 +61,9 @@
                 },
                 periods: [],
                 langs: [],
+                infoBlock : false,
+                infoMessage : '',
+                error : false,
             }
         },
         mounted() {
@@ -72,19 +77,30 @@
         },
         methods: {
             closeModalWindow() {
-                this.$emit("closeModalWindow")
+                this.clearToDefault();
+                this.$emit("closeModalWindow");
             },
-            saveUser: function (event) {
+            saveUser: function () {
+                this.clearToDefault();
                 axios.post("/api/add-mail", {
                     eMail : this.form.email,
                     mailLang : this.form.lang,
                     mailSendPeriod : this.form.period}
-                ).then(function (response) {
-                    let data = JSON.parse( response.request.response );
-                    alert (data.message);
-                }).catch(() => {
-                }).then(this.closeModalWindow());
+                ).then((response) => {
+                    this.infoBlock = true;
+                    this.message = response.data.message;
+                    console.log(this.message);
+                    this.error = false;
+                }).catch(error => {
+                    console.log(error);
+                    this.error = true;
+                });
             },
+            clearToDefault () {
+                this.infoBlock = false;
+                this.infoMessage = '';
+                this.error = false;
+            }
         }
     }
 </script>

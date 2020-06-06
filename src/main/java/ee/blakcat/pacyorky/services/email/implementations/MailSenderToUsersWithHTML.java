@@ -1,9 +1,12 @@
 package ee.blakcat.pacyorky.services.email.implementations;
 
+import com.google.common.base.Strings;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.models.PacyorkyUser;
 import ee.blakcat.pacyorky.services.email.MailSender;
 import ee.blakcat.pacyorky.services.email.PacyorkyEventHTMLMailTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -19,6 +22,7 @@ public class MailSenderToUsersWithHTML implements MailSender<PacyorkyEvent> {
     private final String from = "no-reply@pacyorky.ee";
     private JavaMailSender javaMailSender;
     private List<PacyorkyEventHTMLMailTemplate> templates;
+    private final Logger logger = LoggerFactory.getLogger(MailSenderToUsersWithHTML.class);
 
     @Autowired
     public MailSenderToUsersWithHTML(JavaMailSender javaMailSender, List<PacyorkyEventHTMLMailTemplate> templates) {
@@ -59,9 +63,9 @@ public class MailSenderToUsersWithHTML implements MailSender<PacyorkyEvent> {
     private String makeBody(PacyorkyEvent event) {
         URL URL = null;
         try {
-            URL = new URL(event.getCover());
+            if (!Strings.isNullOrEmpty(event.getCover())) URL = new URL(event.getCover());
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            logger.warn(e.toString());
         }
         String eventName = event.getName();
         String place = event.getPlace();
@@ -69,7 +73,7 @@ public class MailSenderToUsersWithHTML implements MailSender<PacyorkyEvent> {
                 " <body>\n" +
                         "  <h1>" + eventName + "</h1>\n" +
                         "  <p>" + place + "</p>\n" +
-                        "<img src=\"" + URL + "\">";
+                        (URL!=null ? "<img src=\"" + URL + "\">" : "");
 
     }
 

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:insert="/header.html :: head"></div>
+<body>
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-content-center align-items-center">
+    <div class="row">
+        <div class="col">
+            <h1 th:if="${confirmed}" style="color: green">Confirmed</h1>
+            <h1 th:if="${!confirmed}" style="color: red">Confirm failed</h1>
+        </div>
+    </div>
+</div>
+</body>
+</html>
