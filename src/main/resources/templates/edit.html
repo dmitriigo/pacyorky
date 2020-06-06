@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:insert="/header.html :: head"></div>
+<body>
+<div th:insert="/nav.html :: nav"></div>
+
+<div class="container-fluid mt-5 mb-5">
+    <div class="jumbotron">
+        <form th:action="'/admin'+${path}" method="post">
+            <div th:each="field : ${data}" class="form-group">
+                <label th:for="${field.key}" th:text="${field.key}"></label>
+                <input type="text" class="form-control" th:name="${field.key}" th:id="${field.key}" th:readonly="${field.key}=='id'" th:value="${field.value}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

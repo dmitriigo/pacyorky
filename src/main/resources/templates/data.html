@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:insert="/header.html :: head"></div>
+<body>
+<div th:insert="/nav.html :: nav"></div>
+
+<div class="container-fluid mt-5 mb-5">
+    <div class="row">
+        <div class="col">
+                <div class="jumbotron" th:each="entity : ${data}">
+                    <p th:text="${entity.toString()}"></p>
+                    <a th:href="'/admin'+${path}+'/'+${entity.getId()}" class="btn btn-info">Edit</a>
+                </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center align-content-center">
+        <a th:href="'/admin'+${path}+'?add=true'" style="color: white" class="btn btn-primary">Add new</a>
+    </div>
+</div>
+
+</body>
+</html>

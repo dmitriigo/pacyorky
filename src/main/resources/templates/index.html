@@ -1,89 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/styles/clndr2.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
-    <script src="/scripts/clndr.min.js"></script>
-    <script src="/scripts/pacyorky.js"></script>
-    <script defer type="text/javascript" th:inline="javascript">
- var event = JSON.parse([[${eventsis}]]);
-        $( document ).ready(function() {
-        console.log(clndr);
-       clndr.addEvents(event);
-});
-    </script>
-</head>
+<div th:insert="/header.html :: head"></div>
 <body>
-
-<div class="container">
- <div id="full-clndr" class="clearfix">
-          <script type="text/template" id="full-clndr-template">
-            <div class="clndr-controls">
-              <div class="clndr-previous-button">&lt;</div>
-              <div class="clndr-next-button">&gt;</div>
-              <div class="current-month"><%= month %> <%= year %></div>
-
-            </div>
-            <div class="clndr-grid">
-              <div class="days-of-the-week clearfix">
-                <% _.each(daysOfTheWeek, function(day) { %>
-                  <div class="header-day"><%= day %></div>
-                <% }); %>
-              </div>
-
-              <div class="days">
-                <% _.each(days, function(day) { %>
-                  <div class="<%= day.classes %>" id="<%= day.id %>"><span class="day-number"><%= day.day %></span></div>
-                <% }); %>
-              </div>
-            </div>
-            <div class="event-listing">
-                <a class="close">Close</a>
-              <div class="event-listing-title">EVENTS THIS MONTH</div>
-              <% _.each(eventsThisMonth, function(event) { %>
-                  <div class="event-item">
-                    <div class="event-item-name"><%= event.title %></div>
-                      <div class="event-item-date"> <%= event.date %></div>
-                    <div class="event-item-location"><%= event.location %></div>
-                      <div class="event-item-description"><%= event.description %></div>
-                      <div class="event-item-link"> <a href="<%= event.link %>" target="_blank">See more</a> </div>
-                  </div>
-                <% }); %>
-            </div>
-          </script>
+<div th:insert="/nav.html :: nav"></div>
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-content-center align-items-center">
+    <div class="row">
+        <div class="col">
+            <h1>Welcome to Pacyorky Admin pane</h1>
         </div>
+    </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<div th:each="event : ${events}">
-    <span th:text="${event.toString()}"></span>
-</div>-->
-
 
 </body>
 </html>
