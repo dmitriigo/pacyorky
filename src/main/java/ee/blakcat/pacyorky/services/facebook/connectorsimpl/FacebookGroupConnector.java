@@ -22,6 +22,6 @@ public class FacebookGroupConnector implements FacebookConnector<Group> {
 
     @Override
     public Collection<Group> getData() {
-        return facebookClient.fetchConnection(appId + "/groups", Group.class).getData();
+        return facebookClient.fetchConnection(appId + "/app_installed_groups", Group.class).getData();
     }
 }
