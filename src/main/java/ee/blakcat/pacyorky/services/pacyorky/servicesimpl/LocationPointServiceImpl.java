@@ -1,6 +1,7 @@
-package ee.blakcat.pacyorky.services.pacyorky;
+package ee.blakcat.pacyorky.services.pacyorky.servicesimpl;
 
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
+import ee.blakcat.pacyorky.services.pacyorky.LocationPointService;
 import fr.dudie.nominatim.client.JsonNominatimClient;
 import fr.dudie.nominatim.client.request.NominatimSearchRequest;
 import fr.dudie.nominatim.model.Address;

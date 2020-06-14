@@ -1,10 +1,11 @@
-package ee.blakcat.pacyorky.services.pacyorky;
+package ee.blakcat.pacyorky.services.pacyorky.servicesimpl;
 
 import ee.blakcat.pacyorky.models.MailLang;
 import ee.blakcat.pacyorky.models.MailSendPeriod;
 import ee.blakcat.pacyorky.models.PacyorkyUser;
 import ee.blakcat.pacyorky.repositories.database.PacyorkyUserRepository;
 import ee.blakcat.pacyorky.services.email.MailSenderWelcomeLetter;
+import ee.blakcat.pacyorky.services.pacyorky.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

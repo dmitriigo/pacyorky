@@ -4,7 +4,7 @@ import com.restfb.types.CoverPhoto;
 import com.restfb.types.Event;
 import com.restfb.types.Place;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
-import ee.blakcat.pacyorky.models.PacyorkyEventOwner;
+import ee.blakcat.pacyorky.models.PacyorkyGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 @Component
 public class FacebookToPacyorkyEventAdapter implements Adapter<Event, PacyorkyEvent> {
 
-    final private Adapter<Event.Owner, PacyorkyEventOwner> pacyorkyEventOwnerAdapter;
+    final private Adapter<Event.Owner, PacyorkyGroup> pacyorkyEventOwnerAdapter;
 
     @Autowired
-    public FacebookToPacyorkyEventAdapter(Adapter<Event.Owner, PacyorkyEventOwner> pacyorkyEventOwnerAdapter) {
+    public FacebookToPacyorkyEventAdapter(Adapter<Event.Owner, PacyorkyGroup> pacyorkyEventOwnerAdapter) {
         this.pacyorkyEventOwnerAdapter = pacyorkyEventOwnerAdapter;
     }
 

@@ -2,6 +2,7 @@ package ee.blakcat.pacyorky.services.facebook.connectorsimpl;
 
 import com.restfb.FacebookClient;
 import com.restfb.types.Group;
+import com.restfb.types.User;
 import ee.blakcat.pacyorky.services.facebook.FacebookConnector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,11 @@ public class FacebookGroupConnector implements FacebookConnector<Group> {
     @Autowired
     public FacebookGroupConnector(FacebookClient facebookClient) {
         this.facebookClient = facebookClient;
+    }
+
+    @Override
+    public Group getOne(String id) {
+        return facebookClient.fetchObject(id, Group.class);
     }
 
     @Override

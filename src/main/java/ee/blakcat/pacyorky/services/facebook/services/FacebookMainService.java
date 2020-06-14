@@ -16,21 +16,15 @@ public class FacebookMainService {
 
     private final FacebookConnector<User> userFacebookConnector;
     private final FacebookService <Event> facebookEventService;
-    private final FacebookService <Account> facebookAccountService;
 
     @Autowired
-    public FacebookMainService(FacebookConnector<User> userFacebookConnector, FacebookService <Event> facebookEventService, FacebookService <Account> facebookAccountService) {
+    public FacebookMainService(FacebookConnector<User> userFacebookConnector, FacebookService <Event> facebookEventService) {
         this.userFacebookConnector = userFacebookConnector;
         this.facebookEventService = facebookEventService;
-        this.facebookAccountService = facebookAccountService;
     }
 
     public Set<Event> getAllowedEvents() {
         return facebookEventService.getAllowedData();
-    }
-
-    public Set<Account> getAllAllowedAccounts() {
-        return facebookAccountService.getAllowedData();
     }
 
     public Set<User> getAllUsers() {

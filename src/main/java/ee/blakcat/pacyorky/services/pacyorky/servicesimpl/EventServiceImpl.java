@@ -1,7 +1,8 @@
-package ee.blakcat.pacyorky.services.pacyorky;
+package ee.blakcat.pacyorky.services.pacyorky.servicesimpl;
 
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
+import ee.blakcat.pacyorky.services.pacyorky.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

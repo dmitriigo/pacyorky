@@ -1,7 +1,9 @@
 package ee.blakcat.pacyorky.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +13,8 @@ public class FacebookUser {
     private String id;
     private String name;
     private boolean access;
+    @OneToOne (cascade = CascadeType.ALL)
+    private AccessToken accessToken;
 
     public FacebookUser() {
     }
@@ -61,5 +65,13 @@ public class FacebookUser {
 
     public void setAccess(boolean access) {
         this.access = access;
+    }
+
+    public AccessToken getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(AccessToken accessToken) {
+        this.accessToken = accessToken;
     }
 }

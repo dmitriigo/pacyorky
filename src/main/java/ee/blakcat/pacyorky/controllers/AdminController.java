@@ -78,7 +78,6 @@ public class AdminController {
     }
 
     @PostMapping("/mail-users")
-    @Transactional
     public String editMailUser(@RequestParam String mail, @RequestParam(required = false) String id, @RequestParam String control,
                                @RequestParam String confirmed, @RequestParam String lang, @RequestParam String period, Model model, HttpSession session) {
         if (pacyorkyAdminRepository.findBySession(session.getId()) == null) return "login";

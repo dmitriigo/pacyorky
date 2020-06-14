@@ -14,13 +14,13 @@ public class PacyorkyEvent {
     @Column(length = 2048)
     private String description;
     private Date startTime, endTime;
-    @ManyToOne(targetEntity = PacyorkyEventOwner.class, cascade = CascadeType.ALL)
-    private PacyorkyEventOwner pacyorkyEventOwner;
+    @ManyToOne(targetEntity = PacyorkyGroup.class, cascade = CascadeType.ALL)
+    private PacyorkyGroup pacyorkyEventOwner;
     private District district;
     private double lat, lng;
     private String cover;
 
-    public PacyorkyEvent(String place, String description, String name, String facebookId, Date startTime, Date endTime, PacyorkyEventOwner pacyorkyEventOwner, String cover) {
+    public PacyorkyEvent(String place, String description, String name, String facebookId, Date startTime, Date endTime, PacyorkyGroup pacyorkyEventOwner, String cover) {
         this.id = facebookId;
         this.place = place;
         this.description = description;
@@ -120,11 +120,11 @@ public class PacyorkyEvent {
         this.endTime = endTime;
     }
 
-    public PacyorkyEventOwner getPacyorkyEventOwner() {
+    public PacyorkyGroup getPacyorkyEventOwner() {
         return pacyorkyEventOwner;
     }
 
-    public void setPacyorkyEventOwner(PacyorkyEventOwner pacyorkyEventOwner) {
+    public void setPacyorkyEventOwner(PacyorkyGroup pacyorkyEventOwner) {
         this.pacyorkyEventOwner = pacyorkyEventOwner;
     }
 

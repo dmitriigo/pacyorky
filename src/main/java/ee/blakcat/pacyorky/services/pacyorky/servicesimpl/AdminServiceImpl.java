@@ -1,7 +1,8 @@
-package ee.blakcat.pacyorky.services.pacyorky;
+package ee.blakcat.pacyorky.services.pacyorky.servicesimpl;
 
 import ee.blakcat.pacyorky.models.PacyorkyAdmin;
 import ee.blakcat.pacyorky.repositories.database.PacyorkyAdminRepository;
+import ee.blakcat.pacyorky.services.pacyorky.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Service
-public class AdminServiceImpl  implements AdminService{
+public class AdminServiceImpl  implements AdminService {
     private final PacyorkyAdminRepository pacyorkyAdminRepository;
 private final PasswordEncoder passwordEncoder;
 

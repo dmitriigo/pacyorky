@@ -12,6 +12,7 @@ public class PacyorkyUser {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private long id;
+    @Column (unique = true)
     private String eMail;
     private MailLang mailLang;
     private MailSendPeriod mailSendPeriod;

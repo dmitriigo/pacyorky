@@ -4,30 +4,52 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.types.Event;
 import com.restfb.types.Group;
+import ee.blakcat.pacyorky.models.FacebookUser;
+import ee.blakcat.pacyorky.models.PacyorkyGroup;
 import ee.blakcat.pacyorky.services.facebook.FacebookService;
+import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+@Service
 public class FacebookEventServiceFromGroup implements FacebookService<Event> {
     private final FacebookClient facebookClient;
-    private final FacebookService<Group> facebookService;
+    private final PacyorkyGroupService pacyorkyGroupService;
 
     @Autowired
-    public FacebookEventServiceFromGroup(FacebookClient facebookClient, FacebookService<Group> facebookService) {
+    public FacebookEventServiceFromGroup(FacebookClient facebookClient, PacyorkyGroupService pacyorkyGroupService) {
         this.facebookClient = facebookClient;
-        this.facebookService = facebookService;
+        this.pacyorkyGroupService = pacyorkyGroupService;
     }
 
     @Override
     public Set<Event> getAllowedData() {
-        Set <Group> groups = facebookService.getAllowedData();
+        Set <PacyorkyGroup> groups = pacyorkyGroupService.findAllAllowed();
         Set <Event> events = new HashSet<>();
-        for (Group group : groups) {
-            events.addAll(facebookClient.fetchConnection(group.getId() + "/events", Event.class, Parameter.with("fields",
-                    "cover,description,end_time,name,owner,place,start_time"
-            )).getData());
+        for (PacyorkyGroup group : groups) {
+            Set<FacebookUser> facebookUsers = group.getFacebookUsers();
+            for (FacebookUser facebookUser : facebookUsers) {
+                try {
+                   FacebookClient client = facebookClient.createClientWithAccessToken(facebookUser.getAccessToken().getToken());
+                  List<Event> fromFB = client.fetchConnection(group.getId() + "/events", Event.class, Parameter.with("fields",
+                           "cover,description,end_time,name,owner,place,start_time"
+                   )).getData();
+                  fromFB.forEach(event -> {
+                      Event.Owner owner = new Event.Owner();
+                      owner.setId(group.getId());
+                      owner.setName(group.getName());
+                      event.setOwner(owner);
+                  });
+                  events.addAll(fromFB);
+                   break;
+                } catch (Exception e) {
+                    System.out.println("wrong token");
+                }
+            }
         }
         return events;
     }

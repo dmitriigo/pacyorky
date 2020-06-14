@@ -5,7 +5,9 @@ import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
 import ee.blakcat.pacyorky.repositories.database.FacebookUserRepositoryJPA;
 import ee.blakcat.pacyorky.services.email.MailService;
+import ee.blakcat.pacyorky.services.pacyorky.FacebookUserService;
 import ee.blakcat.pacyorky.services.pacyorky.LocationPointService;
+import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,25 +24,28 @@ import java.util.stream.Collectors;
 @EnableScheduling
 public class UpdateServiceImpl implements UpdateService {
     private final EventRepositoryJPA eventRepositoryJPA;
-    private final FacebookUserRepositoryJPA faceBookUserRepositoryJPA;
     private final PacyorkyService pacyorkyService;
     private final LocationPointService locationPointService;
     private final Logger logger = LoggerFactory.getLogger(UpdateServiceImpl.class);
     private final MailService<PacyorkyEvent> mailService;
+    private final PacyorkyGroupService pacyorkyGroupService;
+    private final FacebookUserService facebookUserService;
 
     @Autowired
-    public UpdateServiceImpl(EventRepositoryJPA eventRepositoryJPA, FacebookUserRepositoryJPA faceBookUserRepositoryJPA, PacyorkyService pacyorkyService, LocationPointService locationPointService, MailService<PacyorkyEvent> mailService) {
+    public UpdateServiceImpl(EventRepositoryJPA eventRepositoryJPA, PacyorkyService pacyorkyService, LocationPointService locationPointService, MailService<PacyorkyEvent> mailService, PacyorkyGroupService pacyorkyGroupService, FacebookUserService facebookUserService) {
         this.eventRepositoryJPA = eventRepositoryJPA;
-        this.faceBookUserRepositoryJPA = faceBookUserRepositoryJPA;
         this.pacyorkyService = pacyorkyService;
         this.locationPointService = locationPointService;
         this.mailService = mailService;
+        this.pacyorkyGroupService = pacyorkyGroupService;
+        this.facebookUserService = facebookUserService;
     }
 
     @Override
     //@Scheduled(fixedRate = 1800000)
     public void updateAll() {
-        updateUsers();
+       pacyorkyGroupService.updateGroups();
+       facebookUserService.updateUsers();
         updateEvents();
     }
 
@@ -48,16 +53,6 @@ public class UpdateServiceImpl implements UpdateService {
         mailService.updateTask(events);
     }
 
-    private void updateUsers() {
-        Set<FacebookUser> userSet = pacyorkyService.getUsers();
-        logger.info("Users for update: " + userSet.size());
-        Set<String> userAtDBId = faceBookUserRepositoryJPA.findAll().stream().map(FacebookUser::getId).collect(Collectors.toSet());
-        for (FacebookUser user : userSet) {
-            if (!userAtDBId.contains(user.getId())) {
-                faceBookUserRepositoryJPA.save(user);
-            }
-        }
-    }
 
     private void updateEvents() {
         List<String> eventsIDs = eventRepositoryJPA.findAll().stream().map(PacyorkyEvent::getId).collect(Collectors.toList());
