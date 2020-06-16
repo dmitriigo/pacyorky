@@ -1,17 +1,19 @@
 package ee.blakcat.pacyorky.controllers;
 
-import ee.blakcat.pacyorky.services.pacyorky.FacebookUserService;
+import ee.blakcat.pacyorky.dto.GroupAnswerDTO;
+import ee.blakcat.pacyorky.dto.GroupDTO;
+import ee.blakcat.pacyorky.models.PacyorkyGroup;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-@Controller
+@RestController
 @RequestMapping ("/join")
 public class JoinController {
 
@@ -22,26 +24,25 @@ public class JoinController {
         this.pacyorkyGroupService = pacyorkyGroupService;
     }
 
-    @GetMapping("/first-step")
-    public String firstStep () {
-        return "/join/first-step";
+
+    @GetMapping("/thirdstep")
+    public Set<GroupDTO> thirdStep() {
+       pacyorkyGroupService.updateGroups();
+        Set<PacyorkyGroup> pacyorkyGroups = pacyorkyGroupService.findAll();
+        Set<GroupDTO> groups = new HashSet<>();
+        for (PacyorkyGroup pacyorkyGroup : pacyorkyGroups) {
+            groups.add(new GroupDTO(pacyorkyGroup.getName(), pacyorkyGroup.getId()));
+        }
+        return groups;
     }
 
-    @GetMapping("/second-step")
-    public String secondStep () {
-        return "/join/second-step";
-    }
-
-    @GetMapping("/third-step")
-    public String thirdStep(Model model) {
-        pacyorkyGroupService.updateGroups();
-        model.addAttribute("groups", pacyorkyGroupService.findAll());
-        return "/join/third-step";
-    }
-
-    @PostMapping("/four-step")
-    public String fourStep (@RequestParam String id,  @RequestParam String link, @RequestParam String groupId) {
+    @PostMapping("/fourstep")
+    public String fourStep (@RequestBody GroupAnswerDTO groupAnswerDTO) {
+        String link = groupAnswerDTO.getUrl();
+        String id = groupAnswerDTO.getUserId();
+        String groupId = groupAnswerDTO.getGroupId();
        link = link.split("#", 2)[1];
+        System.out.println(link);
        String [] params = link.split("&");
         Map<String, String> paramsMap = new HashMap<>();
         for (String param : params) {
@@ -51,6 +52,6 @@ public class JoinController {
         String token = paramsMap.get("access_token");
         if (StringUtils.isEmpty(token)||StringUtils.isEmpty(id)||StringUtils.isEmpty(groupId)) return "error";
         if (!pacyorkyGroupService.saveGroup(id, token, groupId)) return "error";
-        return "/join/four-step";
+        return "fourstep";
     }
 }

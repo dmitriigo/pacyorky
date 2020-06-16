@@ -21,4 +21,5 @@ public class ConfirmMail {
         model.addAttribute("confirmed", userService.confirmUser(Long.parseLong(user), token));
         return "confirmmail";
     }
+
 }

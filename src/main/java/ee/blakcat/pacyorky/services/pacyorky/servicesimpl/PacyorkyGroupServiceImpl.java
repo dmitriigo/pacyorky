@@ -9,6 +9,7 @@ import ee.blakcat.pacyorky.services.pacyorky.FacebookUserService;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +30,7 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
     }
 
     @Override
+    @Transactional
     public void updateGroups() {
         Set<Group> groups = facebookService.getAllowedData();
         List<String> groupsAtDBId = pacyorkyGroupRepositoryJPA.findAll().stream().map(PacyorkyGroup::getId).collect(Collectors.toList());

@@ -10,6 +10,7 @@ import ee.blakcat.pacyorky.services.facebook.FacebookService;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -27,6 +28,7 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
     }
 
     @Override
+    @Transactional
     public Set<Event> getAllowedData() {
         Set <PacyorkyGroup> groups = pacyorkyGroupService.findAllAllowed();
         Set <Event> events = new HashSet<>();

@@ -2,8 +2,8 @@ spring:
   mail:
     host: pacyorky.ee
     port: 587
-    username: no-reply@pacyorky.ee
-    password: xD7bS7vXhIXkdJdI
+    username: ${MAIL_USER:no-reply@pacyorky.ee}
+    password: ${MAIL_PASS:8hLcHdkk9U2cWzZ4}
 
   datasource:
     driver-class-name: org.postgresql.Driver

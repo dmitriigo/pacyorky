@@ -1,8 +1,6 @@
 package ee.blakcat.pacyorky.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +10,7 @@ public class PacyorkyGroup {
     private String id;
     private boolean allowed;
     private String name;
-    @OneToMany
+    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<FacebookUser> facebookUsers;
 
 

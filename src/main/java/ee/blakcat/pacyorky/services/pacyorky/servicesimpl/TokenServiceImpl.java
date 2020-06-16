@@ -48,7 +48,7 @@ public class TokenServiceImpl implements TokenService {
         return tokenForReturn;
     }
 
-    @Scheduled (fixedDelay = 100000)
+    @Scheduled (cron = "0 0 18 1 * ?")
     public void updateTokens() {
         Set<FacebookUser> facebookUsers = new HashSet<>(facebookUserRepositoryJPA.findAll());
         for (FacebookUser facebookUser : facebookUsers) {
