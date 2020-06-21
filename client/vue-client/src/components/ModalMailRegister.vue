@@ -7,19 +7,18 @@
             <b-form v-on:submit.prevent="saveUser">
                 <b-form-group
                         id="input-group-1"
-                        label="Email address:"
+                        :label="$ml.get('email')"
                         label-for="input-1"
-                        description="We'll never share your email with anyone else."
                 >
                     <b-form-input
                             id="input-1"
                             v-model="form.email"
                             type="email"
                             required
-                            placeholder="Enter email"
+                            :placeholder="$ml.get('email')"
                     ></b-form-input>
                 </b-form-group>
-                <b-form-group id="input-group-2" label="Lang" label-for="input-3">
+                <b-form-group id="input-group-2" :label="$ml.get('lang')" label-for="input-3">
                     <b-form-select
                             id="input-2"
                             v-model="form.lang"
@@ -27,7 +26,7 @@
                             required
                     ></b-form-select>
                 </b-form-group>
-                <b-form-group id="input-group-3" label="Period:" label-for="input-3">
+                <b-form-group id="input-group-3" :label="$ml.get('period')" label-for="input-3">
                     <b-form-select
                             id="input-3"
                             v-model="form.period"
@@ -38,7 +37,7 @@
                 <div v-if="infoBlock" style="color: green">success</div>
                 <div v-if="error" style="color: red">{{$ml.get('errormsg')}}</div>
                  <div class="modal-buttons">
-                   <b-button type="submit" variant="primary">Submit</b-button>
+                   <b-button type="submit" variant="primary">{{$ml.get('submit')}}</b-button>
                    <b-button @click="closeModalWindow">{{$ml.get('close')}}</b-button>
                  </div>
             </b-form>
@@ -69,7 +68,10 @@
         mounted() {
             axios.get('/api/mail-variant').then(response => {
                 this.langs = response.data.mailLangs;
-                this.periods = response.data.mailSendPeriods;
+                let p = response.data.mailSendPeriods;
+                for (const period of p) {
+                    this.periods.push({text : this.$ml.get(period.toLowerCase()), value : period});
+                }
             })
         },
         props: {

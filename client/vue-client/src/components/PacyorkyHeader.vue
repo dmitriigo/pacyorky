@@ -4,7 +4,7 @@
 
             <b-row align-content="center" align-h="center" align-v="center" class="header-logo mt-5 pt-5 col-md-12 pt-md-5 pt-sm-0 m-md-0 col-sm-3 m-0 p-0">
                 <b-col align-self="center" class="d-flex justify-content-center align-content-center pt-5 mt-5">
-                <img class="mt-md-5 p-md-5 pt-5 mt-5" src="/img/Illustration.png"/>
+                <img class="mt-md-5 p-md-5 pt-5 mt-5" :src="'/img/Illustration-'+$ml.current+'.png'"/>
                 </b-col>
             </b-row>
 

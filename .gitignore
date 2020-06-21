@@ -4,3 +4,5 @@ Pacyorky.iml
 /client/vue-client (копия)
 /client/vue-client/node_modules
 /client/vue-client/public/img
+.gitignore
+/src/main/resources/application.yml

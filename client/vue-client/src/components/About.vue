@@ -34,8 +34,8 @@
         <b-row class="p-3 pt-5">
             <b-col align="center"><img style="width: 40%" src="/img/is_logo.png" alt=""></b-col>
             <b-col>
-                <h3>{{$ml.get('supportedby')}}</h3>
-                <p>{{$ml.get('supporteddesc')}}</p>
+                <h3 style="font-family: Amatic SC; text-align: center; font-weight: bold;">{{$ml.get('supportedby')}}</h3>
+                <p style="text-align: center">{{$ml.get('supporteddesc')}}</p>
             </b-col>
             <b-col align="center"><img style="width: 70%" src="/img/ee.png" alt=""></b-col>
         </b-row>

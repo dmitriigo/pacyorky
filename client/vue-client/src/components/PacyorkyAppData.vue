@@ -63,7 +63,8 @@
                 this.districtShow=false;
             },
             getSliderEvents() {
-                this.$emit("getSliderEvents", this.events);
+                let sliderEvents = this.events.filter(event => new Date(event.date) >= Date.now())
+                this.$emit("getSliderEvents", sliderEvents);
             },
             trimToDistrict(district) {
                 this.eventsForMap = this.events.filter(event => ('district'+event.district.id) === district);
@@ -90,6 +91,7 @@
                axios.get('/api/events')
                     .then(response => {
                         this.events = response.data;
+                        this.events.sort((event1, event2) => new Date(event2.date)-new Date(event1.date));
                         this.eventsForList = this.events;
                         this.eventsForCalendar = this.events;
                         this.eventsForMap = this.events;

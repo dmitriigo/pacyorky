@@ -2,7 +2,7 @@
 module.exports = {
     // options...
     devServer: {
-        proxy: 'http://localhost:3000',
+        proxy: 'http://pacyorky.ee:3000',
     },
     css: {
         loaderOptions: {

@@ -24,12 +24,12 @@
             </b-dropdown-item>
         </b-dropdown>
                  <div class="ml-4">
-                     <a href="https://www.facebook.com/groups/sillamaevodograi" target="_blank" class="ml-2 mr-2" style="color: black">  <font-awesome-icon   :icon="['fab', 'facebook-square']" /> </a>
+                     <a href="https://www.facebook.com/vodograi.estonia/" target="_blank" class="ml-2 mr-2" style="color: black">  <font-awesome-icon   :icon="['fab', 'facebook-square']" /> </a>
                    <!--рассылка-->
                      <b-link @click="openModalWindow" class="ml-2 mr-2" style="color: black">  <font-awesome-icon  :icon="['far', 'bell']" /></b-link>
                      <a href="mailto:info@pacyorky.ee"  class="ml-2 mr-2" style="color: black"> <font-awesome-icon  :icon="['far', 'envelope']" /></a>
-                     <a href="https://www.facebook.com/vodograi.estonia/" class="ml-2 mr-2" style="color: black"> <font-awesome-icon  :icon="['far', 'thumbs-up']" /></a>
-                     <a href="#" class="ml-2 mr-2" style="color: black"> <font-awesome-icon :icon="['fas', 'share-alt']" /></a>
+                     <a href="https://www.facebook.com/pacyorky.ee/" target="_blank" class="ml-2 mr-2" style="color: black"> <font-awesome-icon  :icon="['far', 'thumbs-up']" /></a>
+                     <a href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&u=https%3A%2F%2Fwww.facebook.com%2Fpacyorky.ee%2F&display=popup&ref=plugin&src=share_button" class="ml-2 mr-2" style="color: black"> <font-awesome-icon :icon="['fas', 'share-alt']" /></a>
                  </div>
              </b-navbar-nav>
 

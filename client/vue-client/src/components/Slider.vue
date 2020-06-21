@@ -5,7 +5,7 @@
                 :autoplay="aplay"
                 :autoplay-timeout="2000"
                 :per-page="3"
-                :scroll-per-page="false"
+                :scroll-per-page="true"
                 :loop="true"
         >
             <slide v-for="event in sliderEvents" :key="event.id">
@@ -42,7 +42,7 @@
         mounted() {
             //slider css fix
             setTimeout(() => {
-                this.aplay = false;
+                this.aplay = true;
             }, 1000);
         }
     }
@@ -60,7 +60,7 @@
         height: 90%;
     }
     .slider-event-link {
-        height: 10%;
+        height: 20%;
     }
     .slider {
         background-color: white;
@@ -73,7 +73,7 @@
         align-items: center;
         img {
             width: 50%;
-            height: 90%;
+            height: 80%;
         }
         h2 {
             font-family: Amatic SC;
