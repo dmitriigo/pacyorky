@@ -6,6 +6,7 @@ import SecondStep from "./components/SecondStep";
 import ThirdStep from "./components/ThirdStep";
 import FourStep from "./components/FourStep";
 import Admin from "./components/Admin";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 
 Vue.use(Router)
 
@@ -35,6 +36,10 @@ export default new Router ({
         {
             path: "/groups",
             component: Admin
+        },
+        {
+            path: "/privacy_policy",
+            component: PrivacyPolicy
         }
     ]
 })

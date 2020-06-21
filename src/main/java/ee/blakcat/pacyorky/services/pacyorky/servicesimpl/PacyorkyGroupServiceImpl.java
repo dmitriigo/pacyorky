@@ -39,10 +39,8 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
             if (groupsAtDBId.contains(group.getId())) {
                pacyorkyGroup = pacyorkyGroupRepositoryJPA.getOne(group.getId());
             } else {
-                pacyorkyGroup = new PacyorkyGroup();
-                pacyorkyGroup.setFacebookUsers(new HashSet<>());
+                pacyorkyGroup = createGroup(group.getId());
             }
-            pacyorkyGroup.setId(group.getId());
             pacyorkyGroup.setName(group.getName());
             pacyorkyGroupRepositoryJPA.save(pacyorkyGroup);
         }
