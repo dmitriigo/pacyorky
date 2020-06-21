@@ -3,7 +3,6 @@ package ee.blakcat.pacyorky.services.facebook.services;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.types.Event;
-import com.restfb.types.Group;
 import ee.blakcat.pacyorky.models.FacebookUser;
 import ee.blakcat.pacyorky.models.PacyorkyGroup;
 import ee.blakcat.pacyorky.services.facebook.FacebookService;
@@ -11,6 +10,8 @@ import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.Set;
 public class FacebookEventServiceFromGroup implements FacebookService<Event> {
     private final FacebookClient facebookClient;
     private final PacyorkyGroupService pacyorkyGroupService;
-
+    private final Logger logger = LoggerFactory.getLogger(FacebookEventServiceFromGroup.class);
     @Autowired
     public FacebookEventServiceFromGroup(FacebookClient facebookClient, PacyorkyGroupService pacyorkyGroupService) {
         this.facebookClient = facebookClient;
@@ -49,7 +50,7 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
                   events.addAll(fromFB);
                    break;
                 } catch (Exception e) {
-                    System.out.println("wrong token");
+                    logger.error("wrong token, exception: " + e.toString());
                 }
             }
         }

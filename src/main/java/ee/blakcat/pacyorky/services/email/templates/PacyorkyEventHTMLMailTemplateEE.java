@@ -4,7 +4,8 @@ import ee.blakcat.pacyorky.models.MailLang;
 import ee.blakcat.pacyorky.services.email.PacyorkyEventHTMLMailTemplate;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -15,7 +16,7 @@ public class PacyorkyEventHTMLMailTemplateEE implements PacyorkyEventHTMLMailTem
     private final String title = "Tere! Pasyorky on järgmised uued sündmused:\n";
     private final MailLang mailLang = MailLang.EE;
     private final String footer = "Parimate soovidega";
-
+    private final Logger logger = LoggerFactory.getLogger(PacyorkyEventHTMLMailTemplateEE.class);
 
 
     @Override
@@ -25,7 +26,7 @@ public class PacyorkyEventHTMLMailTemplateEE implements PacyorkyEventHTMLMailTem
             message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             message.setSubject("Uued üritused!");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            logger.error("can not create mimeMessageHelper: " + e.toString());
         }
         return message;
     }

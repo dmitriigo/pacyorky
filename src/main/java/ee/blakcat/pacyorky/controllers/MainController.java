@@ -13,7 +13,8 @@ import ee.blakcat.pacyorky.services.updateData.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,12 +25,12 @@ public class MainController {
     private final EventService eventService;
     private final ObjectMapper objectMapper;
     private final UserService userService;
+    private final Logger logger = LoggerFactory.getLogger(MainController.class);
     @Value("${updateSecret}")
     private String updateKey;
 
     @Autowired
     public MainController(UpdateService updateService, EventService eventService, ObjectMapper objectMapper, UserService userService) {
-
         this.updateService = updateService;
         this.eventService = eventService;
         this.objectMapper = objectMapper;
@@ -48,7 +49,7 @@ public class MainController {
         try {
             return objectMapper.writeValueAsString(variantDTO);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.error("error in mail variants, exception: " + e.toString());
         }
         return null;
     }
@@ -59,7 +60,7 @@ public class MainController {
         try {
             eventDto = objectMapper.writeValueAsString(new EventDTO(eventService.findById(id)));
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("can not get one event id = " + id + ", exception: " + e.toString());
         }
         return eventDto;
     }
@@ -71,7 +72,7 @@ public class MainController {
         try {
             eventsDTO = objectMapper.writeValueAsString(events.stream().map(EventDTO::new).collect(Collectors.toList()));
         } catch (Throwable e) {
-            e.printStackTrace();
+            logger.error("can not get events, exception: " + e.toString());
         }
 
         return eventsDTO;
@@ -85,6 +86,7 @@ public class MainController {
                 updateService.updateAll();
                 return true;
             } catch (Exception e) {
+                logger.error("update exception: " + e.toString());
                 return false;
             }
         }

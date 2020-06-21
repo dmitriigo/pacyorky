@@ -7,6 +7,8 @@ import ee.blakcat.pacyorky.repositories.database.PacyorkyGroupRepositoryJPA;
 import ee.blakcat.pacyorky.services.facebook.FacebookService;
 import ee.blakcat.pacyorky.services.pacyorky.FacebookUserService;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +23,7 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
     private final FacebookService<Group> facebookService;
     private final PacyorkyGroupRepositoryJPA pacyorkyGroupRepositoryJPA;
     private final FacebookUserService facebookUserService;
-
+    private final Logger logger = LoggerFactory.getLogger(PacyorkyGroupServiceImpl.class);
     @Autowired
     public PacyorkyGroupServiceImpl(FacebookService<Group> facebookService, PacyorkyGroupRepositoryJPA pacyorkyGroupRepositoryJPA, FacebookUserService facebookUserService) {
         this.facebookService = facebookService;
@@ -52,7 +54,8 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
         if (facebookUser==null) facebookUser = facebookUserService.addUser(userId, token);
         PacyorkyGroup pacyorkyGroup = pacyorkyGroupRepositoryJPA.findById(groupId).orElse(createGroup(groupId));
         if (pacyorkyGroup==null) {
-            throw new RuntimeException("Group id is wrong!");
+            logger.error("Group id=" + groupId + " is wrong!");
+            throw new RuntimeException();
         }
         if (pacyorkyGroup.getFacebookUsers()==null) pacyorkyGroup.setFacebookUsers(new HashSet<>());
         pacyorkyGroup.addUser(facebookUser);

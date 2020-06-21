@@ -8,10 +8,11 @@ import fr.dudie.nominatim.model.Address;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @Service
 public class LocationPointServiceImpl implements LocationPointService {
-
+    private final Logger logger = LoggerFactory.getLogger(LocationPointServiceImpl.class);
     public PacyorkyEvent updateLocationPoint(PacyorkyEvent pacyorkyEvent) {
         HttpClient httpClient = HttpClientBuilder.create().build();
         JsonNominatimClient jsonNominatimClient = new JsonNominatimClient(httpClient, "info@pacyorky.ee");
@@ -22,6 +23,7 @@ public class LocationPointServiceImpl implements LocationPointService {
             pacyorkyEvent.setLat(tempaddress.getLatitude());
             pacyorkyEvent.setLng(tempaddress.getLongitude());
         } catch (Exception e) {
+            logger.warn("can't updateLocationPoint for pacyorkyEvent id: " + pacyorkyEvent.getId() + ", exception: " + e.toString());
             pacyorkyEvent.setLng(0);
             pacyorkyEvent.setLat(0);
         }

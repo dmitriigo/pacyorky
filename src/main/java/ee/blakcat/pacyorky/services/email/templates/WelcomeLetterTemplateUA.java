@@ -4,7 +4,8 @@ import ee.blakcat.pacyorky.models.MailLang;
 import ee.blakcat.pacyorky.services.email.WelcomeLetterTemplate;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -15,6 +16,7 @@ public class WelcomeLetterTemplateUA implements WelcomeLetterTemplate {
     private final MailLang mailLang = MailLang.UA;
     private final String footer = "З повагою";
     private final String link ="посилання";
+    private final Logger logger = LoggerFactory.getLogger(WelcomeLetterTemplateUA.class);
     @Override
     public MimeMessageHelper getTemplate(MimeMessage mimeMessage) {
         MimeMessageHelper message = null;
@@ -22,7 +24,7 @@ public class WelcomeLetterTemplateUA implements WelcomeLetterTemplate {
             message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             message.setSubject("Підтвердження реєстрації");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            logger.error("can not create mimeMessageHelper: " + e.toString());
         }
         return message;
     }

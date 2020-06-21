@@ -4,7 +4,8 @@ import ee.blakcat.pacyorky.models.MailLang;
 import ee.blakcat.pacyorky.services.email.WelcomeLetterTemplate;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -15,7 +16,7 @@ public class WelcomeLetterTemplateEE implements WelcomeLetterTemplate {
     private final MailLang mailLang = MailLang.EE;
     private final String footer = "Parimate soovidega";
     private final String link = "linki";
-
+    private final Logger logger = LoggerFactory.getLogger(WelcomeLetterTemplateEE.class);
     @Override
     public MimeMessageHelper getTemplate(MimeMessage mimeMessage) {
         MimeMessageHelper message = null;
@@ -23,7 +24,7 @@ public class WelcomeLetterTemplateEE implements WelcomeLetterTemplate {
             message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             message.setSubject("Registreerimise kinnitus");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            logger.error("can not create mimeMessageHelper: " + e.toString());
         }
         return message;
     }

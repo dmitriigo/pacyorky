@@ -8,7 +8,8 @@ import ee.blakcat.pacyorky.services.pacyorky.FacebookUserService;
 import ee.blakcat.pacyorky.services.pacyorky.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class FaceBookUserServiceImpl implements FacebookUserService {
     private final FacebookUserRepositoryJPA facebookUserRepositoryJPA;
     private final FacebookConnector<User> facebookConnector;
     private final TokenService tokenService;
-
+    private final Logger logger = LoggerFactory.getLogger(FaceBookUserServiceImpl.class);
     @Autowired
     public FaceBookUserServiceImpl(FacebookUserRepositoryJPA facebookUserRepositoryJPA, FacebookConnector<User> facebookConnector, TokenService tokenService) {
         this.facebookUserRepositoryJPA = facebookUserRepositoryJPA;
@@ -33,9 +34,13 @@ public class FaceBookUserServiceImpl implements FacebookUserService {
             User remoteUser = facebookConnector.getOne(facebookUser.getId());
             if (remoteUser!=null) {
                 facebookUser.setName(remoteUser.getName());
-            } else throw new RuntimeException("Wrong user id!");
+            } else {
+                logger.error("Wrong user id=" + facebookUser.getId());
+                throw new RuntimeException();
+            }
             facebookUserRepositoryJPA.save(facebookUser);
         }
+        logger.info("Users update: " + facebookUserSet.size());
     }
 
     @Override
