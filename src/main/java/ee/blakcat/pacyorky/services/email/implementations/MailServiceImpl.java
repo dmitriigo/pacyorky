@@ -7,6 +7,8 @@ import ee.blakcat.pacyorky.repositories.database.PacyorkyUserRepository;
 import ee.blakcat.pacyorky.services.email.MailSender;
 import ee.blakcat.pacyorky.services.email.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
+@EnableScheduling
 public class MailServiceImpl implements MailService<PacyorkyEvent> {
 
     private final PacyorkyUserRepository pacyorkyUserRepository;
@@ -35,6 +38,16 @@ public class MailServiceImpl implements MailService<PacyorkyEvent> {
                 if (user.getPacyorkyEventsToSend() == null) user.setPacyorkyEventsToSend(new HashSet<>());
                 user.getPacyorkyEventsToSend().addAll(events);
                 pacyorkyUserRepository.save(user);
+            }
+        }
+    }
+
+    @Scheduled(cron = "0 0 10 * * MON")
+    public void scheduledSender() {
+        List<PacyorkyUser> users = pacyorkyUserRepository.findAllByConfirmedIsTrue();
+        for (PacyorkyUser user : users) {
+            if (user.getMailSendPeriod()==MailSendPeriod.WEEKLY) {
+                sendToOneUser(user.getPacyorkyEventsToSend(), user);
             }
         }
     }

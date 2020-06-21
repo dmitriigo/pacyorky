@@ -12,6 +12,7 @@ import ee.blakcat.pacyorky.services.pacyorky.UserService;
 import ee.blakcat.pacyorky.services.updateData.UpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -89,5 +90,10 @@ public class MainController {
             }
         }
         return false;
+    }
+
+    @GetMapping("/confirm")
+    public boolean confirm(@RequestParam String user, @RequestParam String token) {
+       return userService.confirmUser(Long.parseLong(user), token);
     }
 }

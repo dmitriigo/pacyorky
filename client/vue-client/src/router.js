@@ -8,6 +8,7 @@ import FourStep from "./components/FourStep";
 import Admin from "./components/Admin";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import MobileMain from "./components/MobileMain";
+import MailConfirmation from "./components/MailConfirmation";
 
 Vue.use(Router)
 
@@ -61,6 +62,13 @@ export default new Router ({
             components: {
                 desktop:  PrivacyPolicy,
                 mobile:  PrivacyPolicy
+            }
+        },
+        {
+            path: "/confirmmail",
+            components: {
+                desktop:  MailConfirmation,
+                mobile:  MailConfirmation
             }
         }
     ]
