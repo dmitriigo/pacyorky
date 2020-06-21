@@ -18,7 +18,6 @@ public class PacyorkyGroup {
     }
 
     public PacyorkyGroup(String name) {
-        this.allowed=false;
         this.facebookUsers=new HashSet<>();
         this.name=name;
     }

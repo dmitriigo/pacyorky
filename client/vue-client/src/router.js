@@ -7,6 +7,7 @@ import ThirdStep from "./components/ThirdStep";
 import FourStep from "./components/FourStep";
 import Admin from "./components/Admin";
 import PrivacyPolicy from "./components/PrivacyPolicy";
+import MobileMain from "./components/MobileMain";
 
 Vue.use(Router)
 
@@ -15,31 +16,52 @@ export default new Router ({
     routes: [
         {
             path: '',
-            component: PacyorkyApplication
+            components: {
+               desktop:  PacyorkyApplication,
+                mobile:  MobileMain
+            }
         },
         {
             path: '/firststep',
-            component: FirstStep
+            components: {
+                desktop:  FirstStep,
+                mobile:  FirstStep
+            }
         },
         {
             path: '/secondstep',
-            component: SecondStep
+            components: {
+                desktop:  SecondStep,
+                mobile:  SecondStep
+            }
         },
         {
             path: '/thirdstep',
-            component: ThirdStep
+            components: {
+                desktop:  ThirdStep,
+                mobile:  ThirdStep
+            }
         },
         {
             path: '/fourstep',
-            component: FourStep
+            components: {
+                desktop:  FourStep,
+                mobile:  FourStep
+            }
         },
         {
             path: "/groups",
-            component: Admin
+            components: {
+                desktop:  Admin,
+                mobile:  Admin
+            }
         },
         {
             path: "/privacy_policy",
-            component: PrivacyPolicy
+            components: {
+                desktop:  PrivacyPolicy,
+                mobile:  PrivacyPolicy
+            }
         }
     ]
 })
