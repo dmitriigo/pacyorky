@@ -10,15 +10,14 @@ public class PacyorkyGroup {
     private String id;
     private boolean allowed;
     private String name;
-    @OneToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<FacebookUser> facebookUsers;
+    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private FacebookUser facebookUser;
 
 
     public PacyorkyGroup() {
     }
 
     public PacyorkyGroup(String name) {
-        this.facebookUsers=new HashSet<>();
         this.name=name;
     }
 
@@ -46,15 +45,11 @@ public class PacyorkyGroup {
         this.allowed = allowed;
     }
 
-    public void addUser (FacebookUser facebookUser) {
-        facebookUsers.add(facebookUser);
+    public FacebookUser getFacebookUser() {
+        return facebookUser;
     }
 
-    public Set<FacebookUser> getFacebookUsers() {
-        return facebookUsers;
-    }
-
-    public void setFacebookUsers(Set<FacebookUser> facebookUsers) {
-        this.facebookUsers = facebookUsers;
+    public void setFacebookUser(FacebookUser facebookUser) {
+        this.facebookUser = facebookUser;
     }
 }

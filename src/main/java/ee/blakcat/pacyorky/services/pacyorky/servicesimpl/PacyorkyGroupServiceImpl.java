@@ -52,24 +52,25 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
     public boolean saveGroup(String userId, String token, String groupId) {
         FacebookUser facebookUser = facebookUserService.getUser(userId);
         if (facebookUser==null) facebookUser = facebookUserService.addUser(userId, token);
-        PacyorkyGroup pacyorkyGroup = pacyorkyGroupRepositoryJPA.findById(groupId).orElse(createGroup(groupId));
-        if (pacyorkyGroup==null) {
-            logger.error("Group id=" + groupId + " is wrong!");
-            throw new RuntimeException();
-        }
-        if (pacyorkyGroup.getFacebookUsers()==null) pacyorkyGroup.setFacebookUsers(new HashSet<>());
-        pacyorkyGroup.addUser(facebookUser);
+        PacyorkyGroup pacyorkyGroup = pacyorkyGroupRepositoryJPA.findById(groupId).get();
+        if (pacyorkyGroup == null) pacyorkyGroup = createGroup(groupId);
+        pacyorkyGroup.setFacebookUser(facebookUser);
         pacyorkyGroupRepositoryJPA.save(pacyorkyGroup);
+        logger.info("Group id= " + groupId + " saved successfully");
         return true;
     }
 
     private PacyorkyGroup createGroup(String groupId) {
         PacyorkyGroup pacyorkyGroup = new PacyorkyGroup();
         pacyorkyGroup.setId(groupId);
-        pacyorkyGroup.setFacebookUsers(new HashSet<>());
         pacyorkyGroupRepositoryJPA.save(pacyorkyGroup);
         updateGroups();
-        return pacyorkyGroupRepositoryJPA.findById(groupId).orElse(null);
+        pacyorkyGroup = pacyorkyGroupRepositoryJPA.findById(groupId).get();
+        if (pacyorkyGroup==null) {
+            logger.error("Group id=" + groupId + " is wrong!");
+            throw new RuntimeException();
+        }
+        return pacyorkyGroup;
     }
 
     @Override

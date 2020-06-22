@@ -4,6 +4,8 @@ import ee.blakcat.pacyorky.dto.GroupAnswerDTO;
 import ee.blakcat.pacyorky.dto.GroupDTO;
 import ee.blakcat.pacyorky.models.PacyorkyGroup;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +20,7 @@ import java.util.Set;
 public class JoinController {
 
     private final PacyorkyGroupService pacyorkyGroupService;
-
+    private final Logger logger = LoggerFactory.getLogger(JoinController.class);
     @Autowired
     public JoinController(PacyorkyGroupService pacyorkyGroupService) {
         this.pacyorkyGroupService = pacyorkyGroupService;
@@ -50,7 +52,10 @@ public class JoinController {
             paramsMap.put(oneParam[0], oneParam[1]);
         }
         String token = paramsMap.get("access_token");
-        if (StringUtils.isEmpty(token)||StringUtils.isEmpty(id)||StringUtils.isEmpty(groupId)) return "error";
+        if (StringUtils.isEmpty(token)||StringUtils.isEmpty(id)||StringUtils.isEmpty(groupId)) {
+            logger.warn("something empty in fourstep: token isEmpty - " + StringUtils.isEmpty(token) + ", id isEmpty - " + StringUtils.isEmpty(id) + ", groupId isEmpty - " + StringUtils.isEmpty(groupId));
+            return "error";
+        }
         if (!pacyorkyGroupService.saveGroup(id, token, groupId)) return "error";
         return "fourstep";
     }
