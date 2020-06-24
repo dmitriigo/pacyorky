@@ -8,7 +8,8 @@ import ee.blakcat.pacyorky.services.email.MailSenderWelcomeLetter;
 import ee.blakcat.pacyorky.services.pacyorky.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.HashSet;
 import java.util.UUID;
 
@@ -16,7 +17,7 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
     private PacyorkyUserRepository pacyorkyUserRepository;
     private final MailSenderWelcomeLetter mailSenderWelcomeLetter;
-    
+    private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     public UserServiceImpl(PacyorkyUserRepository pacyorkyUserRepository, MailSenderWelcomeLetter mailSenderWelcomeLetter) {
@@ -63,7 +64,7 @@ public class UserServiceImpl implements UserService {
             pacyorkyUserRepository.save(pacyorkyUser);
             mailSenderWelcomeLetter.sendMail(pacyorkyUser);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("add user exception: " + e.toString());
             return false;
         }
         return true;

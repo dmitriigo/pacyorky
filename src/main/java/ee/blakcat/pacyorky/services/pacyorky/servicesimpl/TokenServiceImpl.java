@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.HashSet;
@@ -22,6 +23,7 @@ import java.util.Set;
 public class TokenServiceImpl implements TokenService {
     private final FacebookClient facebookClient;
     private final FacebookUserRepositoryJPA facebookUserRepositoryJPA;
+    private final Logger logger = LoggerFactory.getLogger(TokenServiceImpl.class);
     @Value("${appId}")
     private String appId;
     @Value("${appSecret}")
@@ -41,7 +43,10 @@ public class TokenServiceImpl implements TokenService {
                 Parameter.with("fb_exchange_token", token),
                 Parameter.with("client_id", appId),
                 Parameter.with("client_secret", appSecret));
-        if (accessToken == null) throw new RuntimeException("Token not might exchanged! " + token);
+        if (accessToken == null) {
+            logger.error("Token not might exchanged! " + token);
+            throw new RuntimeException();
+        }
         AccessToken tokenForReturn = new AccessToken();
         tokenForReturn.setToken(accessToken.getAccessToken());
         tokenForReturn.setExpDate(accessToken.getExpires().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());

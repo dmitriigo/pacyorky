@@ -1,9 +1,7 @@
 package ee.blakcat.pacyorky.services.updateData;
 
-import ee.blakcat.pacyorky.models.FacebookUser;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
-import ee.blakcat.pacyorky.repositories.database.FacebookUserRepositoryJPA;
 import ee.blakcat.pacyorky.services.email.MailService;
 import ee.blakcat.pacyorky.services.pacyorky.FacebookUserService;
 import ee.blakcat.pacyorky.services.pacyorky.LocationPointService;
@@ -45,8 +43,8 @@ public class UpdateServiceImpl implements UpdateService {
     @Override
     @Scheduled(fixedRate = 1800000)
     public void updateAll() {
-       pacyorkyGroupService.updateGroups();
-       facebookUserService.updateUsers();
+        pacyorkyGroupService.updateGroups();
+        facebookUserService.updateUsers();
         updateEvents();
     }
 
@@ -75,11 +73,9 @@ public class UpdateServiceImpl implements UpdateService {
             try {
                 eventRepositoryJPA.save(pacyorkyEvent);
             } catch (Exception e) {
-                System.out.println("Exception when save event: id: " + pacyorkyEvent.getId() + " exception: " + e.toString());
+                logger.error("Exception when save event: id: " + pacyorkyEvent.getId() + " exception: " + e.toString());
             }
         }
         if (!eventsForMail.isEmpty()) sendMails(eventsForMail);
-
     }
-
 }
