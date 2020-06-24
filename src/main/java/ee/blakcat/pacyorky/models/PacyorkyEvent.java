@@ -14,7 +14,7 @@ public class PacyorkyEvent {
     @Column(length = 2048)
     private String description;
     private Date startTime, endTime;
-    @ManyToOne(targetEntity = PacyorkyGroup.class, cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = PacyorkyGroup.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private PacyorkyGroup pacyorkyEventOwner;
     private District district;
     private double lat, lng;

@@ -16,7 +16,7 @@ public class PacyorkyUser {
     private String eMail;
     private MailLang mailLang;
     private MailSendPeriod mailSendPeriod;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<PacyorkyEvent> pacyorkyEventsToSend;
     private boolean confirmed;
     @Column (unique = true)
