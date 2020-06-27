@@ -44,7 +44,6 @@ public class JoinController {
         String id = groupAnswerDTO.getUserId();
         String groupId = groupAnswerDTO.getGroupId();
        link = link.split("#", 2)[1];
-        System.out.println(link);
        String [] params = link.split("&");
         Map<String, String> paramsMap = new HashMap<>();
         for (String param : params) {

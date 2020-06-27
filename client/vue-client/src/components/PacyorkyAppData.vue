@@ -63,7 +63,7 @@
                 this.districtShow=false;
             },
             getSliderEvents() {
-                let sliderEvents = this.events.filter(event => new Date(event.date) >= Date.now())
+                let sliderEvents = this.events.filter(event => new Date(event.date) <= Date.now())
                 this.$emit("getSliderEvents", sliderEvents);
             },
             trimToDistrict(district) {

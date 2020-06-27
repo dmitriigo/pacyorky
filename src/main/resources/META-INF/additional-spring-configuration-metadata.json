@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "log.sendto",
+      "type": "java.lang.String",
+      "description": "Description for log.sendto."
+    },
+    {
+      "name": "updateSecret",
+      "type": "java.lang.String",
+      "description": "Description for updateSecret."
+    },
+    {
+      "name": "appSecret",
+      "type": "java.lang.String",
+      "description": "Description for appSecret."
+    },
+    {
+      "name": "appId",
+      "type": "java.lang.String",
+      "description": "Description for appId."
+    }
+  ] }
