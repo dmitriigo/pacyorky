@@ -52,16 +52,16 @@
 </template>
 
 <script>
-    import ModalMailRegister from "./components/ModalMailRegister";
-    import Game from "./components/Game";
-    import NavBar from "./components/NavBar";
-    import PacyorkyHeader from "./components/PacyorkyHeader";
-    import PacyorkyAppData from "./components/PacyorkyAppData";
-    import Slider from "./components/Slider";
-    import About from "./components/About";
+    import ModalMailRegister from "./ModalMailRegister";
+    import Game from "./Game";
+    import NavBar from "./NavBar";
+    import PacyorkyHeader from "./PacyorkyHeader";
+    import PacyorkyAppData from "./PacyorkyAppData";
+    import Slider from "./Slider";
+    import About from "./About";
 
     export default {
-        name: "PacyorkyApplication",
+        name: "PacyorkyDesktopApplication",
         components: {ModalMailRegister, Game, NavBar, PacyorkyHeader, PacyorkyAppData, Slider, About},
         data() {
             return {
@@ -89,7 +89,7 @@
 </script>
 
 <style lang="less">
-    @import "styles/fonts.css";
+    @import "../../../src/styles/fonts.css";
 
     @primarycolor: #EBE1E4;
     html {
