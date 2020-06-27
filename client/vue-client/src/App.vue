@@ -1,15 +1,12 @@
 <template>
-      <MobileApp v-if="isMobile"/>
-      <DesktopApp v-else/>
+      <router-view v-if="isMobile" name="mobile"></router-view>
+      <router-view v-else name="desktop"></router-view>
 </template>
 
 <script>
 
-    import MobileApp from "./MobileApp";
-    import DesktopApp from "./DesktopApp";
     export default {
         name: 'App',
-          components: {DesktopApp, MobileApp},
           computed: {
                 isMobile: function() {
                       var check = false;
