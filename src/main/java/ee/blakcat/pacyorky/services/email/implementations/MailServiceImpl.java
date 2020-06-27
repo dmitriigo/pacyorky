@@ -48,6 +48,8 @@ public class MailServiceImpl implements MailService<PacyorkyEvent> {
         for (PacyorkyUser user : users) {
             if (user.getMailSendPeriod()==MailSendPeriod.WEEKLY) {
                 sendToOneUser(user.getPacyorkyEventsToSend(), user);
+                user.setPacyorkyEventsToSend(new HashSet<>());
+                pacyorkyUserRepository.save(user);
             }
         }
     }
