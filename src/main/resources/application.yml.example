@@ -1,0 +1,28 @@
+spring:
+  mail:
+    host: pacyorky.ee
+    port: 587
+    username: ${MAIL_USER:no-reply@pacyorky.ee}
+    password: ${MAIL_PASS:112233}
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: ${PG_PACYORKY_USER:postgres}
+    password: ${PG_PACYORKY_PASS:new_password}
+    url: ${DB_PACYORKY_HOST:jdbc:postgresql://localhost:5432/pacyorky}
+  jpa:
+    generate-dll: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+appId: ${APPID:112233}
+appSecret: ${APPSECRET:112233}
+updateSecret: ${UPDATE_KEY:0}
+server:
+  port: ${PORT:3000}
+log:
+  sendto: no-reply@pacyorky.ee
