@@ -84,7 +84,7 @@ export default new MLCreate({
                 'Пацьорки автоматично інтегрує події, які ви створюєте у Фейсбуці, і презентує їх відвідувачам платформи. <br> <br> Пацьорки допоможе поширювати інформацію про ваші заходи та залучати на ваші заходи більше гостей, які цікавляться українською культурою.' +
                 ' <br> <br>Додаток Пацьорки є безкоштовним для користувачів та організаторів культурних подій.',
             supportedby: 'Нас підтримують:',
-            supporteddesc: 'Проект здійснюється за фінансової підтримки Міністерства Культури Естонії та Фонду Інтеграції та Міграції Естонії.',
+            supporteddesc: 'Проект здійснюється за фінансової підтримки Міністерства Культури Естонії та Фонду Інтеграції.',
             copyright: '©2020 Українське Земляцтво Сілламяе «Водограй»',
             location: 'Адреса',
             mapa: 'Мапа українців в Естонії',
@@ -175,7 +175,7 @@ export default new MLCreate({
                 '<br> <br>Pacyorky rakendus automaatselt integreerib teie Facebook üritusi ja esitab teie üritusi platvormi külastajatele. <br> <br> Pacyorky aitab teid levitafa infot teie ürituste kohta ning meelitada oma sündmustele rohkem külalisi, kes tunnevad huvi ukraina kultuuri vastu.' +
                 '<br> <br>Pacyorky rakendus on tasuta kasutajatele ja kultuuriürituste korraldajatele.',
             supportedby: 'Meid toetavad:',
-            supporteddesc: 'Projekti läbiviimise rahaline toetus: Eesti Kultuuriministeerium ja Integratsiooni ja Migratsiooni Sihtasutus Eestis.',
+            supporteddesc: 'Projekti läbiviimise rahaline toetus: Eesti Kultuuriministeerium ja Integratsiooni Sihtasutus.',
             copyright: '©2020 Ukraina kaasmaalaskond Sillamäe «Vodograi».',
             location: 'Aadress',
             mapa: 'Ukrainlaste kaart Eestis',
@@ -265,7 +265,7 @@ export default new MLCreate({
 
                 '<br> <br> Pacyorky application is free for use by guest users and event owners',
             supportedby: 'Supported By',
-            supporteddesc: 'The project Pacyorky is supported by the Ministry of Culture of Estonia and Estonian Integration and Migration Foundation.',
+            supporteddesc: 'The project Pacyorky is supported by the Ministry of Culture of Estonia and Integration Foundation.',
             copyright: '©2020 Ukrainian community of Sillamäe «Vodograi»',
             location: 'Address',
             mapa: 'Map of ukrainians in Estonia',
@@ -356,7 +356,7 @@ export default new MLCreate({
                 '<br> <br>Пацёрки автоматически интегрирует события, которые вы создаете в Фейсбук, и представляет их посетителям платформы. <br> <br> Пацёрки поможет распространять информацию про ваши мероприятия и привлекать на ваши мероприятия больше гостей, которые интересуются украинской культурой.' +
                 ' <br> <br>Приложение Пацёрки бесплатное для пользователей и орагнизаторов культурных событий.',
             supportedby: 'Нас поддерживают:',
-            supporteddesc: 'Проект осуществляется с финансовой поддержкой Министерства Культуры эстонии и Фонда Интеграции и Миграции Эстонии.',
+            supporteddesc: 'Проект осуществляется с финансовой поддержкой Министерства Культуры Эстонии и Фонда Интеграции.',
             copyright: '©2020 Украинское землячество Силламяэ «Водограй»',
             location: 'Адрес',
             mapa: 'Карта украинцев в Эстонии',
