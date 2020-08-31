@@ -4,6 +4,7 @@ package ee.blakcat.pacyorky.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -13,14 +14,15 @@ public class PacyorkyEvent {
     private String place, name;
     @Column(length = 2048)
     private String description;
-    private Date startTime, endTime;
+    private LocalDateTime startTime, endTime;
     @ManyToOne(targetEntity = PacyorkyGroup.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private PacyorkyGroup pacyorkyEventOwner;
     private District district;
     private double lat, lng;
+    @Column(length = 2048)
     private String cover;
 
-    public PacyorkyEvent(String place, String description, String name, String facebookId, Date startTime, Date endTime, PacyorkyGroup pacyorkyEventOwner, String cover) {
+    public PacyorkyEvent(String place, String description, String name, String facebookId, LocalDateTime startTime, LocalDateTime endTime, PacyorkyGroup pacyorkyEventOwner, String cover) {
         this.id = facebookId;
         this.place = place;
         this.description = description;
@@ -33,7 +35,7 @@ public class PacyorkyEvent {
         this.cover = cover;
     }
 
-    public PacyorkyEvent(String name, Date startTime, String facebookId) {
+    public PacyorkyEvent(String name, LocalDateTime startTime, String facebookId) {
         this.id = facebookId;
         this.name = name;
         this.startTime = startTime;
@@ -104,19 +106,19 @@ public class PacyorkyEvent {
     }
 
 
-    public Date getStartTime() {
+    public LocalDateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
+    public LocalDateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
     }
 

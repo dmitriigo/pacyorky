@@ -6,10 +6,11 @@ import ee.blakcat.pacyorky.repositories.database.FacebookUserRepositoryJPA;
 import ee.blakcat.pacyorky.services.facebook.FacebookConnector;
 import ee.blakcat.pacyorky.services.pacyorky.FacebookUserService;
 import ee.blakcat.pacyorky.services.pacyorky.TokenService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public class FaceBookUserServiceImpl implements FacebookUserService {
     private final FacebookConnector<User> facebookConnector;
     private final TokenService tokenService;
     private final Logger logger = LoggerFactory.getLogger(FaceBookUserServiceImpl.class);
+
     @Autowired
     public FaceBookUserServiceImpl(FacebookUserRepositoryJPA facebookUserRepositoryJPA, FacebookConnector<User> facebookConnector, TokenService tokenService) {
         this.facebookUserRepositoryJPA = facebookUserRepositoryJPA;
@@ -29,10 +31,10 @@ public class FaceBookUserServiceImpl implements FacebookUserService {
 
     @Override
     public void updateUsers() {
-        Set<FacebookUser> facebookUserSet =  new HashSet<>(facebookUserRepositoryJPA.findAll());
+        Set<FacebookUser> facebookUserSet = new HashSet<>(facebookUserRepositoryJPA.findAll());
         for (FacebookUser facebookUser : facebookUserSet) {
             User remoteUser = facebookConnector.getOne(facebookUser.getId());
-            if (remoteUser!=null) {
+            if (remoteUser != null) {
                 facebookUser.setName(remoteUser.getName());
             } else {
                 logger.error("Wrong user id=" + facebookUser.getId());
@@ -44,22 +46,22 @@ public class FaceBookUserServiceImpl implements FacebookUserService {
     }
 
     @Override
-    public Set<FacebookUser> findAll () {
+    public Set<FacebookUser> findAll() {
         return new HashSet<>(facebookUserRepositoryJPA.findAll());
     }
 
     @Override
     public FacebookUser addUser(String id, String token) {
-     return facebookUserRepositoryJPA.findById(id).orElse(createNewUser(id, token));
+        return facebookUserRepositoryJPA.findById(id).orElse(createNewUser(id, token));
     }
 
     @Override
-    public FacebookUser saveUser (FacebookUser facebookUser) {
+    public FacebookUser saveUser(FacebookUser facebookUser) {
         return facebookUserRepositoryJPA.save(facebookUser);
     }
 
     @Override
-    public FacebookUser getUser (String id) {
+    public FacebookUser getUser(String id) {
         return facebookUserRepositoryJPA.findById(id).orElse(null);
     }
 

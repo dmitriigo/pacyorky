@@ -15,7 +15,7 @@
                     <h3>{{$ml.get('pacyorky')}}</h3>
                     <p v-html="$ml.get('aboutpt2')"></p>
                     <div class="about-pane-img">
-                        <img src="/img/plogo.png" />
+                        <img style="height: auto; width: 33%" src="/favicon.png" />
                     </div>
                 </div>
             </b-col>

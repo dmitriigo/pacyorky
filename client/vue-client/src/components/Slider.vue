@@ -31,8 +31,15 @@
         },
         computed: {
             sliderEvents () {
-              return this.events.filter(event => event.cover);
-            }
+              let forShow = [];
+              for (let event of this.events) {
+                if (!event.cover){
+                  event.cover = '../img/Illustration3.png';
+                }
+                forShow.push(event);
+              }
+              return forShow;
+            },
         },
         data ()  {
             return {

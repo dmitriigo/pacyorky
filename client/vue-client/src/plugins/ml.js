@@ -96,6 +96,19 @@ export default new MLCreate({
             lang: 'Мова',
             period: 'Перiодичнiсть',
             submit: 'Затвердити',
+            aboutgame: '<b>«Пацьорки» – це настільна гра</b>, гравці якої стають членами одної української родини. Разом із\n' +
+                'своїми героями гравці проживатимуть календарний рік від Нового Року до Миколая, святкуючи\n' +
+                'народні та родинні свята за стародавніми звичаями.\n' +
+                '</br></br>На гравців чекають українські обряди, смачні страви та різноманітні предмети одягу, побуту та\n' +
+                'української культури. Кожне свято, проведене за всіма традиціями, приноситиме вашому герою\n' +
+                'щастя.</br></br> Проживіть яскравий рік, відсвяткувавши найбільше свят і зібравши найбільшу кількість щастя.',
+            gallery: 'Галерея',
+            rules: 'Правила гри',
+            holidays: 'Опис свят',
+            howto: 'Як грати?',
+            questions: 'Лишились питання? \n' +
+                'Зв’яжіться із нами info@pacyorky.ee ',
+            gameinfo: 'Гру створено Українським земляцтвом Сілламяе Водограй, за підтримкою Фонду Інтеграції та Міністерства Культури Естонії\n',
         }),
 
         new MLanguage('Estonian').create({
@@ -187,6 +200,19 @@ export default new MLCreate({
             lang: 'Keel',
             period: 'Periood',
             submit: 'Kinnitada',
+            aboutgame: '<b>„Pacyorky“ – on lauamäng</b>, kus mängijad saavad ühe ukraina perekonna liikmeteks. Koos oma\n' +
+                'peategelastega mängijad veedavad huvitavat kalendriaasta Uuest Aastast kuni Mõkolai peoni. Kõik koos\n' +
+                'nad hakkavad tähistama rahva- ja perepeosid vastavalt ukraina rahvakommetele.\n' +
+                '</br></br>Mängijaid ootavad ukraina traditsioonid, rahvatoidud, rahvariided, olme- ja kultuuriesemed. Iga pidu,\n' +
+                'mis on tähistatud vastavalt kõikidele traditsioonidele toob sinu tegelasele õnne.\n' +
+                '</br></br>Veeda säravat aastat, ning tähista kõige rohkem peosid ja teeni rohkem õnne.',
+            gallery: 'Galerii',
+            rules: 'Mängureeglid',
+            holidays: 'Rahvapeode kirjeldus',
+            howto: 'Kuidas mängida?',
+            questions: 'On küsimusi?\n' +
+                'Võta meiega ühendust info@pacyorky.ee',
+            gameinfo: 'Lauamäng “Pacyorky” on loodud Ukraina kaasmaalaskonna Sillamäe Vodograi’ga Eesti Kultuuriministeeriumi ja Integratsiooni Sihtasutuse rahalisel toetusel.',
         }),
 
         new MLanguage('English').create({
@@ -278,6 +304,19 @@ export default new MLCreate({
             lang: 'Language',
             period: 'Period',
             submit: 'Submit',
+            aboutgame: '<b>“Pacyorky” is a board game</b>, where gamers become members of a single Ukrainian family. Together with\n' +
+                'your heroes you will live through a calendar year from New Year until Mykolay day. You will celebrate\n' +
+                'national and family holidays according to ancient Ukrainian traditions.\n' +
+                '</br></br>Ukrainian traditions, national costumes and dishes, ukrianian culture artifacts are waiting for gamers of\n' +
+                '“Pacyorky”. Every holiday, spent according to Ukrainian traditions will bring a gamer happiness.\n' +
+                '</br></br>Have a bright year, celebrate the most holidays, and gain the most happiness.',
+            gallery: 'Gallery',
+            rules: 'Game rules',
+            holidays: 'Holidays description',
+            howto: 'How to play?',
+            questions: 'Have questions?\n' +
+                'Let us know info@pacyorky.ee ',
+            gameinfo: 'The game is created by Ukrainian community of Sillamäe Vodograi, with financial support of Integration Foundation and Ministry of Culture of Estonia.',
         }),
         new MLanguage('Russian').create({
             title: 'Название',
@@ -368,6 +407,21 @@ export default new MLCreate({
             lang: 'Язык',
             period: 'Периодичность',
             submit: 'Подтвердить',
+            aboutgame: '<b>«Пацёрки» – это настольная игра</b>, игроки которой становятся членами одной украинской семьи.\n' +
+                'Вместе со своими героями игроки будут проживать календарный год от Новогода Года до\n' +
+                'Николая, празднуя народные и семейные праздники по старинным обычаям.\n' +
+                '</br></br>Игроков ждут украинские обряды, вкусные блюда и разнообразные предметы одежды, быта и\n' +
+                'украинской культуры. Каждый праздник, проведенный по всем традициям, будет приносить\n' +
+                'вашему герою счастье.\n' +
+                '</br></br>Проживите яркий год, отпраздновав большее количество праздников и собрав наибольшее\n' +
+                'количество счастья.',
+            gallery: 'Галерея',
+            rules: 'Правила игры',
+            holidays: 'Описание праздников',
+            howto: 'Как играть?',
+            questions: 'Остались вопросы? \n' +
+                'Свяжитесь с нами info@pacyorky.ee ',
+            gameinfo: 'Игра создана Украинским землячеством Силламяэ Водограй, при поддержке Фонда Интеграции и Министерства Культуры Эстонии.  ',
         })
 
     ]

@@ -11,6 +11,7 @@ import ee.blakcat.pacyorky.services.pacyorky.PacyorkyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -35,7 +36,12 @@ public class PacyorkyServiceImpl implements PacyorkyService {
     }
 
     public Set<PacyorkyEvent> getEvents() {
-        return facebookMainService.getAllowedEvents().stream().map(this::convertEvent).collect(Collectors.toSet());
+        return facebookMainService.getAllowedEvents().stream()
+                .map(this::convertEvent)
+                .filter(pacyorkyEvent ->
+                    pacyorkyEvent.getStartTime().plusMonths(6L).isAfter(LocalDateTime.now())
+                )
+                .collect(Collectors.toSet());
     }
 
     private PacyorkyEvent convertEvent(Event event) {

@@ -53,11 +53,11 @@ public class TokenServiceImpl implements TokenService {
         return tokenForReturn;
     }
 
-    @Scheduled (cron = "0 0 18 1 * ?")
+    @Scheduled (cron = "0 0 2 * * *")
     public void updateTokens() {
         Set<FacebookUser> facebookUsers = new HashSet<>(facebookUserRepositoryJPA.findAll());
         for (FacebookUser facebookUser : facebookUsers) {
-            if (facebookUser.getAccessToken().getExpDate().minusMonths(1).compareTo(LocalDate.now()) < 0) {
+            if (facebookUser.getAccessToken().getExpDate().minusWeeks(1L).isBefore(LocalDate.now())) {
                 facebookUser.setAccessToken(exchange(facebookUser.getAccessToken().getToken()));
                 facebookUserRepositoryJPA.save(facebookUser);
             }

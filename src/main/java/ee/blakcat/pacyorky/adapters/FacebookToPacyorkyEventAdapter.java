@@ -8,6 +8,7 @@ import ee.blakcat.pacyorky.models.PacyorkyGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.ZoneId;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -38,8 +39,8 @@ public class FacebookToPacyorkyEventAdapter implements Adapter<Event, PacyorkyEv
                 event.getDescription(),
                 event.getName(),
                 event.getId(),
-                event.getStartTime(),
-                event.getEndTime(),
+                event.getStartTime() == null ? null : event.getStartTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
+                event.getEndTime() == null ? null : event.getEndTime().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime(),
                 pacyorkyEventOwnerAdapter.convert(event.getOwner()),
                 event.getCover().getSource()
         );

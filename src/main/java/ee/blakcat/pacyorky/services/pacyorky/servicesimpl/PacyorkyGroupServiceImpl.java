@@ -1,18 +1,21 @@
 package ee.blakcat.pacyorky.services.pacyorky.servicesimpl;
 
 import com.restfb.types.Group;
+import ee.blakcat.pacyorky.models.AccessToken;
 import ee.blakcat.pacyorky.models.FacebookUser;
 import ee.blakcat.pacyorky.models.PacyorkyGroup;
 import ee.blakcat.pacyorky.repositories.database.PacyorkyGroupRepositoryJPA;
 import ee.blakcat.pacyorky.services.facebook.FacebookService;
 import ee.blakcat.pacyorky.services.pacyorky.FacebookUserService;
 import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
+import ee.blakcat.pacyorky.services.pacyorky.TokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,12 +26,14 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
     private final FacebookService<Group> facebookService;
     private final PacyorkyGroupRepositoryJPA pacyorkyGroupRepositoryJPA;
     private final FacebookUserService facebookUserService;
+    private final TokenService tokenService;
     private final Logger logger = LoggerFactory.getLogger(PacyorkyGroupServiceImpl.class);
     @Autowired
-    public PacyorkyGroupServiceImpl(FacebookService<Group> facebookService, PacyorkyGroupRepositoryJPA pacyorkyGroupRepositoryJPA, FacebookUserService facebookUserService) {
+    public PacyorkyGroupServiceImpl(FacebookService<Group> facebookService, PacyorkyGroupRepositoryJPA pacyorkyGroupRepositoryJPA, FacebookUserService facebookUserService, TokenService tokenService) {
         this.facebookService = facebookService;
         this.pacyorkyGroupRepositoryJPA = pacyorkyGroupRepositoryJPA;
         this.facebookUserService = facebookUserService;
+        this.tokenService = tokenService;
     }
 
     @Override
@@ -54,10 +59,19 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
         if (facebookUser==null) facebookUser = facebookUserService.addUser(userId, token);
         PacyorkyGroup pacyorkyGroup = pacyorkyGroupRepositoryJPA.findById(groupId).get();
         if (pacyorkyGroup == null) pacyorkyGroup = createGroup(groupId);
+        checkToken(facebookUser, token);
         pacyorkyGroup.setFacebookUser(facebookUser);
         pacyorkyGroupRepositoryJPA.save(pacyorkyGroup);
         logger.info("Group id= " + groupId + " saved successfully");
         return true;
+    }
+
+    private void checkToken(FacebookUser facebookUser, String token) {
+        if (facebookUser.getAccessToken().getExpDate().isBefore(LocalDate.now())) {
+            AccessToken accessToken = tokenService.exchange(token);
+            logger.info("Token renewaled for user "+facebookUser.getId()+" "+ facebookUser.getName());
+            facebookUser.setAccessToken(accessToken);
+        }
     }
 
     private PacyorkyGroup createGroup(String groupId) {

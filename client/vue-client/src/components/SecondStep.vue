@@ -12,7 +12,7 @@
                 <p class="mt-3">Нажмите на "Добавить приложение"</p>
                 <img style="max-width: 70%"  src="/img/step4.png"/>
                 <h3 class="mt-5">После успешной установки нажмите на кнопку ниже и разрешите приложению запрошенные действия:</h3>
-                <a class="btn btn-primary mb-5" href="https://www.facebook.com/v7.0/dialog/oauth?client_id=3559197890788331&redirect_uri=https://pacyorky.ee/thirdstep&response_type=token">Join!</a>
+                <a class="btn btn-primary mb-5" href="https://www.facebook.com/v7.0/dialog/oauth?client_id=3559197890788331&redirect_uri=https://pacyorky.ee/thirdstep&response_type=token&scope=pages_read_engagement">Join!</a>
             </b-col>
         </b-row>
     </b-container>
