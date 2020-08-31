@@ -10,7 +10,7 @@
             </b-col>
             <b-col cols="8" align="center" class="d-flex justify-content-around p-0 pl-2 w-100">
                 <div class="map-btn trim-btn w-100 m-0 d-flex justify-content-around align-items-center invert-btn">
-                    <div class="btn-wrapper"> <b-button @click="pastEvents"> {{$ml.get('pevents')}}</b-button></div>
+                    <div class="btn-wrapper"> <b-button  @click="pastEvents"> {{$ml.get('pevents')}}</b-button></div>
                     <div class="btn-wrapper"> <b-button @click="trimToDate">{{$ml.get('allevents')}}</b-button></div>
                     <div class="btn-wrapper">     <b-button @click="futureEvents"> {{$ml.get('fevents')}}</b-button></div>
                 </div>

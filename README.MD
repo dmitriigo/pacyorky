@@ -4,10 +4,8 @@ The Pacyorky app is a single application for monitoring of various events posted
 
 **Used technologies.**
 1. java 8.
-2. Spring web, jpa, thymeleaf.
+2. Spring web, jpa.
 3. PostgreSQL.
-4. [restFB.](https://restfb.com/)
-5. [clndr.js](https://kylestetz.github.io/CLNDR/)
 6. Frontend as Vue.js
 
 **Usage:**

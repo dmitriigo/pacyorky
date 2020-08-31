@@ -1,14 +1,18 @@
 import Vue from "vue";
 import Router from 'vue-router'
-import PacyorkyApplication from "./PacyorkyApplication";
-import FirstStep from "./components/FirstStep";
-import SecondStep from "./components/SecondStep";
-import ThirdStep from "./components/ThirdStep";
-import FourStep from "./components/FourStep";
-import Admin from "./components/Admin";
+import PacyorkyDesktopApplication from "./components/desktopApp/PacyorkyDesktopApplication";
+import FirstStep from "./components/join/FirstStep";
+import SecondStep from "./components/join/SecondStep";
+import ThirdStep from "./components/join/ThirdStep";
+import FourStep from "./components/join/FourStep";
+import Admin from "./components/desktopApp/Admin";
 import PrivacyPolicy from "./components/PrivacyPolicy";
-import MobileMain from "./components/MobileMain";
-import MailConfirmation from "./components/MailConfirmation";
+import MailConfirmation from "./components/desktopApp/MailConfirmation";
+import MobileMain from "./components/mobileApp/MobileMain";
+import MobileCalendar from "./components/mobileApp/MobileCalendar";
+import MobileMap from "./components/mobileApp/MobileMap";
+import MobileGame from "./components/mobileApp/MobileGame";
+import MobileProject from "./components/mobileApp/MobileProject";
 
 Vue.use(Router)
 
@@ -18,7 +22,7 @@ export default new Router ({
         {
             path: '',
             components: {
-               desktop:  PacyorkyApplication,
+               desktop:  PacyorkyDesktopApplication,
                 mobile:  MobileMain
             }
         },
@@ -70,6 +74,34 @@ export default new Router ({
                 desktop:  MailConfirmation,
                 mobile:  MailConfirmation
             }
-        }
+        },
+        {
+            path: "/calendar",
+            components: {
+                desktop:  PacyorkyDesktopApplication,
+                mobile:  MobileCalendar
+            }
+        },
+        {
+            path: "/map",
+            components: {
+                desktop:  PacyorkyDesktopApplication,
+                mobile:  MobileMap
+            }
+        },
+        {
+            path: "/game",
+            components: {
+                desktop:  PacyorkyDesktopApplication,
+                mobile:  MobileGame
+            }
+        },
+        {
+            path: "/project",
+            components: {
+                desktop:  PacyorkyDesktopApplication,
+                mobile:  MobileProject
+            }
+        },
     ]
 })

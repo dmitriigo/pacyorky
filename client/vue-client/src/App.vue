@@ -1,15 +1,14 @@
 <template>
-      <MobileApp v-if="isMobile"/>
-      <DesktopApp v-else/>
+      <PacyorkyMobileApplication v-if="isMobile"/>
+      <router-view v-else name="desktop"></router-view>
 </template>
 
 <script>
 
-    import MobileApp from "./MobileApp";
-    import DesktopApp from "./DesktopApp";
+    import PacyorkyMobileApplication from "./components/mobileApp/PacyorkyMobileApplication";
     export default {
         name: 'App',
-          components: {DesktopApp, MobileApp},
+          components: {PacyorkyMobileApplication},
           computed: {
                 isMobile: function() {
                       var check = false;
