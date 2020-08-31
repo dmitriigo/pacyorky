@@ -9,7 +9,7 @@ public interface FacebookUserService {
 
     Set<FacebookUser> findAll();
 
-    FacebookUser addUser(String id, String token);
+    FacebookUser addUser(String id, String token, boolean isPage);
 
     FacebookUser saveUser(FacebookUser facebookUser);
 

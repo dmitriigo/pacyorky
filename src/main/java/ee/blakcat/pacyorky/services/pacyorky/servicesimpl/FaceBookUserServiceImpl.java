@@ -51,8 +51,8 @@ public class FaceBookUserServiceImpl implements FacebookUserService {
     }
 
     @Override
-    public FacebookUser addUser(String id, String token) {
-        return facebookUserRepositoryJPA.findById(id).orElse(createNewUser(id, token));
+    public FacebookUser addUser(String id, String token, boolean isPage) {
+        return facebookUserRepositoryJPA.findById(id).orElse(createNewUser(id, token, isPage));
     }
 
     @Override
@@ -65,10 +65,11 @@ public class FaceBookUserServiceImpl implements FacebookUserService {
         return facebookUserRepositoryJPA.findById(id).orElse(null);
     }
 
-    private FacebookUser createNewUser(String id, String token) {
+    private FacebookUser createNewUser(String id, String token, boolean isPage) {
         FacebookUser facebookUser = new FacebookUser();
         facebookUser.setAccessToken(tokenService.exchange(token));
         facebookUser.setId(id);
+        facebookUser.setPage(isPage);
         facebookUserRepositoryJPA.save(facebookUser);
         updateUsers();
         return facebookUserRepositoryJPA.findById(id).orElseThrow(RuntimeException::new);

@@ -53,6 +53,15 @@ public class TokenServiceImpl implements TokenService {
         return tokenForReturn;
     }
 
+    @Override
+    public void checkToken(FacebookUser facebookUser, String token) {
+        if (facebookUser.getAccessToken().getExpDate().isBefore(LocalDate.now())) {
+            AccessToken accessToken = exchange(token);
+            logger.info("Token renewaled for user "+facebookUser.getId()+" "+ facebookUser.getName());
+            facebookUser.setAccessToken(accessToken);
+        }
+    }
+
     @Scheduled (cron = "0 0 2 * * *")
     public void updateTokens() {
         Set<FacebookUser> facebookUsers = new HashSet<>(facebookUserRepositoryJPA.findAll());

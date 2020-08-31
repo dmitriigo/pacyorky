@@ -12,6 +12,7 @@ public class FacebookUser {
     private boolean access;
     @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private AccessToken accessToken;
+    private boolean isPage;
 
     public FacebookUser() {
     }
@@ -38,6 +39,14 @@ public class FacebookUser {
                 ", name='" + name + '\'' +
                 ", access=" + access +
                 '}';
+    }
+
+    public boolean isPage() {
+        return isPage;
+    }
+
+    public void setPage(boolean page) {
+        isPage = page;
     }
 
     public String getId() {

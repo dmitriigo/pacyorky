@@ -56,23 +56,17 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
     @Override
     public boolean saveGroup(String userId, String token, String groupId) {
         FacebookUser facebookUser = facebookUserService.getUser(userId);
-        if (facebookUser==null) facebookUser = facebookUserService.addUser(userId, token);
+        if (facebookUser==null) facebookUser = facebookUserService.addUser(userId, token, false);
         PacyorkyGroup pacyorkyGroup = pacyorkyGroupRepositoryJPA.findById(groupId).get();
         if (pacyorkyGroup == null) pacyorkyGroup = createGroup(groupId);
-        checkToken(facebookUser, token);
+        tokenService.checkToken(facebookUser, token);
         pacyorkyGroup.setFacebookUser(facebookUser);
         pacyorkyGroupRepositoryJPA.save(pacyorkyGroup);
         logger.info("Group id= " + groupId + " saved successfully");
         return true;
     }
 
-    private void checkToken(FacebookUser facebookUser, String token) {
-        if (facebookUser.getAccessToken().getExpDate().isBefore(LocalDate.now())) {
-            AccessToken accessToken = tokenService.exchange(token);
-            logger.info("Token renewaled for user "+facebookUser.getId()+" "+ facebookUser.getName());
-            facebookUser.setAccessToken(accessToken);
-        }
-    }
+
 
     private PacyorkyGroup createGroup(String groupId) {
         PacyorkyGroup pacyorkyGroup = new PacyorkyGroup();
