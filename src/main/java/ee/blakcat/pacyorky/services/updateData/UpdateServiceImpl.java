@@ -74,6 +74,7 @@ public class UpdateServiceImpl implements UpdateService {
             try {
                 eventRepositoryJPA.save(pacyorkyEvent);
             } catch (Exception e) {
+                e.printStackTrace();
                 logger.error("Exception when save event: id: " + pacyorkyEvent.getId() + " exception: " + e.toString());
             }
         }

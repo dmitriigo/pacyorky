@@ -24,7 +24,8 @@ public class FacebookMainService {
     }
 
     public Set<Event> getAllowedEvents() {
-        return facebookEventService.getAllowedData();
+        Set<Event> events = new HashSet<>(facebookEventService.getAllowedData());
+        return events;
     }
 
     public Set<User> getAllUsers() {

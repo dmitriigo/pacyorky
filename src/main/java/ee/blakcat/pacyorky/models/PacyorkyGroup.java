@@ -12,9 +12,18 @@ public class PacyorkyGroup {
     private String name;
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private FacebookUser facebookUser;
+    private boolean page;
 
 
     public PacyorkyGroup() {
+    }
+
+    public boolean isPage() {
+        return page;
+    }
+
+    public void setPage(boolean page) {
+        this.page = page;
     }
 
     public PacyorkyGroup(String name) {
