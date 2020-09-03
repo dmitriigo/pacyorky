@@ -13,6 +13,7 @@ public class PacyorkyGroup {
     @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private FacebookUser facebookUser;
     private boolean page;
+    private boolean hidden;
 
 
     public PacyorkyGroup() {
@@ -20,6 +21,14 @@ public class PacyorkyGroup {
 
     public boolean isPage() {
         return page;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 
     public void setPage(boolean page) {

@@ -1,17 +1,67 @@
 <template>
   <b-container fluid="true" class="min-vh-100 d-flex justify-content-center align-content-center align-items-center">
     <b-row>
-      <b-col class="d-flex justify-content-center align-items-center flex-column">
-        <h3 class="mt-5">Please give permissions</h3>
-        <a class="btn btn-primary mb-5" href="https://www.facebook.com/v7.0/dialog/oauth?client_id=3559197890788331&redirect_uri=https://pacyorky.ee/thirdsteppage&response_type=token&scope=pages_read_engagement">Долучитись!</a>
-      </b-col>
+      <button class="btn btn-primary" v-on:click="logInWithFacebook"> Login with Facebook</button>
+      <div v-if="infoBlock" style="color: green">Удачно!</div>
+      <div v-if="error" style="color: red">Ошибка!</div>
     </b-row>
   </b-container>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "SecondStepPage"
+  name: "SecondStepPage",
+  mounted() {
+    this.loadFacebookSDK(document, "script", "facebook-jssdk")
+    this.initFacebook();
+  },
+  data() {
+    return {
+      infoBlock: false,
+      error: false,
+    }
+  },
+  methods: {
+    async logInWithFacebook() {
+      let self = this;
+      window.FB.login(function (response) {
+        if (response.status != 'connected') {
+          self.error = true
+        } else {
+          axios.post("/join/foursteppage", {
+            userId: response.authResponse.userID,
+            token: response.authResponse.accessToken
+          }).then(() => {
+            self.infoBlock = true;
+            window.location.replace("/fourstep")
+          })
+              .catch(() => self.error = true);
+        }
+      }, {scope: 'pages_read_engagement'});
+      return false;
+    },
+    async initFacebook() {
+      window.fbAsyncInit = function () {
+        window.FB.init({
+          appId: "3559197890788331",
+          version: "v13.0"
+        });
+      };
+    },
+    async loadFacebookSDK(d, s, id) {
+      var js,
+          fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }
+  }
 }
 </script>
 

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Set;
 
 public interface PacyorkyGroupRepositoryJPA extends JpaRepository<PacyorkyGroup, String> {
-    Set<PacyorkyGroup> findAllByAllowedTrue();
+    Set<PacyorkyGroup> findAllByAllowedTrueAndPageIsFalse();
 }

@@ -93,6 +93,6 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
 
     @Override
     public Set<PacyorkyGroup> findAllAllowed() {
-        return pacyorkyGroupRepositoryJPA.findAllByAllowedTrue();
+        return pacyorkyGroupRepositoryJPA.findAllByAllowedTrueAndPageIsFalse();
     }
 }

@@ -1,30 +1,91 @@
 <template>
-    <b-container fluid="true" class="min-vh-100 d-flex justify-content-center align-content-center align-items-center">
-        <b-row>
-            <b-col class="d-flex justify-content-center align-items-center flex-column">
-                <ul class="mt-5">Встановіть додаток у вашу групу на ФБ
-                <li>Перейдіть до своєї групи</li>
-                <li>Натисніть «Більше» </li>
-                <li>Оберіть «Змінити налаштування групи»</li>
-                </ul>
-                <img style="max-width: 70%"  src="/img/step1.png"/>
-                <p class="mt-3">Знайдіть розділ «Додатки», Натисніть «Установити додатки»</p>
-                <img style="max-width: 70%"  src="/img/step2.png"/>
-                <p class="mt-3">У пошуці наберіть Pacyorky і оберіть додаток</p>
-                <img style="max-width: 70%"  src="/img/step3.png"/>
-                <p class="mt-3">Натисніть «Додати»</p>
-                <img style="max-width: 70%"  src="/img/step4.png"/>
-                <h3 class="mt-5">Після успішного встановлення додатку на ФБ, натисніть на кнопку внизу та дозвольте додатку виконати запитувані дії.</h3>
-                <a class="btn btn-primary mb-5" href="https://www.facebook.com/v7.0/dialog/oauth?client_id=3559197890788331&redirect_uri=https://pacyorky.ee/thirdstep&response_type=token">Долучитись!</a>
-            </b-col>
-        </b-row>
-    </b-container>
+  <b-container fluid="true" class="min-vh-100 d-flex justify-content-center align-content-center align-items-center">
+    <b-row>
+      <b-col class="d-flex justify-content-center align-items-center flex-column">
+        Встановіть додаток у вашу групу на ФБ
+          Please choose you group:
+          <b-form class="mt-5 mb-5">
+            <b-form-group id="input-group-3" label="Обрати групу" label-for="input-3">
+              <b-form-select
+                  id="input-3"
+                  v-model="groupId"
+                  :options="groups"
+                  required
+              ></b-form-select>
+            </b-form-group>
+            <div v-if="infoBlock" style="color: green">Удачно!</div>
+            <div v-if="error" style="color: red">Ошибка!</div>
+            <div class="modal-buttons">
+              <b-button :disabled="groupId === {}" v-on:click="logInWithFacebook" variant="primary">Відправити</b-button>
+            </div>
+          </b-form>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
-    export default {
-        name: "FirstStep"
+import axios from "axios";
+
+export default {
+  name: "FirstStep",
+  data() {
+    return {
+      groupId: {},
+      groups: [],
+      infoBlock: false,
+      error: false,
     }
+  },
+  mounted() {
+    axios.get('/join/thirdstep').then(response => {
+      this.groups = response.data;
+    });
+    this.loadFacebookSDK(document, "script", "facebook-jssdk");
+    this.initFacebook();
+  },
+  methods: {
+
+    async logInWithFacebook() {
+      let self = this;
+      window.FB.login(function (response) {
+        if (response.status != 'connected') {
+          self.error = true
+        } else {
+          axios.post("/join/fourstep", {
+            userId: response.authResponse.userID,
+            token: response.authResponse.accessToken,
+            groupId: self.groupId
+          }).then(() => {
+            self.infoBlock = true;
+            window.location.replace("/fourstep")
+          })
+              .catch(() => self.error = true);
+        }
+      });
+      return false;
+    },
+    async initFacebook() {
+      window.fbAsyncInit = function () {
+        window.FB.init({
+          appId: "3559197890788331",
+          version: "v13.0"
+        });
+      };
+    },
+    async loadFacebookSDK(d, s, id) {
+      var js,
+          fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    },
+  }
+}
 </script>
 
 <style scoped>

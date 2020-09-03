@@ -12,7 +12,7 @@ public class FacebookUser {
     private boolean access;
     @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private AccessToken accessToken;
-    private boolean isPage;
+    private boolean page;
 
     public FacebookUser() {
     }
@@ -42,11 +42,11 @@ public class FacebookUser {
     }
 
     public boolean isPage() {
-        return isPage;
+        return page;
     }
 
     public void setPage(boolean page) {
-        isPage = page;
+        this.page = page;
     }
 
     public String getId() {

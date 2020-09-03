@@ -1,5 +1,6 @@
 package ee.blakcat.pacyorky.services.updateData;
 
+import ee.blakcat.pacyorky.Pacyorky;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
 import ee.blakcat.pacyorky.services.email.MailService;
@@ -79,5 +80,16 @@ public class UpdateServiceImpl implements UpdateService {
             }
         }
         if (!eventsForMail.isEmpty()) sendMails(eventsForMail);
+        invalidateEvents(events.stream().map(PacyorkyEvent::getId).collect(Collectors.toSet()));
+    }
+
+    private void invalidateEvents (Set<String> eventsNew) {
+        List<PacyorkyEvent> eventsAtDB = eventRepositoryJPA.findAll();
+        for (PacyorkyEvent pacyorkyEvent : eventsAtDB) {
+            if(!eventsNew.contains(pacyorkyEvent.getId())) {
+                pacyorkyEvent.setPacyorkyEventOwner(null);
+                eventRepositoryJPA.delete(pacyorkyEvent);
+            }
+        }
     }
 }

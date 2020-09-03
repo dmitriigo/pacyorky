@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.HashSet;
 import java.util.Set;
@@ -49,7 +50,13 @@ public class TokenServiceImpl implements TokenService {
         }
         AccessToken tokenForReturn = new AccessToken();
         tokenForReturn.setToken(accessToken.getAccessToken());
-        tokenForReturn.setExpDate(accessToken.getExpires().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        LocalDate expire;
+        if (accessToken.getExpires() == null) {
+            expire = LocalDate.now().plusMonths(3L);
+        } else {
+            expire = accessToken.getExpires().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
+        tokenForReturn.setExpDate(expire);
         return tokenForReturn;
     }
 

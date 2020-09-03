@@ -14,7 +14,6 @@ import MobileMap from "./components/mobileApp/MobileMap";
 import MobileGame from "./components/mobileApp/MobileGame";
 import MobileProject from "./components/mobileApp/MobileProject";
 import SecondStepPage from "@/components/join/SecondStepPage";
-import ThirdStepPage from "@/components/join/ThirdStepPage";
 
 Vue.use(Router)
 
@@ -47,13 +46,6 @@ export default new Router ({
             components: {
                 desktop:  SecondStepPage,
                 mobile:  SecondStepPage
-            }
-        },
-        {
-            path: '/thirdsteppage',
-            components: {
-                desktop:  ThirdStepPage,
-                mobile:  ThirdStepPage
             }
         },
         {

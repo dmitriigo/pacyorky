@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface FacebookUserRepositoryJPA extends JpaRepository<FacebookUser, String> {
     List<FacebookUser> findByAccessTrue();
+    List<FacebookUser> findByPageTrue();
 }

@@ -65,16 +65,6 @@
                 this.groups = response.data;
             })
             this.form.url = window.location.href;
-        },
-        methods: {
-            registerGroup() {
-                axios.post("/join/fourstep", {
-                    userId: this.form.userId,
-                    groupId: this.form.groupId,
-                    url: this.form.url
-                }).then(() => {this.infoBlock=true; window.location.replace("/fourstep")})
-                .catch(() => this.error=true);
-            },
         }
     }
 </script>

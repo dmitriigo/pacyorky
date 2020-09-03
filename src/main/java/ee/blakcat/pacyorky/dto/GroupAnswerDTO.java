@@ -3,12 +3,12 @@ package ee.blakcat.pacyorky.dto;
 public class GroupAnswerDTO {
     private String groupId;
     private String userId;
-    private String url;
+    private String token;
 
-    public GroupAnswerDTO(String groupId, String userId, String url) {
+    public GroupAnswerDTO(String groupId, String userId, String token) {
         this.groupId = groupId;
         this.userId = userId;
-        this.url = url;
+        this.token = token;
     }
 
     public GroupAnswerDTO() {
@@ -30,12 +30,12 @@ public class GroupAnswerDTO {
         this.userId = userId;
     }
 
-    public String getUrl() {
-        return url;
+    public String getToken() {
+        return token;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setToken(String token) {
+        this.token = token;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class GroupAnswerDTO {
         return "GroupAnswerDTO{" +
                 "groupId='" + groupId + '\'' +
                 ", userId='" + userId + '\'' +
-                ", url='" + url + '\'' +
+                ", token='" + token + '\'' +
                 '}';
     }
 }
