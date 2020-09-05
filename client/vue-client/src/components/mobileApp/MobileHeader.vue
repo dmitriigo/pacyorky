@@ -1,7 +1,7 @@
 <template>
     <b-col class="w-100">
-        <b-row class="w-100">
-            <b-col><b-dropdown text="Menu">
+        <b-row class="w-100 d-flex justify-content-center align-items-center">
+            <b-col class="d-flex justify-content-center align-items-center"><b-dropdown text="Menu">
 
                     <div>
                     <router-link to="/">{{$ml.get('main')}}</router-link>
@@ -20,10 +20,12 @@
                             </div>
 
             </b-dropdown></b-col>
-            <b-col>picture</b-col>
-            <b-col><b-dropdown :text="$ml.current.substr(0,3)">
+            <b-col class="d-flex justify-content-center align-items-center">
+              <img class="" style="width: 200%" :src="'/img/Illustration-'+$ml.current+'.png'"/>
+            </b-col>
+            <b-col class="d-flex justify-content-end align-items-center"><b-dropdown :text="$ml.current.substr(0,3)">
                 <b-dropdown-item  v-for="lang in $ml.list" v-if="lang!==$ml.current" :key="lang" @click="$ml.change(lang)">
-                    <img class="w-25 m-2" :src="'img/'+lang+'.svg'"/>
+                    <img style="border: 2px solid black; border-radius: 50%" class="w-25 m-2" :src="'img/'+lang+'.svg'"/>
                 </b-dropdown-item>
             </b-dropdown></b-col>
         </b-row>
@@ -36,6 +38,14 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
+.dropdown {
+  .dropdown-toggle {
+    background: #BDD9DC !important;
+    color: black !important;
+    border-radius: 46px;
+    border: 1px solid #000000 !important;
+  }
 
+}
 </style>

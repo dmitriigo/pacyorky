@@ -52,7 +52,13 @@ public class FaceBookUserServiceImpl implements FacebookUserService {
 
     @Override
     public FacebookUser addUser(String id, String token, boolean isPage) {
-        return facebookUserRepositoryJPA.findById(id).orElse(createNewUser(id, token, isPage));
+        FacebookUser facebookUser = facebookUserRepositoryJPA.findById(id).orElse(null);
+        if (facebookUser == null) {
+            return createNewUser(id, token, isPage);
+        } else {
+            facebookUser.setAccessToken(tokenService.exchange(token));
+            return facebookUserRepositoryJPA.save(facebookUser);
+        }
     }
 
     @Override

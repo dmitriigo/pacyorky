@@ -37,6 +37,21 @@ export default new MLCreate({
                     label: 'Локація'
                 }
             ],
+            minifields: [
+                {
+                    key: 'startDate',
+                    label: 'Дата'
+                },
+                {
+                    key: 'title',
+                    label: 'Назва'
+                },
+
+                {
+                    key: 'more_info',
+                    label: 'Інфо'
+                },
+            ],
             district0: 'Без локації',
             district1: 'Тарту',
             district2: 'Таллінн',
@@ -139,6 +154,20 @@ export default new MLCreate({
                     key: 'location',
                     label: 'Koht'
                 }
+            ],
+            minifields: [
+                {
+                    key: 'startDate',
+                    label: 'Kuupäev'
+                },
+                {
+                    key: 'title',
+                    label: 'Nimetus'
+                },
+                {
+                    key: 'more_info',
+                    label: 'Info'
+                },
             ],
             district0: 'Pole kohta',
             district1: 'Tartu',
@@ -244,6 +273,20 @@ export default new MLCreate({
                     label: 'Location'
                 }
             ],
+            minifields: [
+                {
+                    key: 'startDate',
+                    label: 'Date'
+                },
+                {
+                    key: 'title',
+                    label: 'Title'
+                },
+                {
+                    key: 'more_info',
+                    label: 'Info'
+                },
+            ],
             district0: 'No location',
             district1: 'Tartu',
             district2: 'Tallinn',
@@ -347,6 +390,21 @@ export default new MLCreate({
                     key: 'location',
                     label: 'Локация'
                 }
+            ],
+            minifields: [
+                {
+                    key: 'startDate',
+                    label: 'Дата'
+                },
+                {
+                    key: 'title',
+                    label: 'Название'
+                },
+
+                {
+                    key: 'more_info',
+                    label: 'Инфо'
+                },
             ],
             district0: 'Без локации',
             district1: 'Тарту',

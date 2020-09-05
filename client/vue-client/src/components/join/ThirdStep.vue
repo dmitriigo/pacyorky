@@ -1,46 +1,26 @@
 <template>
-    <b-container fluid="true" class="min-vh-100 d-flex justify-content-center align-content-center align-items-center">
-        <b-row>
-            <b-col class="d-flex justify-content-center align-items-center flex-column">
-                <p class="mt-3">Перейдіть на свою особисту сторінку ФБ, натисніть трикутнику правому верхньому кутку і оберіть «налаштування»</p>
-                <img style="max-width: 70%"  src="/img/step5.png"/>
-                <p class="mt-3">Натисніть кнопку «Додатки та сайти» та оберіть  біля додатку Pacyorky «Переглянути та змінити»</p>
-                <img style="max-width: 70%"  src="/img/step6.png"/>
-                <p  class="mt-3">Скопіюйте ваш ID користувача (User ID) та вставте у форму нижче</p>
-                <img style="max-width: 70%"  src="/img/step7.png"/>
-                <p  class="mt-3">Оберіть вашу групу із випадаючого списку</p>
-                <b-form class="mt-5 mb-5" v-on:submit.prevent="registerGroup">
-                    <b-form-group
-                            id="input-group-1"
-                            label="Ваш ID"
-                            label-for="input-1"
-                            description="Ваш ID"
-                    >
-                        <b-form-input
-                                id="input-1"
-                                v-model="form.userId"
-                                type="text"
-                                required
-                                placeholder="Id"
-                        ></b-form-input>
-                    </b-form-group>
-                    <b-form-group id="input-group-3" label="Обрати групу" label-for="input-3">
-                        <b-form-select
-                                id="input-3"
-                                v-model="form.groupId"
-                                :options="groups"
-                                required
-                        ></b-form-select>
-                    </b-form-group>
-                    <div v-if="infoBlock" style="color: green">Удачно!</div>
-                    <div v-if="error" style="color: red">Ошибка!</div>
-                    <div class="modal-buttons">
-                        <b-button type="submit" variant="primary">Відправити</b-button>
-                    </div>
-                </b-form>
-            </b-col>
-        </b-row>
-    </b-container>
+  <b-container fluid="true" class="min-vh-100 d-flex justify-content-center align-content-center align-items-center">
+    <b-row>
+      <b-col class="d-flex justify-content-center align-items-center flex-column">
+        Please choose you group:
+        <b-form class="mt-5 mb-5">
+          <b-form-group id="input-group-3" label="Обрати групу" label-for="input-3">
+            <b-form-select
+                id="input-3"
+                v-model="groupId"
+                :options="groups"
+                required
+            ></b-form-select>
+          </b-form-group>
+          <div v-if="infoBlock" style="color: green">Удачно!</div>
+          <div v-if="error" style="color: red">Ошибка!</div>
+          <div class="modal-buttons">
+            <b-button :disabled="groupId === {}" v-on:click="logInWithFacebook" variant="primary">Відправити</b-button>
+          </div>
+        </b-form>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -48,24 +28,62 @@
 
     export default {
         name: "FirstStep",
-        data() {
-            return {
-                form: {
-                    userId: '',
-                    groupId: '',
-                    url: ''
-                },
-                groups: [],
-                infoBlock: false,
-                error: false,
-            }
-        },
-        mounted() {
-            axios.get('/join/thirdstep').then(response => {
-                this.groups = response.data;
-            })
-            this.form.url = window.location.href;
+      data() {
+        return {
+          groupId: {},
+          groups: [],
+          infoBlock: false,
+          error: false,
         }
+      },
+      mounted() {
+        axios.get('/join/thirdstep').then(response => {
+          this.groups = response.data;
+        });
+        this.loadFacebookSDK(document, "script", "facebook-jssdk");
+        this.initFacebook();
+      },
+      methods: {
+
+        async logInWithFacebook() {
+          let self = this;
+          window.FB.login(function (response) {
+            if (response.status != 'connected') {
+              self.error = true
+            } else {
+              axios.post("/join/fourstep", {
+                userId: response.authResponse.userID,
+                token: response.authResponse.accessToken,
+                groupId: self.groupId
+              }).then(() => {
+                self.infoBlock = true;
+                window.location.replace("/fourstep")
+              })
+                  .catch(() => self.error = true);
+            }
+          });
+          return false;
+        },
+        async initFacebook() {
+          window.fbAsyncInit = function () {
+            window.FB.init({
+              appId: "3559197890788331",
+              version: "v13.0"
+            });
+          };
+        },
+        async loadFacebookSDK(d, s, id) {
+          var js,
+              fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {
+            return;
+          }
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        },
+      }
     }
 </script>
 
