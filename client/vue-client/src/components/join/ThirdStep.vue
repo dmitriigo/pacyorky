@@ -2,7 +2,7 @@
   <b-container fluid="true" class="min-vh-100 d-flex justify-content-center align-content-center align-items-center">
     <b-row>
       <b-col class="d-flex justify-content-center align-items-center flex-column">
-        Please choose you group:
+        Будь ласка оберіть свою групу:
         <b-form class="mt-5 mb-5">
           <b-form-group id="input-group-3" label="Обрати групу" label-for="input-3">
             <b-form-select
@@ -12,8 +12,8 @@
                 required
             ></b-form-select>
           </b-form-group>
-          <div v-if="infoBlock" style="color: green">Удачно!</div>
-          <div v-if="error" style="color: red">Ошибка!</div>
+          <div v-if="infoBlock" style="color: green">Успішно!</div>
+          <div v-if="error" style="color: red">Помилка!</div>
           <div class="modal-buttons">
             <b-button :disabled="groupId === {}" v-on:click="logInWithFacebook" variant="primary">Відправити</b-button>
           </div>

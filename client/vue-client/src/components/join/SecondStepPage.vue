@@ -1,9 +1,18 @@
 <template>
   <b-container fluid="true" class="min-vh-100 d-flex justify-content-center align-content-center align-items-center">
-    <b-row>
-      <button class="btn btn-primary" v-on:click="logInWithFacebook"> Login with Facebook</button>
-      <div v-if="infoBlock" style="color: green">Удачно!</div>
-      <div v-if="error" style="color: red">Ошибка!</div>
+    <b-row class="d-flex justify-content-center align-items-center flex-column">
+      <ol>
+        <li>      Натисніть на "Долучитись"
+        </li>
+        <li>      Увійдіть на Фейсбук
+        </li>
+        <li>      Оберіть сторінку громади, від якої бажаєте долучитись
+        </li>
+      </ol>
+      <img style="max-width: 70%"  src="/img/step8.png"/>
+      <button class="btn btn-primary m-3" v-on:click="logInWithFacebook">Долучитись!</button>
+      <div v-if="infoBlock" style="color: green">Успішно!</div>
+      <div v-if="error" style="color: red">Помилка!</div>
     </b-row>
   </b-container>
 </template>

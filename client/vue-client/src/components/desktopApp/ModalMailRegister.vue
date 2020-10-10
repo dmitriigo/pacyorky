@@ -34,7 +34,7 @@
                             required
                     ></b-form-select>
                 </b-form-group>
-                <div v-if="infoBlock" style="color: green">success</div>
+                <div v-if="infoBlock" style="color: green">{{ message }}</div>
                 <div v-if="error" style="color: red">{{$ml.get('errormsg')}}</div>
                  <div class="modal-buttons">
                    <b-button type="submit" variant="primary">{{$ml.get('submit')}}</b-button>
@@ -63,6 +63,7 @@
                 infoBlock : false,
                 infoMessage : '',
                 error : false,
+                message: '',
             }
         },
         mounted() {
@@ -91,10 +92,10 @@
                 ).then((response) => {
                     this.infoBlock = true;
                     this.message = response.data.message;
-                    console.log(this.message);
                     this.error = false;
                 }).catch(error => {
                     console.log(error);
+                    this.infoBlock = false;
                     this.error = true;
                 });
             },

@@ -44,15 +44,21 @@ public enum District {
         if (location == null || location.equals("")) return District.NONE;
         location = location.toLowerCase();
         location = location.replaceAll(" ", "");
-        List<String> locationSplit = Arrays.asList(location.split(","));
+        List<String> locationSplitarr = Arrays.asList(location.split(","));
         District[] districts = District.values();
         for (District district : districts) {
-            if (locationSplit.contains(district.estName.toLowerCase()) ||
-                    locationSplit.contains(district.ukrName.toLowerCase()) ||
-                    locationSplit.contains(district.rusName.toLowerCase())) {
-                return district;
+            for (String locationSplit : locationSplitarr) {
+                if (locationSplit.contains(district.estName.toLowerCase()) ||
+                        locationSplit.contains(district.ukrName.toLowerCase()) ||
+                        locationSplit.contains(district.rusName.toLowerCase())) {
+                    return district;
+                }
             }
         }
         return District.NONE;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getDistrict("Jõhvi Kontserdimaja"));
     }
 }

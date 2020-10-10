@@ -10,7 +10,6 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 import MailConfirmation from "./components/desktopApp/MailConfirmation";
 import MobileMain from "./components/mobileApp/MobileMain";
 import MobileCalendar from "./components/mobileApp/MobileCalendar";
-import MobileMap from "./components/mobileApp/MobileMap";
 import MobileGame from "./components/mobileApp/MobileGame";
 import MobileProject from "./components/mobileApp/MobileProject";
 import SecondStepPage from "@/components/join/SecondStepPage";
@@ -88,13 +87,6 @@ export default new Router ({
             components: {
                 desktop:  PacyorkyDesktopApplication,
                 mobile:  MobileCalendar
-            }
-        },
-        {
-            path: "/map",
-            components: {
-                desktop:  PacyorkyDesktopApplication,
-                mobile:  MobileMap
             }
         },
         {

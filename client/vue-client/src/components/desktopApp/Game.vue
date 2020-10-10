@@ -13,11 +13,15 @@
             <b-row style="background-color: #EBE1E4; padding: 10px; height: 70%"><iframe width="100%" src="https://www.youtube.com/embed/MRDI8jB7sq0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></b-row>
             <b-row class="mt-3 p-3" style="background-color: #EBE1E4">
               <b-col class="d-flex flex-column justify-content-center align-items-center">
+                <a href="/rules.pdf" target="_blank" style="color: black" download>
                 <font-awesome-icon  :icon="['fas', 'file-pdf']" size="4x" />
+                </a>
                 <h4 class="game-block-download">{{$ml.get('rules')}}</h4>
               </b-col>
               <b-col class="d-flex flex-column justify-content-center align-items-center">
+                <a href="/holidays.pdf" target="_blank" style="color: black" download>
                 <font-awesome-icon  :icon="['fas', 'file-pdf']" size="4x" />
+                </a>
                 <h4 class="game-block-download">{{$ml.get('holidays')}}</h4>
               </b-col>
             </b-row>
@@ -26,7 +30,7 @@
         <b-row align-v="center" align-h="center">
           <h4 class="game-block-text">{{$ml.get('gallery')}}</h4></b-row>
         <b-row>
-          <silent-box :gallery="gamePics"></silent-box>
+          <silent-box id="game-box" :gallery="gamePics"></silent-box>
         </b-row>
       </b-col>
     </b-row>
@@ -44,10 +48,11 @@
         </b-row>
         <b-row style="background-color: #BDD9DC" class="m-3 p-3">
           <b-col cols="6"><p style="text-align: justify">{{$ml.get('gameinfo')}}</p></b-col>
-          <b-col class="d-flex justify-content-center align-items-center"><img style="width: 40%" src="/img/emblema.png" /></b-col>
+          <b-col class="d-flex justify-content-center align-items-center">
+            <img style="width: 60%" src="/img/emblema.png" /></b-col>
           <b-col class="d-flex justify-content-center align-items-center flex-column">
-            <img style="width: 40%" src="/img/is_logo.png" alt="">
-            <img style="width: 70%" src="/img/ee.png" alt="">
+            <img style="width: 70%" src="/img/is_logo.png" alt="">
+            <img style="width: 100%" src="/img/ee.png" alt="">
           </b-col>
         </b-row>
       </b-col>
@@ -62,19 +67,27 @@ export default {
     return {
       gamePics : [
         {
-          src: '/img/family.png'
+          src: '/img/pgame1-min.jpg'
         }
         ,
           {
-          src: '/img/family.png',
+          src: '/img/pgame2-min.jpg',
         }
         ,
           {
-          src: '/img/family.png',
+          src: '/img/pgame3-min.jpg',
         }
         ,
           {
-          src: '/img/family.png',
+          src: '/img/pgame4-min.jpg',
+        }
+        ,
+          {
+          src: '/img/pgame5-min.jpg',
+        }
+        ,
+          {
+          src: '/img/pgame6-min.jpg',
         }
         ,
       ]
@@ -84,15 +97,17 @@ export default {
 </script>
 
 <style lang="less">
-#silentbox-gallery {
+#game-box {
   display: flex;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-}
-.silentbox-item {
-  width: 50%;
-  img {
-    width: 100%;
+  .silentbox-item {
+      width: 30%;
+    margin: 10px;
+    img {
+      width: 100%;
+    }
   }
 }
 .game {

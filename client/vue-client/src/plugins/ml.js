@@ -122,7 +122,7 @@ export default new MLCreate({
             holidays: 'Опис свят',
             howto: 'Як грати?',
             questions: 'Лишились питання? \n' +
-                'Зв’яжіться із нами info@pacyorky.ee ',
+                'Зв’яжіться із нами <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a> ',
             gameinfo: 'Гру створено Українським земляцтвом Сілламяе Водограй, за підтримкою Фонду Інтеграції та Міністерства Культури Естонії\n',
         }),
 
@@ -240,7 +240,7 @@ export default new MLCreate({
             holidays: 'Rahvapeode kirjeldus',
             howto: 'Kuidas mängida?',
             questions: 'On küsimusi?\n' +
-                'Võta meiega ühendust info@pacyorky.ee',
+                'Võta meiega ühendust <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a>',
             gameinfo: 'Lauamäng “Pacyorky” on loodud Ukraina kaasmaalaskonna Sillamäe Vodograi’ga Eesti Kultuuriministeeriumi ja Integratsiooni Sihtasutuse rahalisel toetusel.',
         }),
 
@@ -358,7 +358,7 @@ export default new MLCreate({
             holidays: 'Holidays description',
             howto: 'How to play?',
             questions: 'Have questions?\n' +
-                'Let us know info@pacyorky.ee ',
+                'Let us know <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a> ',
             gameinfo: 'The game is created by Ukrainian community of Sillamäe Vodograi, with financial support of Integration Foundation and Ministry of Culture of Estonia.',
         }),
         new MLanguage('Russian').create({
@@ -478,7 +478,7 @@ export default new MLCreate({
             holidays: 'Описание праздников',
             howto: 'Как играть?',
             questions: 'Остались вопросы? \n' +
-                'Свяжитесь с нами info@pacyorky.ee ',
+                'Свяжитесь с нами <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a> ',
             gameinfo: 'Игра создана Украинским землячеством Силламяэ Водограй, при поддержке Фонда Интеграции и Министерства Культуры Эстонии.  ',
         })
 

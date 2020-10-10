@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class PacyorkyEvent {
@@ -128,6 +129,28 @@ public class PacyorkyEvent {
 
     public void setPacyorkyEventOwner(PacyorkyGroup pacyorkyEventOwner) {
         this.pacyorkyEventOwner = pacyorkyEventOwner;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PacyorkyEvent that = (PacyorkyEvent) o;
+        return Double.compare(that.lat, lat) == 0 &&
+                Double.compare(that.lng, lng) == 0 &&
+                id.equals(that.id) &&
+                Objects.equals(place, that.place) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(startTime, that.startTime) &&
+                Objects.equals(endTime, that.endTime) &&
+                district == that.district &&
+                Objects.equals(cover, that.cover);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, place, name, description, startTime, endTime, district, lat, lng, cover);
     }
 
     @Override

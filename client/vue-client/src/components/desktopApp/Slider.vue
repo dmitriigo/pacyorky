@@ -12,7 +12,8 @@
                 <div class="one-slide">
                <img :src="event.cover"/>
                     <div class="slider-event-link d-flex justify-content-center align-content-center align-items-center">
-                    <a style="color: black; font-size: 16px; font-weight: normal" :href="event.link" target="_blank">{{event.title}}</a>
+                    <a style="color: black; font-size: 16px; font-weight: normal" :href="event.link" target="_blank">
+                      {{event.title.length < 64 ? event.title : event.title.substr(0,64)+'...'}}</a>
                 </div>
                 </div>
             </slide>

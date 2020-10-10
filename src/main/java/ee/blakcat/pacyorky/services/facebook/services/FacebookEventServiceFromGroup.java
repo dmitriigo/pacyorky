@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -52,9 +53,7 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
             FacebookUser facebookUser = group.getFacebookUser();
             try {
                 FacebookClient client = facebookClient.createClientWithAccessToken(facebookUser.getAccessToken().getToken());
-                List<Event> fromFB = client.fetchConnection(group.getId() + "/events", Event.class, Parameter.with("fields",
-                        "cover,description,end_time,name,owner,place,start_time"
-                )).getData();
+                List<Event> fromFB = fetchEventsFromFb(client, group.getId());
                 fromFB.forEach(event -> {
                     Event.Owner owner = new Event.Owner();
                     owner.setId(group.getId());
@@ -78,7 +77,14 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
                     .map(FacebookPage::getId).collect(Collectors.toList());
             for (FacebookUser user : users) {
                 FacebookClient facebookClient1 = facebookClient.createClientWithAccessToken(user.getAccessToken().getToken());
-                List<Account> pages = facebookClient1.fetchConnection(user.getId()+"/accounts", Account.class).getData();
+                List<Account> pages = new ArrayList<>();
+                try {
+                    pages = facebookClient1.fetchConnection(user.getId() + "/accounts", Account.class).getData();
+                } catch (Exception e) {
+                    facebookUserRepositoryJPA.delete(user);
+                    logger.error(user.getName()+ "HARD DELETED TOKEN DEAD: "+e.getMessage());
+                    logger.error(e.getMessage(), e.fillInStackTrace());
+                }
                 for (Account page : pages) {
                     if (facebookPageRepositoryJPA.findById(page.getId()).orElse(null) == null) {
                         FacebookPage facebookPage = new FacebookPage();
@@ -89,7 +95,7 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
                     if (!allowedPages.contains(page.getId())) {
                         continue;
                     }
-                    List<Event> fromPage = facebookClient1.fetchConnection(page.getId()+"/events", Event.class).getData();
+                    List<Event> fromPage = fetchEventsFromFb(facebookClient1, page.getId());
                     for (Event event : fromPage) {
                         Event.Owner owner = new Event.Owner();
                         owner.setId(page.getId());
@@ -109,5 +115,11 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
             logger.error("wrong token, exception: " + e.toString());
         }
         return events;
+    }
+
+    private List<Event> fetchEventsFromFb (FacebookClient facebookClient, String id) {
+        return facebookClient.fetchConnection(id + "/events", Event.class, Parameter.with("fields",
+                "cover,description,end_time,name,owner,place,start_time"
+        )).getData();
     }
 }
