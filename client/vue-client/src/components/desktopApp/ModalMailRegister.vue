@@ -90,9 +90,15 @@
                     mailLang : this.form.lang,
                     mailSendPeriod : this.form.period}
                 ).then((response) => {
+                  if (response.data.result) {
                     this.infoBlock = true;
-                    this.message = response.data.message;
+                    this.message = $ml.get(response.data.message)+' '+response.data.mail;
                     this.error = false;
+                  } else {
+                    this.infoBlock = false;
+                    this.message = $ml.get(response.data.message);
+                    this.error = true;
+                  }
                 }).catch(error => {
                     console.log(error);
                     this.infoBlock = false;

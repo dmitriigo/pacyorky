@@ -8,6 +8,11 @@ import ee.blakcat.pacyorky.services.pacyorky.PacyorkyGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +25,17 @@ public class JoinController {
 
     private final PacyorkyGroupService pacyorkyGroupService;
     private final FacebookUserService facebookUserService;
+    private final JavaMailSender javaMailSender;
     private final Logger logger = LoggerFactory.getLogger(JoinController.class);
+    @Value("${log.sendto}")
+    private String mail;
+    private final String from = "no-reply@pacyorky.ee";
 
     @Autowired
-    public JoinController(PacyorkyGroupService pacyorkyGroupService, FacebookUserService facebookUserService) {
+    public JoinController(PacyorkyGroupService pacyorkyGroupService, FacebookUserService facebookUserService, JavaMailSender javaMailSender) {
         this.pacyorkyGroupService = pacyorkyGroupService;
         this.facebookUserService = facebookUserService;
+        this.javaMailSender = javaMailSender;
     }
 
 
@@ -43,6 +53,13 @@ public class JoinController {
         return groups;
     }
 
+    @GetMapping("/notify")
+    public ResponseEntity<String> notifyMe() {
+        notifyMe("Somebody try to join");
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+
     @PostMapping("/fourstep")
     public String fourStep(@RequestBody GroupAnswerDTO groupAnswerDTO) {
         String token = groupAnswerDTO.getToken();
@@ -53,6 +70,7 @@ public class JoinController {
             throw new RuntimeException("Wrong data!");
         }
         if (!pacyorkyGroupService.saveGroup(id, token, groupId)) return "error";
+        notifyMe("New group! "+id);
         return "fourstep";
     }
 
@@ -65,6 +83,17 @@ public class JoinController {
             throw new RuntimeException("Wrong data!");
         }
         if (facebookUserService.addUser(id, token, true) == null) return "error";
+        notifyMe("New Page! "+id);
         return "fourstep";
+    }
+
+    private void notifyMe(String msg) {
+        javaMailSender.send(mimeMessage -> {
+            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+            message.setSubject("new!");
+            message.setFrom(from);
+            message.setTo(mail);;
+            message.setText(msg, false);
+        });
     }
 }

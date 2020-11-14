@@ -1,5 +1,6 @@
 package ee.blakcat.pacyorky.services.pacyorky.servicesimpl;
 
+import ee.blakcat.pacyorky.dto.AddMailMessageDTO;
 import ee.blakcat.pacyorky.models.MailLang;
 import ee.blakcat.pacyorky.models.MailSendPeriod;
 import ee.blakcat.pacyorky.models.PacyorkyUser;
@@ -52,22 +53,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean addUser(String eMail, MailLang mailLang, MailSendPeriod mailSendPeriod) {
-        PacyorkyUser pacyorkyUser = new PacyorkyUser();
-        pacyorkyUser.seteMail(eMail);
-        pacyorkyUser.setMailLang(mailLang);
-        pacyorkyUser.setMailSendPeriod(mailSendPeriod);
-        pacyorkyUser.setPacyorkyEventsToSend(new HashSet<>());
-        pacyorkyUser.setConfirmed(false);
-        pacyorkyUser.setControlString(UUID.randomUUID().toString());
-        try {
-            pacyorkyUserRepository.save(pacyorkyUser);
-            mailSenderWelcomeLetter.sendMail(pacyorkyUser);
-        } catch (Exception e) {
-            logger.error("add user exception: " + e.toString());
-            return false;
+    public AddMailMessageDTO addUser(String eMail, MailLang mailLang, MailSendPeriod mailSendPeriod) {
+        AddMailMessageDTO addMailMessageDTO = new AddMailMessageDTO();
+        PacyorkyUser existMail = pacyorkyUserRepository.findByeMail(eMail);
+        if (existMail == null) {
+            PacyorkyUser pacyorkyUser = new PacyorkyUser();
+            pacyorkyUser.seteMail(eMail);
+            pacyorkyUser.setMailLang(mailLang);
+            pacyorkyUser.setMailSendPeriod(mailSendPeriod);
+            pacyorkyUser.setPacyorkyEventsToSend(new HashSet<>());
+            pacyorkyUser.setConfirmed(false);
+            pacyorkyUser.setControlString(UUID.randomUUID().toString());
+            try {
+                pacyorkyUserRepository.save(pacyorkyUser);
+                mailSenderWelcomeLetter.sendMail(pacyorkyUser);
+                addMailMessageDTO.setResult(true);
+                addMailMessageDTO.setMail(eMail);
+                return addMailMessageDTO;
+            } catch (Exception e) {
+                logger.error("add user exception: " + e.toString());
+                addMailMessageDTO.setResult(false);
+                return addMailMessageDTO;
+            }
+        } else {
+            addMailMessageDTO.setResult(false);
+            addMailMessageDTO.setMessage("exist");
+            return addMailMessageDTO;
         }
-        return true;
     }
 
     @Override

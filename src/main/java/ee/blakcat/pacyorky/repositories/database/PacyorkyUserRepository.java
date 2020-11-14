@@ -9,4 +9,5 @@ public interface PacyorkyUserRepository extends JpaRepository<PacyorkyUser, Long
   //  List<PacyorkyUser> findAllConfirmed();
     List<PacyorkyUser> findAllByConfirmedIsTrue();
     PacyorkyUser findByControlString(String controlString);
+    PacyorkyUser findByeMail(String eMail);
 }

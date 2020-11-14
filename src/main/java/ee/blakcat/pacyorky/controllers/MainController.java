@@ -40,8 +40,7 @@ public class MainController {
 
     @PostMapping("/add-mail")
     public AddMailMessageDTO addMailUser(@RequestBody MailUserDTO mailUserDTO) {
-        boolean result = userService.addUser(mailUserDTO.geteMail(), mailUserDTO.getMailLang(), mailUserDTO.getMailSendPeriod());
-        return new AddMailMessageDTO(result, mailUserDTO.getMailLang(), mailUserDTO.geteMail());
+        return userService.addUser(mailUserDTO.geteMail(), mailUserDTO.getMailLang(), mailUserDTO.getMailSendPeriod());
     }
 
     @GetMapping("/mail-variant")

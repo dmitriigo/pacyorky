@@ -23,6 +23,9 @@ import axios from "axios";
 export default {
   name: "SecondStepPage",
   mounted() {
+    axios.get('/join/notify').then(response => {
+
+    });
     this.loadFacebookSDK(document, "script", "facebook-jssdk")
     this.initFacebook();
   },

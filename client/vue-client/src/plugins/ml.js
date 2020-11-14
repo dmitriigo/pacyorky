@@ -124,6 +124,8 @@ export default new MLCreate({
             questions: 'Лишились питання? \n' +
                 'Зв’яжіться із нами <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a> ',
             gameinfo: 'Гру створено Українським земляцтвом Сілламяе Водограй, за підтримкою Фонду Інтеграції та Міністерства Культури Естонії\n',
+            success: 'Удачно',
+            exist: 'Данный e-mail существует!',
         }),
 
         new MLanguage('Estonian').create({
@@ -242,6 +244,8 @@ export default new MLCreate({
             questions: 'On küsimusi?\n' +
                 'Võta meiega ühendust <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a>',
             gameinfo: 'Lauamäng “Pacyorky” on loodud Ukraina kaasmaalaskonna Sillamäe Vodograi’ga Eesti Kultuuriministeeriumi ja Integratsiooni Sihtasutuse rahalisel toetusel.',
+            success: 'Удачно',
+            exist: 'Данный e-mail существует!',
         }),
 
         new MLanguage('English').create({
@@ -360,6 +364,8 @@ export default new MLCreate({
             questions: 'Have questions?\n' +
                 'Let us know <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a> ',
             gameinfo: 'The game is created by Ukrainian community of Sillamäe Vodograi, with financial support of Integration Foundation and Ministry of Culture of Estonia.',
+            success: 'Удачно',
+            exist: 'Данный e-mail существует!',
         }),
         new MLanguage('Russian').create({
             title: 'Название',
@@ -480,6 +486,8 @@ export default new MLCreate({
             questions: 'Остались вопросы? \n' +
                 'Свяжитесь с нами <a href="mailto:info@pacyorky.ee">info@pacyorky.ee</a> ',
             gameinfo: 'Игра создана Украинским землячеством Силламяэ Водограй, при поддержке Фонда Интеграции и Министерства Культуры Эстонии.  ',
+            success: 'Удачно',
+            exist: 'Данный e-mail существует!',
         })
 
     ]

@@ -21,8 +21,15 @@
 
 <script>
 
+import axios from "axios";
+
 export default {
   name: "FirstStep",
+  mounted() {
+    axios.get('/join/notify').then(response => {
+
+    });
+  },
   data() {
     return {
       gamePics: [
