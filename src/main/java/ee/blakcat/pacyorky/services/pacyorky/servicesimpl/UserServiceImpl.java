@@ -71,7 +71,7 @@ public class UserServiceImpl implements UserService {
                 addMailMessageDTO.setMail(eMail);
                 return addMailMessageDTO;
             } catch (Exception e) {
-                logger.error("add user exception: " + e.toString());
+                logger.error("add user exception: " + e.toString(), e);
                 addMailMessageDTO.setResult(false);
                 return addMailMessageDTO;
             }

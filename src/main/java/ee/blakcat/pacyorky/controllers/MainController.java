@@ -49,7 +49,7 @@ public class MainController {
         try {
             return objectMapper.writeValueAsString(variantDTO);
         } catch (JsonProcessingException e) {
-            logger.error("error in mail variants, exception: " + e.toString());
+            logger.error("error in mail variants, exception: " + e.toString(), e);
         }
         return null;
     }
@@ -60,7 +60,7 @@ public class MainController {
         try {
             eventDto = objectMapper.writeValueAsString(new EventDTO(eventService.findById(id)));
         } catch (Exception e) {
-            logger.error("can not get one event id = " + id + ", exception: " + e.toString());
+            logger.error("can not get one event id = " + id + ", exception: " + e.toString(), e);
         }
         return eventDto;
     }
@@ -72,7 +72,7 @@ public class MainController {
         try {
             eventsDTO = objectMapper.writeValueAsString(events.stream().map(EventDTO::new).collect(Collectors.toList()));
         } catch (Throwable e) {
-            logger.error("can not get events, exception: " + e.toString());
+            logger.error("can not get events, exception: " + e.toString(), e);
         }
 
         return eventsDTO;
@@ -86,7 +86,7 @@ public class MainController {
                 updateService.updateAll();
                 return true;
             } catch (Exception e) {
-                logger.error("update exception: " + e.toString());
+                logger.error("update exception: " + e.toString(), e);
                 return false;
             }
         }

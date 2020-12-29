@@ -25,7 +25,7 @@ public class PacyorkyEventHTMLMailTemplateUA implements PacyorkyEventHTMLMailTem
             message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             message.setSubject("Нові події!");
         } catch (MessagingException e) {
-            logger.error("can not create mimeMessageHelper: " + e.toString());
+            logger.error("can not create mimeMessageHelper: " + e.toString(), e);
         }
         return message;
     }

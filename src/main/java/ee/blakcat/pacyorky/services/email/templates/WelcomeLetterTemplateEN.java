@@ -25,7 +25,7 @@ public class WelcomeLetterTemplateEN implements WelcomeLetterTemplate {
             message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
             message.setSubject("Confirmation of registration");
         } catch (MessagingException e) {
-            logger.error("can not create mimeMessageHelper: " + e.toString());
+            logger.error("can not create mimeMessageHelper: " + e.toString(), e);
         }
         return message;
     }

@@ -58,6 +58,7 @@
 
     </b-container>
     <ModalMailRegister @closeModalWindow="closeModalWindow" :mail-modal="mailModal"/>
+    <ModalAd/>
   </b-container>
 </template>
 
@@ -69,10 +70,11 @@ import PacyorkyHeader from "./PacyorkyHeader";
 import PacyorkyAppData from "./PacyorkyAppData";
 import Slider from "./Slider";
 import About from "./About";
+import ModalAd from "@/components/desktopApp/ModalAd";
 
 export default {
   name: "PacyorkyDesktopApplication",
-  components: {ModalMailRegister, Game, NavBar, PacyorkyHeader, PacyorkyAppData, Slider, About},
+  components: {ModalAd, ModalMailRegister, Game, NavBar, PacyorkyHeader, PacyorkyAppData, Slider, About},
   data() {
     return {
       events: [],

@@ -52,6 +52,7 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
         for (PacyorkyGroup group : groups) {
             FacebookUser facebookUser = group.getFacebookUser();
             try {
+                if (facebookUser == null) throw new RuntimeException("User at group not found!");
                 FacebookClient client = facebookClient.createClientWithAccessToken(facebookUser.getAccessToken().getToken());
                 List<Event> fromFB = fetchEventsFromFb(client, group.getId());
                 fromFB.forEach(event -> {
@@ -62,7 +63,7 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
                 });
                 events.addAll(fromFB);
             } catch (Exception e) {
-                logger.error("wrong token, exception: " + e.toString());
+                logger.error("wrong token, exception: " + e.toString(), e);
             }
         }
         events.addAll(getFromPages());
@@ -112,7 +113,7 @@ public class FacebookEventServiceFromGroup implements FacebookService<Event> {
             }
             
         } catch (Exception e) {
-            logger.error("wrong token, exception: " + e.toString());
+            logger.error("wrong token, exception: " + e.toString(), e);
         }
         return events;
     }
