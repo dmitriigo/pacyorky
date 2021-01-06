@@ -26,3 +26,6 @@ server:
   port: ${PORT:3000}
 log:
   sendto: no-reply@pacyorky.ee
+management:
+  endpoints:
+    enabled-by-default: false
