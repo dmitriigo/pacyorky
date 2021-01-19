@@ -1,6 +1,5 @@
 package ee.blakcat.pacyorky.services.updateData;
 
-import ee.blakcat.pacyorky.Pacyorky;
 import ee.blakcat.pacyorky.models.PacyorkyEvent;
 import ee.blakcat.pacyorky.repositories.database.EventRepositoryJPA;
 import ee.blakcat.pacyorky.services.email.MailService;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.HashSet;
 import java.util.List;
@@ -83,10 +81,10 @@ public class UpdateServiceImpl implements UpdateService {
         invalidateEvents(events.stream().map(PacyorkyEvent::getId).collect(Collectors.toSet()));
     }
 
-    private void invalidateEvents (Set<String> eventsNew) {
+    private void invalidateEvents(Set<String> eventsNew) {
         List<PacyorkyEvent> eventsAtDB = eventRepositoryJPA.findAll();
         for (PacyorkyEvent pacyorkyEvent : eventsAtDB) {
-            if(!eventsNew.contains(pacyorkyEvent.getId())) {
+            if (!eventsNew.contains(pacyorkyEvent.getId())) {
                 pacyorkyEvent.setPacyorkyEventOwner(null);
                 eventRepositoryJPA.delete(pacyorkyEvent);
             }

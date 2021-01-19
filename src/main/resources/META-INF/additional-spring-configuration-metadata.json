@@ -19,5 +19,15 @@
       "name": "appId",
       "type": "java.lang.String",
       "description": "Description for appId."
+    },
+    {
+      "name": "telegram.token",
+      "type": "java.lang.String",
+      "description": "Description for telegram.token."
+    },
+    {
+      "name": "telegram.chat",
+      "type": "java.lang.String",
+      "description": "Description for telegram.chat."
     }
   ] }

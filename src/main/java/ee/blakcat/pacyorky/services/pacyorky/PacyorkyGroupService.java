@@ -11,6 +11,8 @@ public interface PacyorkyGroupService {
 
     boolean saveGroup(String userId, String token, String groupId);
 
+    void updateGroup(PacyorkyGroup group);
+
     PacyorkyGroup findOne(String id);
 
     Set<PacyorkyGroup> findAll();

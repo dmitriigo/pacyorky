@@ -66,6 +66,11 @@ public class PacyorkyGroupServiceImpl implements PacyorkyGroupService {
         return true;
     }
 
+    @Override
+    public void updateGroup(PacyorkyGroup group) {
+        pacyorkyGroupRepositoryJPA.save(group);
+    }
+
 
 
     private PacyorkyGroup createGroup(String groupId) {
